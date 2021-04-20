@@ -14,4 +14,9 @@ class Administrador extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function peluqueriasAtendidas()
+    {
+        return $this->hasMany(PeluqueriaEstado::class);
+    }
 }

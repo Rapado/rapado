@@ -13,4 +13,19 @@ class Cliente extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function peluqueriasFavoritas()
+    {
+        return $this->belongsToMany(Peluqueria::class, 'peluqueria_favoritas');
+    }
+
+    public function evaluacionesDePeluquerias()
+    {
+        return $this->hasMany(PeluqueriaEvaluacion::class);
+    }
+
+    public function evaluacionesAPeluqueros()
+    {
+        return $this->hasMany(PeluqueroEvaluacion::class);
+    }
 }

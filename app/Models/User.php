@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Administrador::class);
     }
+
+    public function citas()
+    {
+        return $this->hasMany(Cita::class);
+    }
 }

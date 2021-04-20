@@ -18,6 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('tipo', ['admin', 'cliente', 'peluqueria'])->default('cliente');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -30,6 +31,9 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('administradors');
+        Schema::dropIfExists('peluquerias');
+        Schema::dropIfExists('clientes');
         Schema::dropIfExists('users');
     }
 }
