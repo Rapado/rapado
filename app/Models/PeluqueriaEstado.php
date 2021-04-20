@@ -5,22 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Servicio extends Model
+class PeluqueriaEstado extends Model
 {
     use HasFactory;
 
-    public function peluqueros()
+    public function administrador()
     {
-        return $this->belongsToMany(Peluquero::class);
+        return $this->belongsTo(Administrador::class);
     }
 
     public function peluqueria()
     {
         return $this->belongsTo(Peluqueria::class);
-    }
-
-    public function citas()
-    {
-        return $this->belongsToMany(Cita::class);
     }
 }

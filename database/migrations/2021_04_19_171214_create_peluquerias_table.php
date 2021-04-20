@@ -15,7 +15,7 @@ class CreatePeluqueriasTable extends Migration
     {
         Schema::create('peluquerias', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('nombre');
             $table->integer('telefono');
             $table->string('nombreEncargado');
@@ -32,6 +32,7 @@ class CreatePeluqueriasTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('servicios');
         Schema::dropIfExists('peluquerias');
     }
 }
