@@ -24,9 +24,24 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/admin', function () {
+    return Inertia::render('Admin/Welcome',
+    [
+        // 'canLogin' => Route::has('login'),
+        'canResetPassword' => Route::has('password.request'),
+    ]
+    );
+});
+
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/admin/dashboard', function () {
+    return Inertia::render('Admin/Dashboard');
+})->middleware(['auth', 'verified'])->name('admin.dashboard');
+
 
 require __DIR__.'/auth.php';
+require __DIR__.'/authAdmin.php';
