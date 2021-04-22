@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Admin;
+namespace App\Http\Controllers\Auth\Peluqueria;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
-class RegisteredUserAdminController extends Controller
+class RegisteredUserPeluqueriaController extends Controller
 {
     /**
      * Display the registration view.
@@ -20,7 +20,7 @@ class RegisteredUserAdminController extends Controller
      */
     public function create()
     {
-        dd('controllador del admin');
+        dd('controllador del peluquero');
         // return Inertia::render('Auth/Register');
     }
 

@@ -33,6 +33,13 @@ Route::get('/admin', function () {
     );
 });
 
+Route::get('/peluqueria', function () {
+    return Inertia::render('Peluqueria/Welcome',[
+        // 'canLogin' => Route::has('login'),
+        'canResetPassword' => Route::has('password.request'),
+    ]);
+});
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
@@ -42,6 +49,11 @@ Route::get('/admin/dashboard', function () {
     return Inertia::render('Admin/Dashboard');
 })->middleware(['auth', 'verified'])->name('admin.dashboard');
 
+Route::get('/peluqueria/dashboard', function () {
+    return Inertia::render('Peluqueria/Dashboard');
+})->middleware(['auth', 'verified'])->name('peluqueria.dashboard');
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';
+require __DIR__.'/authPeluqueria.php';
