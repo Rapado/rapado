@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth\Peluqueria;
 
 use App\Http\Controllers\Controller;
+use App\Models\Peluqueria;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -37,15 +38,24 @@ class RegisteredUserPeluqueriaController extends Controller
         $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
+            'numeroLocal' => 'required',
+            'nombrePeluqueria' => 'required|string|min:3|max:150',
         ]);
 
         Auth::login($user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'tipo' => 'peluqueria'
         ]));
+
+        $peluqueria = new Peluqueria();
+        $peluqueria->user_id = Auth::id();
+        $peluqueria->telefono = $request['numeroLocal'];
+        $peluqueria->nombre = $request['nombrePeluqueria'];
+        $peluqueria->save();
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOMEPELUQUERIA);
     }
 }

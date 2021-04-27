@@ -3,7 +3,9 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
+use App\Models\User;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,7 +38,15 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
+                'userName' => $this->getUserName(Auth::id())
             ],
         ]);
+    }
+
+    public function getUserName($userId)
+    {
+        $user = User::find($userId);
+
+        return isset($user) ? $user->getName() : '' ;
     }
 }

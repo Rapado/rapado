@@ -29,6 +29,9 @@ class CreatePeluquerosTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('peluquero_evaluacions');
+        Schema::dropIfExists('peluquero_servicio');
+        Schema::dropIfExists('citas');
         Schema::dropIfExists('peluqueros');
     }
 }

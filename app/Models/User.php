@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
+        'tipo'
     ];
 
     /**
@@ -58,5 +59,29 @@ class User extends Authenticatable
     public function citas()
     {
         return $this->hasMany(Cita::class);
+    }
+
+    public function getName()
+    {
+        switch ($this->tipo) {
+            case 'cliente':
+                return $this->cliente->nombre;
+            case 'peluqueria':
+                return $this->peluqueria->nombre;
+            case 'admin':
+                return $this->administrador->nombre;
+        }
+    }
+
+    public function getHomePage()
+    {
+        switch ($this->tipo) {
+            case 'cliente':
+                return 'dashboard';
+            case 'peluqueria':
+                return 'peluqueria/dashboard';
+            case 'admin':
+                return 'admin/dashboard';
+        }
     }
 }
