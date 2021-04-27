@@ -2,110 +2,112 @@
     <!-- <svg viewBox="0 0 316 316" xmlns="http://www.w3.org/2000/svg">
          <path d="M305.8 81.125C305.77 80.995 305.69 80.885 305.65 80.755C305.56 80.525 305.49 80.285 305.37 80.075C305.29 79.935 305.17 79.815 305.07 79.685C304.94 79.515 304.83 79.325 304.68 79.175C304.55 79.045 304.39 78.955 304.25 78.845C304.09 78.715 303.95 78.575 303.77 78.475L251.32 48.275C249.97 47.495 248.31 47.495 246.96 48.275L194.51 78.475C194.33 78.575 194.19 78.725 194.03 78.845C193.89 78.955 193.73 79.045 193.6 79.175C193.45 79.325 193.34 79.515 193.21 79.685C193.11 79.815 192.99 79.935 192.91 80.075C192.79 80.285 192.71 80.525 192.63 80.755C192.58 80.875 192.51 80.995 192.48 81.125C192.38 81.495 192.33 81.875 192.33 82.265V139.625L148.62 164.795V52.575C148.62 52.185 148.57 51.805 148.47 51.435C148.44 51.305 148.36 51.195 148.32 51.065C148.23 50.835 148.16 50.595 148.04 50.385C147.96 50.245 147.84 50.125 147.74 49.995C147.61 49.825 147.5 49.635 147.35 49.485C147.22 49.355 147.06 49.265 146.92 49.155C146.76 49.025 146.62 48.885 146.44 48.785L93.99 18.585C92.64 17.805 90.98 17.805 89.63 18.585L37.18 48.785C37 48.885 36.86 49.035 36.7 49.155C36.56 49.265 36.4 49.355 36.27 49.485C36.12 49.635 36.01 49.825 35.88 49.995C35.78 50.125 35.66 50.245 35.58 50.385C35.46 50.595 35.38 50.835 35.3 51.065C35.25 51.185 35.18 51.305 35.15 51.435C35.05 51.805 35 52.185 35 52.575V232.235C35 233.795 35.84 235.245 37.19 236.025L142.1 296.425C142.33 296.555 142.58 296.635 142.82 296.725C142.93 296.765 143.04 296.835 143.16 296.865C143.53 296.965 143.9 297.015 144.28 297.015C144.66 297.015 145.03 296.965 145.4 296.865C145.5 296.835 145.59 296.775 145.69 296.745C145.95 296.655 146.21 296.565 146.45 296.435L251.36 236.035C252.72 235.255 253.55 233.815 253.55 232.245V174.885L303.81 145.945C305.17 145.165 306 143.725 306 142.155V82.265C305.95 81.875 305.89 81.495 305.8 81.125ZM144.2 227.205L100.57 202.515L146.39 176.135L196.66 147.195L240.33 172.335L208.29 190.625L144.2 227.205ZM244.75 114.995V164.795L226.39 154.225L201.03 139.625V89.825L219.39 100.395L244.75 114.995ZM249.12 57.105L292.81 82.265L249.12 107.425L205.43 82.265L249.12 57.105ZM114.49 184.425L96.13 194.995V85.305L121.49 70.705L139.85 60.135V169.815L114.49 184.425ZM91.76 27.425L135.45 52.585L91.76 77.745L48.07 52.585L91.76 27.425ZM43.67 60.135L62.03 70.705L87.39 85.305V202.545V202.555V202.565C87.39 202.735 87.44 202.895 87.46 203.055C87.49 203.265 87.49 203.485 87.55 203.695V203.705C87.6 203.875 87.69 204.035 87.76 204.195C87.84 204.375 87.89 204.575 87.99 204.745C87.99 204.745 87.99 204.755 88 204.755C88.09 204.905 88.22 205.035 88.33 205.175C88.45 205.335 88.55 205.495 88.69 205.635L88.7 205.645C88.82 205.765 88.98 205.855 89.12 205.965C89.28 206.085 89.42 206.225 89.59 206.325C89.6 206.325 89.6 206.325 89.61 206.335C89.62 206.335 89.62 206.345 89.63 206.345L139.87 234.775V285.065L43.67 229.705V60.135ZM244.75 229.705L148.58 285.075V234.775L219.8 194.115L244.75 179.875V229.705ZM297.2 139.625L253.49 164.795V114.995L278.85 100.395L297.21 89.825V139.625H297.2Z"/>
     </svg> -->
-    <svg
-        xmlns:dc="http://purl.org/dc/elements/1.1/"
-        xmlns:cc="http://creativecommons.org/ns#"
-        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-        xmlns:svg="http://www.w3.org/2000/svg"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-        width="51.597702mm"
-        height="8.3784809mm"
-        viewBox="0 0 51.597701 8.3784809"
-        version="1.1"
-        id="svg8"
-        inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-        inkscape:export-filename="C:\Users\Windows User\Desktop\rapadoLogo.png"
-        inkscape:export-xdpi="93.399002"
-        inkscape:export-ydpi="93.399002">
-        <defs
-            id="defs2">
-            <linearGradient
-            id="linearGradient846"
-            inkscape:collect="always">
-            <stop
-                id="stop842"
-                offset="0"
-                style="stop-color:#6c5d53;stop-opacity:1;" />
-            <stop
-                id="stop844"
-                offset="1"
-                style="stop-color:#6c5d53;stop-opacity:0;" />
-            </linearGradient>
-            <rect
-            x="49.703869"
-            y="44.79018"
-            width="46.302082"
-            height="23.434525"
-            id="rect835" />
-            <linearGradient
-            gradientUnits="userSpaceOnUse"
-            y2="53.646637"
-            x2="95.011459"
-            y1="53.646637"
-            x1="50.305557"
-            id="linearGradient848"
-            xlink:href="#linearGradient846"
-            inkscape:collect="always" />
-        </defs>
-        <!-- <sodipodi:namedview
-            fit-margin-bottom="0"
-            fit-margin-right="0"
-            fit-margin-left="0"
-            fit-margin-top="0"
-            id="base"
-            pagecolor="#ffffff"
-            bordercolor="#666666"
-            borderopacity="1.0"
-            inkscape:pageopacity="0.0"
-            inkscape:pageshadow="2"
-            inkscape:zoom="3.959798"
-            inkscape:cx="95.41819"
-            inkscape:cy="48.529472"
-            inkscape:document-units="mm"
-            inkscape:current-layer="g1517"
-            inkscape:document-rotation="0"
-            showgrid="false"
-            inkscape:window-width="1920"
-            inkscape:window-height="1013"
-            inkscape:window-x="-9"
-            inkscape:window-y="-9"
-            inkscape:window-maximized="1" /> -->
-        <metadata
-            id="metadata5">
-            <!-- <rdf:RDF>
-            <cc:Work
-                rdf:about="">
-                <dc:format>image/svg+xml</dc:format>
-                <dc:type
-                rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-                <dc:title></dc:title>
-            </cc:Work>
-            </rdf:RDF> -->
-        </metadata>
-        <g
-            transform="translate(-50.805557,-49.457396)"
-            inkscape:label="Capa 1"
-            inkscape:groupmode="layer"
-            id="layer1">
-            <g
-            id="g1517">
-            <text
-                inkscape:export-ydpi="93.399002"
-                inkscape:export-xdpi="93.399002"
-                style="font-style:normal;font-weight:normal;font-size:14.1111px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect835);fill:#1f2937;fill-opacity:1;stroke:none;"
-                id="text833"
-                xml:space="preserve"><tspan
-                x="49.703125"
-                y="57.665"><tspan
-                    style="font-size:11.2889px;fill:#1f2937;fill-opacity:1;stroke:none;stroke-opacity:1">RAPADo</tspan></tspan></text>
-            <path
-                sodipodi:nodetypes="sscsccssscsscssccccsscccscsccsscsssssscsscc"
-                style="fill:#1f2937;fill-opacity:1;stroke-width:0.029614"
-                d="m 94.038355,56.744858 c -1.409166,-0.0707 -3.250493,-0.41009 -3.621258,-0.667466 -0.24744,-0.171765 -0.362364,-0.426358 -0.327255,-0.724981 0.04023,-0.342009 0.228905,-0.522043 0.574299,-0.547956 0.162776,-0.01222 0.337588,0.0094 0.725757,0.08973 1.188343,0.245904 2.363684,0.363741 3.907126,0.391712 1.723621,0.03127 3.247557,-0.06764 5.286516,-0.343019 0.47304,-0.06388 0.5893,-0.05031 0.69206,0.08075 0.16341,0.208396 0.11164,0.528258 -0.10797,0.667301 -0.15343,0.09716 -0.68278,0.267543 -1.424278,0.458461 -1.865799,0.48042 -3.856623,0.688216 -5.704997,0.595475 z m 7.804425,-0.06224 c -0.0992,-0.02511 -0.25844,-0.07817 -0.35399,-0.11787 -0.19272,-0.08008 -0.63552,-0.362526 -0.74859,-0.477515 l -0.0728,-0.07403 0.21154,-0.07796 0.21154,-0.07796 0.0834,0.08953 c 0.19447,0.208707 0.59727,0.397795 0.93977,0.441173 0.23531,0.02981 0.28961,0.05974 0.28961,0.159452 0,0.191044 -0.17424,0.233075 -0.56048,0.135189 z m -2.546837,-1.75927 c -0.05773,-0.03892 -0.42007,-0.302017 -0.805287,-0.584614 -0.385217,-0.282591 -0.727432,-0.513611 -0.760465,-0.513377 -0.033,2.68e-4 -0.172131,0.07073 -0.30915,0.156673 -0.228106,0.143067 -0.265694,0.156357 -0.445785,0.157583 l -0.196667,0.0012 -0.904669,-0.637127 c -0.890578,-0.627186 -1.776779,-1.246967 -3.041795,-2.127318 -0.552415,-0.38444 -0.643321,-0.458631 -0.648684,-0.529411 -0.0042,-0.05603 0.089,-0.274479 0.29212,-0.684312 0.247715,-0.499811 0.309814,-0.603774 0.365833,-0.612464 0.0756,-0.01171 0.02208,-0.04829 1.813192,1.238346 0.677851,0.486923 1.775256,1.273824 2.438673,1.74867 0.663428,0.474847 1.377337,0.986012 1.586454,1.135923 0.209132,0.149913 0.660994,0.47347 1.004134,0.719025 0.343163,0.245552 0.614563,0.457317 0.603113,0.470579 -0.0113,0.01329 -0.17418,0.04157 -0.361681,0.06289 -0.1875,0.02132 -0.382197,0.04544 -0.43267,0.0536 -0.06122,0.0098 -0.126692,-0.0088 -0.196666,-0.05598 z"
-                id="path1485" />
-            </g>
-        </g>
-    </svg>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   inkscape:export-ydpi="93.399002"
+   inkscape:export-xdpi="93.399002"
+   inkscape:export-filename="C:\Users\Windows User\Desktop\rapadoLogo.png"
+   sodipodi:docname="rapadoLogo.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 50.806632 8.3784809"
+   height="8.3784809mm"
+   width="50.806633mm">
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient846">
+      <stop
+         style="stop-color:#6c5d53;stop-opacity:1;"
+         offset="0"
+         id="stop842" />
+      <stop
+         style="stop-color:#6c5d53;stop-opacity:0;"
+         offset="1"
+         id="stop844" />
+    </linearGradient>
+    <rect
+       id="rect835"
+       height="23.434525"
+       width="46.302082"
+       y="44.79018"
+       x="49.703869" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient846"
+       id="linearGradient848"
+       x1="50.305557"
+       y1="53.646637"
+       x2="95.011459"
+       y2="53.646637"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <!-- <sodipodi:namedview
+     inkscape:window-maximized="1"
+     inkscape:window-y="-9"
+     inkscape:window-x="-9"
+     inkscape:window-height="1013"
+     inkscape:window-width="1920"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="g1517"
+     inkscape:document-units="mm"
+     inkscape:cy="6.3073574"
+     inkscape:cx="84.949838"
+     inkscape:zoom="3.959798"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" /> -->
+  <metadata
+     id="metadata5">
+    <!-- <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF> -->
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Capa 1"
+     transform="translate(-50.805557,-49.457396)">
+    <g
+       id="g1517">
+      <text
+         xml:space="preserve"
+         id="text833"
+         style="font-style:normal;font-weight:normal;font-size:14.1111px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect835);fill:#1f2937;fill-opacity:1;stroke:none;"
+         inkscape:export-xdpi="93.399002"
+         inkscape:export-ydpi="93.399002"><tspan
+           x="49.703125"
+           y="57.665"><tspan
+             style="font-size:11.2889px;fill:#1f2937;fill-opacity:1;stroke:none;stroke-opacity:1">RAPADo</tspan></tspan></text>
+      <path
+         id="path1485"
+         d="m 93.247291,56.811675 c -1.409166,-0.0707 -3.250493,-0.41009 -3.621258,-0.667466 -0.24744,-0.171765 -0.362364,-0.426358 -0.327255,-0.724981 0.04023,-0.342009 0.228905,-0.522043 0.574299,-0.547956 0.162776,-0.01222 0.337588,0.0094 0.725757,0.08973 1.188343,0.245904 2.363684,0.363741 3.907126,0.391712 1.723621,0.03127 3.247557,-0.06764 5.286513,-0.343019 0.473037,-0.06388 0.589297,-0.05031 0.692057,0.08075 0.16341,0.208396 0.11164,0.528258 -0.10797,0.667301 -0.15343,0.09716 -0.682774,0.267543 -1.424272,0.458461 -1.865799,0.48042 -3.856623,0.688216 -5.704997,0.595475 z m 7.804419,-0.06224 c -0.0992,-0.02511 -0.25844,-0.07817 -0.35399,-0.11787 -0.19272,-0.08008 -0.63552,-0.362526 -0.748587,-0.477515 l -0.0728,-0.07403 0.211537,-0.07796 0.21154,-0.07796 0.0834,0.08953 c 0.19447,0.208707 0.59727,0.397795 0.93977,0.441173 0.23531,0.02981 0.28961,0.05974 0.28961,0.159452 0,0.191044 -0.17424,0.233075 -0.56048,0.135189 z m -2.546831,-1.75927 c -0.05773,-0.03892 -0.42007,-0.302017 -0.805287,-0.584614 -0.385217,-0.282591 -0.727432,-0.513611 -0.760465,-0.513377 -0.033,2.68e-4 -0.172131,0.07073 -0.30915,0.156673 -0.228106,0.143067 -0.265694,0.156357 -0.445785,0.157583 l -0.196667,0.0012 -0.904669,-0.637127 c -0.890578,-0.627186 -1.776779,-1.246967 -3.041795,-2.127318 -0.552415,-0.38444 -0.643321,-0.458631 -0.648684,-0.529411 -0.0042,-0.05603 0.089,-0.274479 0.29212,-0.684312 0.247715,-0.499811 0.309814,-0.603774 0.365833,-0.612464 0.0756,-0.01171 0.02208,-0.04829 1.813192,1.238346 0.677851,0.486923 1.775256,1.273824 2.438673,1.74867 0.663428,0.474847 1.377337,0.986012 1.586454,1.135923 0.209132,0.149913 0.660994,0.47347 1.004134,0.719025 0.343163,0.245552 0.614563,0.457317 0.603113,0.470579 -0.0113,0.01329 -0.17418,0.04157 -0.361681,0.06289 -0.1875,0.02132 -0.382197,0.04544 -0.43267,0.0536 -0.06122,0.0098 -0.126692,-0.0088 -0.196666,-0.05598 z"
+         style="fill:#b91c1c;fill-opacity:1;stroke-width:0.029614"
+         sodipodi:nodetypes="sscsccssscsscssccccsscccscsccsscsssssscsscc" />
+    </g>
+  </g>
+</svg>
 </template>
