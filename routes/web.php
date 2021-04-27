@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InicioController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,44 +15,13 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/',  [InicioController::class, 'clienteWelcome'])->middleware('guest');
+Route::get('/peluqueria',  [InicioController::class, 'peluqueriaWelcome'])->middleware('guest')->name('peluqueria.welcome');
+Route::get('/admin',  [InicioController::class, 'adminWelcome'])->middleware('guest');
 
-Route::get('/admin', function () {
-    return Inertia::render('Admin/Welcome',
-    [
-        // 'canLogin' => Route::has('login'),
-        'canResetPassword' => Route::has('password.request'),
-    ]
-    );
-});
-
-Route::get('/peluqueria', function () {
-    return Inertia::render('Peluqueria/Welcome',[
-        // 'canLogin' => Route::has('login'),
-        'canResetPassword' => Route::has('password.request'),
-    ]);
-});
-
-
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/admin/dashboard', function () {
-    return Inertia::render('Admin/Dashboard');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
-
-Route::get('/peluqueria/dashboard', function () {
-    return Inertia::render('Peluqueria/Dashboard');
-})->middleware(['auth', 'verified'])->name('peluqueria.dashboard');
-
+Route::get('/dashboard', [DashboardController::class, 'clienteDashboard'])->middleware(['auth:cliente', 'verified'])->name('dashboard');
+Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
+Route::get('/peluqueria/dashboard', [DashboardController::class, 'peluqueriaDashboard'])->middleware(['auth:peluqueria', 'verified'])->name('peluqueria.dashboard');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';

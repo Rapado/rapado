@@ -18,9 +18,10 @@ class CreatePeluqueriasTable extends Migration
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('nombre');
             $table->integer('telefono');
-            $table->string('nombreEncargado');
-            $table->string('documento');
-            $table->string('direccion');
+            $table->string('nombreEncargado')->nullable();
+            $table->string('documento')->nullable();
+            $table->boolean('activa')->default(false);
+            $table->string('direccion')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +34,11 @@ class CreatePeluqueriasTable extends Migration
     public function down()
     {
         Schema::dropIfExists('servicios');
+        Schema::dropIfExists('peluqueria_estados');
+        Schema::dropIfExists('peluqueria_favoritas');
+        Schema::dropIfExists('peluqueria_evaluaciones');
+        Schema::dropIfExists('dia_de_trabajos');
+        Schema::dropIfExists('peluqueros');
         Schema::dropIfExists('peluquerias');
     }
 }

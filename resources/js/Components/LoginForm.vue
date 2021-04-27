@@ -1,13 +1,15 @@
 <template>
+    <breeze-validation-errors class="mb-4" />
+
     <form @submit.prevent="submit">
         <div>
-            <breeze-label for="email" value="Correo" />
-            <breeze-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
+            <breeze-label for="email" value="Correo electronico" />
+            <secondary-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus placeholder = "nombre@email.com" autocomplete="username" />
         </div>
 
         <div class="mt-4">
             <breeze-label for="password" value="Contraseña" />
-            <breeze-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
+            <secondary-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" placeholder="**********" required autocomplete="current-password" />
         </div>
 
         <div class="block mt-4">
@@ -31,7 +33,7 @@
 
 <script>
 import BreezeButton from '@/Components/Button'
-import BreezeInput from '@/Components/Input'
+import SecondaryInput from '@/Components/InputSecondary'
 import BreezeCheckbox from '@/Components/Checkbox'
 import BreezeLabel from '@/Components/Label'
 import BreezeValidationErrors from '@/Components/ValidationErrors'
@@ -40,7 +42,7 @@ export default {
 
     components: {
         BreezeButton,
-        BreezeInput,
+        SecondaryInput,
         BreezeCheckbox,
         BreezeLabel,
         BreezeValidationErrors

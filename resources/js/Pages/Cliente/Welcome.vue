@@ -12,22 +12,28 @@
                     </inertia-link>
                 </div>
 
-                <div class="flex items-center justify-center mb-4">
-                    Bienvenido, seguro habrá muchos cortes!
+                <div class="flex items-center justify-center mb-5">
+                    Bienvenido, te espera un buen corte!
                 </div>
 
-                <login-form v-if="showLoginForm" :auth = "auth" :canResetPassword = "canResetPassword" loginUrl = "peluqueria.login">
+                <login-form v-if="showLoginForm" :auth = "auth" :canResetPassword = "canResetPassword" loginUrl = "login">
                 </login-form>
 
-                <register-form v-else formForModel = "peluqueria" registerUrl = "peluqueria.register">
+                <register-form v-else formForModel = "cliente" registerUrl = "register">
                 </register-form>
 
-                <div class="h-16 md:h-24 flex flex-wrap content-end">
-                    <button-secondary @click="showLoginForm = !showLoginForm" class="mt-6 w-full text-center" style="text-align:center;" v-text="formToShowMessage"></button-secondary>
+
+                <div class="h-16 md:h-24 flex flex-wrap content-end mt-6 md:mt-0">
+                    <inertia-link v-if = "showLoginForm" :href="route('peluqueria.welcome')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                            Soy una peluqeria
+                    </inertia-link>
+                    <transition name="fade" mode="out-in">
+                        <button-secondary @click="showLoginForm = !showLoginForm" class="mt-4 w-full text-center" style="text-align:center;" v-bind:key="formToShowMessage" v-text="formToShowMessage"></button-secondary>
+                    </transition>
                 </div>
             </div>
             <div class = "max-h-full md:max-h-96 ml-0 md:ml-2 pt-4 md:pt-0 w-full">
-                <img src="/images/peluqueria.jpg" alt="imgen-administrador">
+                <img src="/images/cliente.jpg" alt="imgen-administrador">
             </div>
         </div>
     </div>
@@ -73,3 +79,12 @@
         }
     }
 </script>
+
+<style scoped>
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity .4s
+    }
+    .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+        opacity: 0
+    }
+</style>

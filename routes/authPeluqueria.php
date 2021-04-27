@@ -14,7 +14,7 @@ Route::get('/peluqueria/register', [RegisteredUserPeluqueriaController::class, '
                 ->middleware('guest')
                 ->name('peluqueria.register');
 
-Route::post('/peluqueria/register', [RegisteredUserController::class, 'store'])
+Route::post('/peluqueria/register', [RegisteredUserPeluqueriaController::class, 'store'])
                 ->middleware('guest');
 
 Route::get('/peluqueria/login', [AuthenticatedSessionController::class, 'create'])
@@ -40,24 +40,24 @@ Route::post('/reset-password', [NewPasswordController::class, 'store'])
                 ->name('password.update');
 
 Route::get('/verify-email', [EmailVerificationPromptController::class, '__invoke'])
-                ->middleware('auth')
+                ->middleware('auth:peluqueria')
                 ->name('verification.notice');
 
 Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-                ->middleware(['auth', 'signed', 'throttle:6,1'])
+                ->middleware(['auth:peluqueria', 'signed', 'throttle:6,1'])
                 ->name('verification.verify');
 
 Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
-                ->middleware(['auth', 'throttle:6,1'])
+                ->middleware(['auth:peluqueria', 'throttle:6,1'])
                 ->name('verification.send');
 
 Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
-                ->middleware('auth')
+                ->middleware('auth:peluqueria')
                 ->name('password.confirm');
 
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
-                ->middleware('auth');
+                ->middleware('auth:peluqueria');
 
 Route::post('/peluqueria/logout', [AuthenticatedSessionPeluqueriaController::class, 'destroy'])
-                ->middleware('auth')
+                ->middleware('auth:peluqueria')
                 ->name('peluqueria.logout');

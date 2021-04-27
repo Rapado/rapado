@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Illuminate\Validation\Rule;
+use App\Models\Administrador;
 
 class RegisteredUserAdminController extends Controller
 {
@@ -20,8 +22,7 @@ class RegisteredUserAdminController extends Controller
      */
     public function create()
     {
-        dd('controllador del admin');
-        // return Inertia::render('Auth/Register');
+        return Inertia::render('Auth/Register');
     }
 
     /**
@@ -37,15 +38,26 @@ class RegisteredUserAdminController extends Controller
         $request->validate([
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|confirmed|min:8',
+            'codigoDeAcceso' => [ 'required',
+                                Rule::exists('administradors', 'id')->where(function ($query) {
+                                    return $query->where('user_id', null);
+                                }),
+                            ],
         ]);
+
 
         Auth::login($user = User::create([
             'email' => $request->email,
             'password' => Hash::make($request->password),
-        ]));
+            'tipo' => 'admin',
+            ]));
+
+        $administrador = Administrador::find($request['codigoDeAcceso']);
+        $administrador->user_id =  Auth::id();
+        $administrador->save();
 
         event(new Registered($user));
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::HOMEADMIN);
     }
 }
