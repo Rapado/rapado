@@ -4,7 +4,7 @@
 
 <script>
     export default {
-        props: ['modelValue'],
+        props: ['modelValue', 'options'],
 
         emits: ['update:modelValue'],
 

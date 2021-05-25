@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PeluqueriaEstado;
+use App\Http\Resources\PeluqueriaEstadoCollection;
+
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -18,6 +21,10 @@ class DashboardController extends Controller
 
     public function adminDashboard()
     {
-        return Inertia::render('Admin/Dashboard');
+        $peluqueriasNoAceptadas = PeluqueriaEstado::where('estado', '!=', 'aceptada')->get();
+
+        return Inertia::render('Admin/Dashboard', [
+            'peluqueriasPendientes' => Response (new PeluqueriaEstadoCollection($peluqueriasNoAceptadas))->original
+        ]);
     }
 }

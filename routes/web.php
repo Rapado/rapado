@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InicioController;
+use App\Http\Controllers\PeluqueriaController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +24,9 @@ Route::get('/admin',  [InicioController::class, 'adminWelcome'])->middleware('gu
 Route::get('/dashboard', [DashboardController::class, 'clienteDashboard'])->middleware(['auth:cliente', 'verified'])->name('dashboard');
 Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
 Route::get('/peluqueria/dashboard', [DashboardController::class, 'peluqueriaDashboard'])->middleware(['auth:peluqueria', 'verified'])->name('peluqueria.dashboard');
+
+Route::post('/admin/peluqueria/{peluqueria}/update_state/{peluqueriaEstado}', [PeluqueriaController::class, 'updateState'])->middleware(['auth:admin']);
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\peluqueria;
+use App\Models\Peluqueria;
+use App\Models\PeluqueriaEstado;
+use App\Http\Resources\PeluqueriaEstadoResource;
+
+
 use Illuminate\Http\Request;
 
 class PeluqueriaController extends Controller
@@ -44,7 +48,7 @@ class PeluqueriaController extends Controller
      * @param  \App\Models\peluqueria  $peluqueria
      * @return \Illuminate\Http\Response
      */
-    public function show(peluqueria $peluqueria)
+    public function show(Peluqueria $peluqueria)
     {
         //
     }
@@ -55,7 +59,7 @@ class PeluqueriaController extends Controller
      * @param  \App\Models\peluqueria  $peluqueria
      * @return \Illuminate\Http\Response
      */
-    public function edit(peluqueria $peluqueria)
+    public function edit(Peluqueria $peluqueria)
     {
         //
     }
@@ -67,9 +71,27 @@ class PeluqueriaController extends Controller
      * @param  \App\Models\peluqueria  $peluqueria
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, peluqueria $peluqueria)
+    public function update(Request $request, Peluqueria $peluqueria)
     {
         //
+    }
+
+    public function updateState(Request $request, Peluqueria $peluqueria, PeluqueriaEstado $peluqueriaEstado)
+    {
+        if($peluqueria->id == $peluqueriaEstado->peluqueria_id){
+            $peluqueriaEstado->estado = $request['estado'];
+            $peluqueriaEstado->save();
+
+            if($peluqueriaEstado->estado != 'aceptada'){
+                return response(new PeluqueriaEstadoResource($peluqueriaEstado));
+            }else{
+                $peluqueria->activa = true;
+                $peluqueria->save();
+                return response('clearBarber');
+            }
+        }
+
+        return response('Hubo un error', 404);
     }
 
     /**
@@ -78,7 +100,7 @@ class PeluqueriaController extends Controller
      * @param  \App\Models\peluqueria  $peluqueria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(peluqueria $peluqueria)
+    public function destroy(Peluqueria $peluqueria)
     {
         //
     }
