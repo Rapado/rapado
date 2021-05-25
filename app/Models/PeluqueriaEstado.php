@@ -18,4 +18,26 @@ class PeluqueriaEstado extends Model
     {
         return $this->belongsTo(Peluqueria::class);
     }
+
+    public function getPeluqueriaInfo()
+    {
+        return $this->peluqueria->getArray();
+    }
+
+    public function getEstadoInfo()
+    {
+        switch ($this->estado) {
+            case 'aceptada':
+                return ['string' => 'Aceptada', 'estado' => 'aceptada', 'class' => 'bg-green-100'];
+            case 'enRevision':
+                return ['string' => 'En revisión', 'estado' => 'enRevision', 'class' => 'bg-green-100'];
+            case 'rechazada':
+                return ['string' => 'Rechazada', 'estado' => 'rechazada', 'class' => 'bg-red-200'];
+            case 'reenviarDoc':
+                return ['string' => 'Reenviar documento', 'estado' => 'reenviarDoc', 'class' => 'bg-yellow-100'];
+            default:
+               return 'Desconocido';
+        }
+    }
+
 }

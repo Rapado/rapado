@@ -32,7 +32,7 @@
             <secondary-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autocomplete="username" />
         </div>
 
-        <div class="grid grid-cols-0 md:grid-cols-2">
+        <div class="grid grid-cols-1 md:grid-cols-2">
             <div class="mt-4">
                 <breeze-label for="password" value="Contraseña" />
                 <secondary-input id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="new-password" />

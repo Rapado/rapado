@@ -43,4 +43,19 @@ class Peluqueria extends Model
     {
         return $this->hasMany(Servicio::class);
     }
+
+    public function getArray()
+    {
+        return [
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'nombreEncargado' => $this->nombreEncargado,
+            'imagen' => $this->imagen,
+            'documento' => $this->documento,
+            'telefono' => $this->telefono,
+            'direccion' => $this->telefono,
+            'dadaDeAlta' => $this->created_at->format('d-m-Y'),
+            'actualizado' => $this->updated_at->format('d-m-Y'),
+        ];
+    }
 }

@@ -16,6 +16,7 @@ class CreatePeluqueriaEstadosTable extends Migration
         Schema::create('peluqueria_estados', function (Blueprint $table) {
             $table->id();
             $table->enum('estado', ['enRevision', 'aceptada', 'rechazada', 'reenviarDoc']);
+            $table->string('mensaje')->nullable();
             $table->foreignId('administrador_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('peluqueria_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
