@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PeluqueriaEstado;
 use App\Http\Resources\PeluqueriaEstadoCollection;
+use Illuminate\Support\Facades\Auth;
 
 use Inertia\Inertia;
 
@@ -16,7 +17,13 @@ class DashboardController extends Controller
 
     public function peluqueriaDashboard()
     {
-        return Inertia::render('Peluqueria/Dashboard');
+        $peluqueria =  Auth::user()->peluqueria;
+
+        if($peluqueria->estaVerificada()){
+            return Inertia::render('Peluqueria/Dashboard');
+        }else{
+            return redirect('/peluqueria/no_verificada');
+        }
     }
 
     public function adminDashboard()

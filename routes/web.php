@@ -3,7 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PeluqueriaController;
-
+use App\Http\Controllers\PeluqueroController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +27,8 @@ Route::get('/peluqueria/dashboard', [DashboardController::class, 'peluqueriaDash
 
 Route::post('/admin/peluqueria/{peluqueria}/update_state/{peluqueriaEstado}', [PeluqueriaController::class, 'updateState'])->middleware(['auth:admin']);
 
+Route::get('/peluqueria/no_verificada', [PeluqueriaController::class, 'verificacionUpdate'])->middleware(['auth:peluqueria'])->name('peluqueria.noVerificada');
+Route::post('/peluqueria/completar_informacion', [PeluqueriaController::class, 'completarInformacion'])->middleware(['auth:peluqueria'])->name('peluqueria.completarInfo');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';
