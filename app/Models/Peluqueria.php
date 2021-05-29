@@ -44,6 +44,20 @@ class Peluqueria extends Model
         return $this->hasMany(Servicio::class);
     }
 
+    public function estaVerificada()
+    {
+        return $this->activa;
+    }
+
+    public function informacionCompleta()
+    {   //si el documento esta cargado, el resto de la informacion deberia estar completa
+        return $this->documento != null;
+    }
+
+    public function concatenarDireccion($direccion)
+    {
+        return $direccion['ciudad'] . ', ' . $direccion['calle'] . ', #' . $direccion['numero'];
+    }
     public function getArray()
     {
         return [
