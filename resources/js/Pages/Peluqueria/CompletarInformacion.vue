@@ -13,7 +13,7 @@
                             </div>
                             <div id="form">
                                 <form @submit.prevent="submit">
-                                    <div class="grid flex gap-4  justify-center">
+                                    <div class="grid flex gap-4 justify-center">
                                         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                             <div>
                                                 <breeze-label for="encargado" value="Encargado de la peleluqería" class="text-green" />
@@ -87,24 +87,17 @@
                     ciudad: '',
                     calle: '',
                     numero: '',
-                    remember: false,
-                    documento: [],
-                    logo: []
+                    documento: null,
+                    logo: null
                 })
             }
         },
-            methods: {
-        submit() {
-            this.form
-                .transform(data => ({
-                    ... data,
-                    remember: this.form.remember ? 'on' : ''
-                }))
-                .post(this.route('peluqueria.completarInfo'), {
-                    onFinish: () => this.form.reset('password'),
-                })
+
+        methods: {
+            submit() {
+                    this.form.post(this.route('peluqueria.completarInfo'));
+                }
             }
-        }
 
     }
 </script>

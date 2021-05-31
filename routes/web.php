@@ -26,9 +26,12 @@ Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->
 Route::get('/peluqueria/dashboard', [DashboardController::class, 'peluqueriaDashboard'])->middleware(['auth:peluqueria', 'verified'])->name('peluqueria.dashboard');
 
 Route::post('/admin/peluqueria/{peluqueria}/update_state/{peluqueriaEstado}', [PeluqueriaController::class, 'updateState'])->middleware(['auth:admin']);
+Route::get('peluqueria/{peluqueria}/download_file', [PeluqueriaController::class, 'downloadFile'])->middleware(['auth:admin'])->name('peluqueria.file');
 
 Route::get('/peluqueria/no_verificada', [PeluqueriaController::class, 'verificacionUpdate'])->middleware(['auth:peluqueria'])->name('peluqueria.noVerificada');
 Route::post('/peluqueria/completar_informacion', [PeluqueriaController::class, 'completarInformacion'])->middleware(['auth:peluqueria'])->name('peluqueria.completarInfo');
+Route::post('/peluqueria/update/documento', [PeluqueriaController::class, 'updateDocumento'])->middleware(['auth:peluqueria'])->name('peluqueria.updateDoc');
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';

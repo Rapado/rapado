@@ -44,7 +44,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                             <div class="flex items-center">
                                 <div class="flex-shrink-0 h-10 w-10">
-                                <img class="h-10 w-10 rounded-md" :src="peluqueriaPendiente.peluqueria.image" alt="" />
+                                <img class="h-10 w-10 rounded-md" :src="peluqueriaPendiente.peluqueria.imagen" alt="" />
                                 </div>
                                 <div class="ml-4">
                                 <div class="text-sm font-medium text-gray-900">
@@ -67,7 +67,7 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap  text-sm font-medium">
                                 <div class="text-sm font-medium text-gray-900">
-                                    <a href="#" class="text-blue-500 hover:text-blue-700">Descargar</a>
+                                    <a :href="getLink(peluqueriaPendiente.peluqueria.id)" class="text-blue-500 hover:text-blue-700">Descargar</a>
                                 </div>
                                 <div class="text-sm text-gray-500">
                                     {{ peluqueriaPendiente.peluqueria.actualizado }}
@@ -162,7 +162,10 @@
                     icon: 'success',
                     title: message,
                 });
+            },
 
+            getLink(peluqueriaID){
+                return `/peluqueria/${peluqueriaID}/download_file`
             }
         }
 
