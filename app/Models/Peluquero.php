@@ -28,4 +28,10 @@ class Peluquero extends Model
     {
         return $this->hasMany(Cita::class);
     }
+
+    public function imagenPath()
+    {
+        // return "/storage/".$this->imagen;
+        return $this->imagen;
+    }
 }

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/',  [InicioController::class, 'clienteWelcome'])->middleware('guest');
 Route::get('/peluqueria',  [InicioController::class, 'peluqueriaWelcome'])->middleware('guest')->name('peluqueria.welcome');
 Route::get('/admin',  [InicioController::class, 'adminWelcome'])->middleware('guest');
@@ -31,6 +32,10 @@ Route::get('peluqueria/{peluqueria}/download_file', [PeluqueriaController::class
 Route::get('/peluqueria/no_verificada', [PeluqueriaController::class, 'verificacionUpdate'])->middleware(['auth:peluqueria'])->name('peluqueria.noVerificada');
 Route::post('/peluqueria/completar_informacion', [PeluqueriaController::class, 'completarInformacion'])->middleware(['auth:peluqueria'])->name('peluqueria.completarInfo');
 Route::post('/peluqueria/update/documento', [PeluqueriaController::class, 'updateDocumento'])->middleware(['auth:peluqueria'])->name('peluqueria.updateDoc');
+Route::get('/peluqueria/primeros_pasos', [PeluqueriaController::class, 'primerosPasos'])->middleware(['auth:peluqueria'])->name('peluqueria.primerosPasos');
+Route::post('/peluqueria/nuevo_peluquero/', [PeluqueroController::class, 'store'])->middleware(['auth:peluqueria'])->name('peluquero.store');
+Route::post('/peluqueria/actualizar_peluquero/{peluquero}', [PeluqueroController::class, 'update'])->middleware(['auth:peluqueria'])->name('peluquero.actualizar');
+Route::delete('/peluqueria/eliminar_peluquero/{peluquero}', [PeluqueroController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('peluquero.delete');
 
 
 require __DIR__.'/auth.php';

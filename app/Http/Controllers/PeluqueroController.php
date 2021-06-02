@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Peluquero;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Inertia\Inertia;
+
 
 class PeluqueroController extends Controller
 {
@@ -35,7 +39,16 @@ class PeluqueroController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validar
+        $peluquero = new Peluquero();
+        $imagenPath = $request['imagen']->store('peluqueros', 'public');
+
+        $peluquero->peluqueria_id = Auth::user()->peluqueria->id;
+        $peluquero->nombre = $request['peluqueroNombre'];
+        $peluquero->imagen = $imagenPath;
+        $peluquero->save();
+
+        return response(['peluquero' => ['id' => $peluquero->id, 'nombre' => $peluquero->nombre, 'imagen' => $peluquero->imagenPath()]]);
     }
 
     /**
@@ -49,16 +62,7 @@ class PeluqueroController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Peluquero  $peluquero
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Peluquero $peluquero)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +73,30 @@ class PeluqueroController extends Controller
      */
     public function update(Request $request, Peluquero $peluquero)
     {
-        //
+        //validar
+        $peluqueriaId = Auth::user()->peluqueria->id;
+
+        if($peluqueriaId == $peluquero->peluqueria_id){
+            $peluquero->nombre = $request['peluqueroNombre'];
+
+            if(gettype($request['imagen']) != "string"){
+                $oldPath = "/public/{$peluquero->imagenPath()}";
+                $newPath = $request['imagen']->store('peluqueros', 'public');
+
+                $peluquero->imagen = $newPath;
+                $peluquero->save();
+
+                Storage::delete($oldPath);
+            }
+            else{
+                $peluquero->save();
+            }
+
+
+            return response(['peluquero' => ['id' => $peluquero->id, 'nombre' => $peluquero->nombre, 'imagen' => $peluquero->imagenPath()]]);
+        }
+
+       return back(404);
     }
 
     /**
@@ -80,6 +107,16 @@ class PeluqueroController extends Controller
      */
     public function destroy(Peluquero $peluquero)
     {
-        //
+        $peluqueriaId = Auth::user()->peluqueria->id;
+
+        if($peluqueriaId == $peluquero->peluqueria_id){
+            $oldPath = "/public/{$peluquero->imagen}";
+            $peluquero->delete();
+
+            Storage::delete($oldPath);
+            return response(['data' => 'done']);
+        }
+
+       return back(404);
     }
 }

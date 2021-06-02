@@ -35,7 +35,7 @@ class Peluqueria extends Model
         return $this->hasMany(PeluqueriaEstado::class);
     }
 
-    public function calendario()
+    public function diasDeTrabajo()
     {
         return $this->hasMany(DiaDeTrabajo::class);
     }
@@ -101,5 +101,24 @@ class Peluqueria extends Model
     public function updateEstado($estado){
         $this->peluqueriaEstados[0]->estado = $estado;
         $this->peluqueriaEstados[0]->save();
+    }
+
+    public function primerosPasos()
+    {
+        return $this->tienePeluqueros() || $this->tieneServicios() || $this->tieneHorario();
+    }
+
+    public function tienePeluqueros()
+    {
+        return false;
+     //   return count($this->peluqueros);
+    }
+    public function tieneServicios()
+    {
+        return count($this->servicios);
+    }
+    public function tieneHorario()
+    {
+        return count($this->diasDeTrabajo);
     }
 }

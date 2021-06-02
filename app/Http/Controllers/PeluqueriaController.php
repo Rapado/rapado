@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Peluqueria;
 use App\Models\PeluqueriaEstado;
 use App\Http\Resources\PeluqueriaEstadoResource;
+use App\Models\Peluquero;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -158,14 +159,22 @@ class PeluqueriaController extends Controller
         //validad que exista
        return response()->download($peluqueria->documentoPath());
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\peluqueria  $peluqueria
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Peluqueria $peluqueria)
+
+    public function primerosPasos()
     {
-        //
+        $peluqueria = Auth::user()->peluqueria;
+        if(!$peluqueria->tienePeluqueros()){
+            $peluqeros = Peluquero::all();
+
+            return Inertia::render('Peluqueria/AgregarPeluquero', ['firstTime' => true, 'peluqueros' => $peluqeros]);
+        }
+        elseif(!$peluqueria->tieneServicios())
+            return Inertia::render('Peluqueria/AgregarServicio', ['firstTime' => true]);
+        elseif($peluqueria->tieneHorario())
+            return Inertia::render('Peluqueria/AgregarHorario', ['firstTime' => true]);
+        else
+            return redirect('/peluqueria/dashboard');
+
     }
+
 }

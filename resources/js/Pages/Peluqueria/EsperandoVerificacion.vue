@@ -28,7 +28,7 @@
                             </div>
                             <form @submit.prevent = "submit">
                                 <div class = "md:flex gap-1 justify-center items-center mt-6">
-                                        <input-file class="mt-1 w-auto" v-model="form.documento" file-label = "Logo de la peluquería" />
+                                        <input-file class="mt-1 w-auto" v-model="form.documento" file-label = "Documento o Foto" />
                                         <gray-button class="mt-4 md:mt-0 md:ml-4 py-3 w-full md:w-auto" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                             Subir documento
                                         </gray-button>
