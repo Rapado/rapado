@@ -93,7 +93,7 @@ class PeluqueriaController extends Controller
 
     public function completarInformacion(Request $request)
     {
-        //validate info
+        //validate info yo voy a validar
         $peluqueria =  Auth::user()->peluqueria;
 
         $documentoPath = "testingg";
