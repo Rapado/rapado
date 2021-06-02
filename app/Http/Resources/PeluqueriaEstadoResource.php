@@ -17,8 +17,9 @@ class PeluqueriaEstadoResource extends JsonResource
         return [
             'idEstado' => $this->id,
             'estadoInfo' => $this->getEstadoInfo(),
+            'mensaje' => $this->mensaje,
             'peluqueria' => $this->getPeluqueriaInfo(),
-            'admin' => $this->administrador->nombre,
+            'admin' => isset($this->administrador) ? $this->administrador->nombre : 'No ha sido revisado',
             'ultimaRevision' => $this->updated_at->format('d-m-Y'),
         ];
     }

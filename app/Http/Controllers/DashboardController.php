@@ -20,7 +20,11 @@ class DashboardController extends Controller
         $peluqueria =  Auth::user()->peluqueria;
 
         if($peluqueria->estaVerificada()){
-            return Inertia::render('Peluqueria/Dashboard');
+            if(!$peluqueria->primerosPasos()){ //significa que no tiene un horario, peluqueros o servicios guardados
+                return Inertia::render('Peluqueria/Dashboard');
+            }else{
+                return redirect('/peluqueria/primeros_pasos');
+            }
         }else{
             return redirect('/peluqueria/no_verificada');
         }

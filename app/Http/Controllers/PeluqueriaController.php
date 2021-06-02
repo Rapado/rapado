@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Peluqueria;
 use App\Models\PeluqueriaEstado;
 use App\Http\Resources\PeluqueriaEstadoResource;
+use App\Models\Peluquero;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
-
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PeluqueriaController extends Controller
 {
@@ -82,8 +83,10 @@ class PeluqueriaController extends Controller
         $peluqueria =  Auth::user()->peluqueria;
 
         if(!$peluqueria->estaVerificada()){
-            if($peluqueria->informacionCompleta())
-                return Inertia::render('Peluqueria/EsperandoVerificacion');
+            if($peluqueria->informacionCompleta()){
+                $peluqueriaEstado = $peluqueria->peluqueriaEstado();
+                return Inertia::render('Peluqueria/EsperandoVerificacion', ['peluqueriaEstado' => new PeluqueriaEstadoResource($peluqueriaEstado)]);
+            }
             else
                 return Inertia::render('Peluqueria/CompletarInformacion');
         }else{
@@ -93,26 +96,51 @@ class PeluqueriaController extends Controller
 
     public function completarInformacion(Request $request)
     {
-        //validate info
+        //validar informacion
+
         $peluqueria =  Auth::user()->peluqueria;
 
-        $documentoPath = "testingg";
+        $documentoPath = $request['documento']->store('documentos', 'public');
+        $logoPath = $request['logo']->store('logos', 'public');
+
         $direccion = $peluqueria->concatenarDireccion($request);
 
         $peluqueria->nombreEncargado = $request['encargado'];
         $peluqueria->direccion = $direccion;
         $peluqueria->documento = $documentoPath;
+        $peluqueria->logo = $logoPath;
         $peluqueria->save();
 
+        $peluqueria->createEstado();
+
         return redirect('/peluqueria/no_verificada');
+    }
+
+    public function updateDocumento(Request $request)
+    {
+        $peluqueria =  Auth::user()->peluqueria;
+        $documentoPath = $request['documento']->store('documentos', 'public');
+        $oldDocPath = "/public/{$peluqueria->documento}";
 
 
+        $peluqueria->documento = $documentoPath;
+        $peluqueria->save();
+
+        $peluqueria->updateEstado("enRevision"); //tenemos que pasar el estado a revision una vez reenvian el documento
+
+        Storage::delete($oldDocPath);
+
+        return back();
     }
 
     public function updateState(Request $request, Peluqueria $peluqueria, PeluqueriaEstado $peluqueriaEstado)
     {
+        //validar
         if($peluqueria->id == $peluqueriaEstado->peluqueria_id){
             $peluqueriaEstado->estado = $request['estado'];
+            $peluqueriaEstado->mensaje = $request['meessage'];
+            $peluqueriaEstado->administrador_id = Auth::user()->administrador->id;
+
             $peluqueriaEstado->save();
 
             if($peluqueriaEstado->estado != 'aceptada'){
@@ -127,14 +155,26 @@ class PeluqueriaController extends Controller
         return response('Hubo un error', 404);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\peluqueria  $peluqueria
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Peluqueria $peluqueria)
-    {
-        //
+    public function downloadFile(Peluqueria $peluqueria){
+        //validad que exista
+       return response()->download($peluqueria->documentoPath());
     }
+
+    public function primerosPasos()
+    {
+        $peluqueria = Auth::user()->peluqueria;
+        if(!$peluqueria->tienePeluqueros()){
+            $peluqeros = Peluquero::all();
+
+            return Inertia::render('Peluqueria/AgregarPeluquero', ['firstTime' => true, 'peluqueros' => $peluqeros]);
+        }
+        elseif(!$peluqueria->tieneServicios())
+            return Inertia::render('Peluqueria/AgregarServicio', ['firstTime' => true]);
+        elseif($peluqueria->tieneHorario())
+            return Inertia::render('Peluqueria/AgregarHorario', ['firstTime' => true]);
+        else
+            return redirect('/peluqueria/dashboard');
+
+    }
+
 }

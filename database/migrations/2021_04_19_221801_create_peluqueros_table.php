@@ -16,6 +16,7 @@ class CreatePeluquerosTable extends Migration
         Schema::create('peluqueros', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->string('imagen')->nullable();
             $table->boolean('disponible')->default(true);
             $table->foreignId('peluqueria_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
