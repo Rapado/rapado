@@ -20,6 +20,7 @@ class CreatePeluqueriasTable extends Migration
             $table->integer('telefono');
             $table->string('nombreEncargado')->nullable();
             $table->string('documento')->nullable();
+            $table->string('logo')->nullable();
             $table->boolean('activa')->default(false);
             $table->string('direccion')->nullable();
             $table->timestamps();
