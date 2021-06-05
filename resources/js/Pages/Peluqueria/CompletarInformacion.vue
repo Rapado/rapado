@@ -2,6 +2,7 @@
     <breeze-authenticated-peluqueria-layout>
         <div class="py-0 md:py-12">
             <div class="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8">
+                <breeze-validation-errors/>
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="px-6 py-2 bg-secondary border-b border-gray-200 text-white text-center">
                         Necesitamos un poco más de información, una vez la subas revisaremos la solicitud y te notificaremos el avance.

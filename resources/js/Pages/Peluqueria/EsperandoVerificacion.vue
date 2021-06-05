@@ -2,6 +2,7 @@
     <breeze-authenticated-peluqueria-layout>
         <div class="md:py-10">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <breeze-validation-errors/>
                 <div class="overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-3 md:p-6 border-b border-gray-200 text-center">
                         <div class="text-xl">
@@ -56,12 +57,13 @@
     import BreezeAuthenticatedPeluqueriaLayout from '@/Layouts/AuthenticatedPeluqueria'
     import InputFile from '@/Components/FileInput'
     import GrayButton from '@/Components/GreyButton'
+     import BreezeValidationErrors from '@/Components/ValidationErrors'
 
     export default {
         props:['peluqueriaEstado', ],
 
         components: {
-            BreezeAuthenticatedPeluqueriaLayout, InputFile, GrayButton
+            BreezeAuthenticatedPeluqueriaLayout, InputFile, GrayButton, BreezeValidationErrors
         },
 
         data() {

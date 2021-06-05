@@ -40,6 +40,10 @@ class PeluqueroController extends Controller
     public function store(Request $request)
     {
         //validar
+        $request ->validate([//-----------------------------------Hecho Luis
+            'peluqueroNombre' => 'required|min:4|max:255',
+            'imagen' => 'mimes:jpg,png,jpge', 
+        ], $this->messages());
         $peluquero = new Peluquero();
         $imagenPath = $request['imagen']->store('peluqueros', 'public');
 
@@ -74,6 +78,10 @@ class PeluqueroController extends Controller
     public function update(Request $request, Peluquero $peluquero)
     {
         //validar
+        $request ->validate([//-------------------------------Hecho Luis
+            'peluqueroNombre' => 'required|min:4|max:255',
+            'imagen' => 'mimes:jpg,png,jpge', 
+        ], $this->messages());
         $peluqueriaId = Auth::user()->peluqueria->id;
 
         if($peluqueriaId == $peluquero->peluqueria_id){
@@ -118,5 +126,14 @@ class PeluqueroController extends Controller
         }
 
        return back(404);
+    }
+    public function messages()//-------------------------Hecho Luis
+    {
+        return [
+            'peluqueroNombre.required'=>'Favor de ingresar el nombre del peluquero',
+            'peluqueroNombre.min'=>'El nombre del encargado es muy corto',
+            'peluqueroNombre.max'=>'El nombre del encargado es muy largo',
+            'imagen.mimes'=>'La imagen debe ser formato jpg, png o jpge',
+        ];
     }
 }
