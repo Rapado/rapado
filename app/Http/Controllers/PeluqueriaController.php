@@ -97,6 +97,13 @@ class PeluqueriaController extends Controller
     public function completarInformacion(Request $request)
     {
         //validar informacion
+        $request ->validate([
+            'encargado' => 'required|min:4|max:255',
+            'ciudad' => 'required|min:4|max:255',
+            'logo' => 'required|mimes:jpg,png,jpge',
+            'documento' => 'required|mimes:pdf,jpg,png,jpge'
+            
+        ], $this->messages());
 
         $peluqueria =  Auth::user()->peluqueria;
 
@@ -118,6 +125,10 @@ class PeluqueriaController extends Controller
 
     public function updateDocumento(Request $request)
     {
+        $request ->validate([
+            'documento' => 'required|mimes:pdf,jpg,png,jpge'
+        ], $this->messages());
+        
         $peluqueria =  Auth::user()->peluqueria;
         $documentoPath = $request['documento']->store('documentos', 'public');
         $oldDocPath = "/public/{$peluqueria->documento}";
@@ -136,6 +147,10 @@ class PeluqueriaController extends Controller
     public function updateState(Request $request, Peluqueria $peluqueria, PeluqueriaEstado $peluqueriaEstado)
     {
         //validar
+        $request ->validate([
+            'message' => 'max:255',       
+        ], $this->messages());
+
         if($peluqueria->id == $peluqueriaEstado->peluqueria_id){
             $peluqueriaEstado->estado = $request['estado'];
             $peluqueriaEstado->mensaje = $request['meessage'];
@@ -179,7 +194,19 @@ class PeluqueriaController extends Controller
 
     public function messages()
     {
-        //aaa
+        return [
+            'required'=>'Favor de llenar todos los campos solicitados',
+            'encargado.min'=>'El nombre del encargado es muy corto',
+            'ciudad.min'=>'El nombre de la ciudad es muy corto',
+            'encargado.max'=>'El nombre del encargado es muy largo',
+            'ciudad.max'=>'El nombre de la ciudad es muy largo',
+            'logo.required'=>'Por favor suba un logo',
+            'logo.mimes'=>'El logo debe ser formato jpg, png o jpge',
+            'documento.mimes'=>'El documento debe ser formato pdf, jpg, jpge o png',
+            'documento.required'=> 'Por favor suba un documento o cédula que pruebe que el negocio se encuetra registrado',
+            'message.max'=>'El mensaje no debe exceder los 255 caracteres'
+            
+        ];//aaa
     }
 
 }
