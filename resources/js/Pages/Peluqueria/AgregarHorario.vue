@@ -6,14 +6,11 @@
                     <div  class="py-2 border-b border-gray-200 text-center">
                         <div  class="flex gap-1 justify-center items-center ">
                             <div >
-                                <svg class = "fill-current text-accent" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="35px" viewBox="0 0 24 24" width="35px" fill="#000000"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><g><circle cx="10" cy="8" r="4"/><path d="M10.67,13.02C10.45,13.01,10.23,13,10,13c-2.42,0-4.68,0.67-6.61,1.82C2.51,15.34,2,16.32,2,17.35V20h9.26 C10.47,18.87,10,17.49,10,16C10,14.93,10.25,13.93,10.67,13.02z"/><path d="M20.75,16c0-0.22-0.03-0.42-0.06-0.63l1.14-1.01l-1-1.73l-1.45,0.49c-0.32-0.27-0.68-0.48-1.08-0.63L18,11h-2l-0.3,1.49 c-0.4,0.15-0.76,0.36-1.08,0.63l-1.45-0.49l-1,1.73l1.14,1.01c-0.03,0.21-0.06,0.41-0.06,0.63s0.03,0.42,0.06,0.63l-1.14,1.01 l1,1.73l1.45-0.49c0.32,0.27,0.68,0.48,1.08,0.63L16,21h2l0.3-1.49c0.4-0.15,0.76-0.36,1.08-0.63l1.45,0.49l1-1.73l-1.14-1.01 C20.72,16.42,20.75,16.22,20.75,16z M17,18c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S18.1,18,17,18z"/></g></g></svg>
-                            </div>
-                            <div class="text-xl text-white">
-                                Bienvenido
+                                <svg class = "fill-current text-accent" xmlns="http://www.w3.org/2000/svg" height="35px" viewBox="0 0 24 24" width="35px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><circle cx="6" cy="18" fill="none" r="2"/><circle cx="12" cy="12" fill="none" r=".5"/><circle cx="6" cy="6" fill="none" r="2"/><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3z"/></svg>
                             </div>
                         </div>
                         <div class="text-secondary-light md:text-center mt-2">
-                            Tú peluquería esta lista para ser configurada. Comenzaremos por agregar a tus peluqueros.
+                            Por ultimo deberas registrar tu horario de trabajo
                         </div>
                     </div>
                 </div>
@@ -21,33 +18,37 @@
 
 
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
-
-                <breeze-validation-errors />
-
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-2 text-white bg-secondary-light border-b border-gray-200">
                         <div class="ml-3">
-                           Agregar Peluqero
+                           Agregar Servicio
                         </div>
                     </div>
                     <div class="py-1 mx-4 md:ml bg-white border-b border-gray-200">
                         <div class="grid grid-rows-1">
                             <div class="grid grid-cols-1 md:grid-cols-2">
-                                <div class="mt-6">
+                                <div id="form" class="mt-6">
                                     <form @submit.prevent = "submit" >
-                                        <div class = "md:flex gap-1 items-end">
-                                            <div class="grid grid-rows-1">
-                                                <my-input type = "text" class="my-1 w-full" v-model="form.peluqueroNombre" placeholder="Nombre del peluquero" />
-                                                <input-file class="w-auto" v-model="form.imagen" file-label = "Cargar imagen" />
-                                            </div>
-                                            <div class="grid grid-rows-1">
-                                                <gray-button class="mt-4 md:mt-0 md:ml-4 w-full md:w-auto py-3" v-text="btnText" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                            </gray-button>
+                                        <div class = "grid grid-rows-1">
+                                            <div class = "grid grid-cols-2">
+                                                <div class="">
+                                                    <my-input type = "text" class="my-1 w-full" v-model="form.servicioNombre" placeholder="Nombre del servicio" />
+                                                    <my-input type = "number" class="my-1 w-full" v-model="form.duracion" placeholder="Duración en minutos" />
+                                                    <my-input type = "number" class="my-1 w-full" v-model="form.costo" placeholder="Costo en pesos mexicanos" />
+                                                    <input-file class="w-auto" v-model="form.imagen" file-label = "Cargar imagen" />
+                                                </div>
+                                                <div>
+
+                                                </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <gray-button class="mt-4 md:mt-0 w-full md:w-auto py-3" v-text="btnText" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                                </gray-button>
                                             </div>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="mt-6">
+                                <div id = "listaServicios" class="mt-6">
                                     <ul>
                                         <transition-group name="list" tag="p" >
                                             <span class="list-item" v-for="(peluquero, index) in peluquerosList" :key="index">
@@ -94,7 +95,6 @@
     import MyInput from '@/Components/Input'
     import InputFile from '@/Components/FileInput'
     import GrayButton from '@/Components/GreyButton'
-    import BreezeValidationErrors from '@/Components/ValidationErrorsSecondary'
 
     export default {
         props:{
@@ -112,14 +112,17 @@
         },
 
         components: {
-            BreezeAuthenticatedPeluqueriaLayout, MyInput, GrayButton, InputFile, BreezeValidationErrors
+            BreezeAuthenticatedPeluqueriaLayout, MyInput, GrayButton, InputFile
         },
 
         data() {
             return {
                 form: this.$inertia.form({
-                    peluqueroNombre: null,
-                    imagen: null
+                    servicioNombre: null,
+                    peluqueros: [],
+                    duracion: null,
+                    costo: null,
+                    imagen: null,
                 }),
 
                 isEditting: false,
@@ -139,18 +142,16 @@
             },
 
             agregarPeluquero(){
-                this.$page.props.errors = []; //su hubo errores antees, se borran
+                // const data = new FormData();
+                // data.append('imagen', this.form.imagen);
+                // data.append('servicioNombre', this.form.servicioNombre);
 
-                const data = new FormData();
-                data.append('imagen', this.form.imagen);
-                data.append('peluqueroNombre', this.form.peluqueroNombre);
-
-                axios.post(this.route("peluquero.store"), data)
+                axios.post(this.route("servicio.store"), this.form)
                 .then(response =>{
                     this.form.reset();
-                    this.peluquerosList.push(response.data.peluquero);
+                   // this.peluquerosList.push(response.data.peluquero);
                 }).catch(err =>{
-                    this.$page.props.errors = err.response.data.errors
+                    console.log(err);
                 })
 
             },
@@ -159,7 +160,7 @@
                 const id = this.peluquerosList[this.edittingIndex].id;
                 const data = new FormData();
                 data.append('imagen', this.form.imagen);
-                data.append('peluqueroNombre', this.form.peluqueroNombre);
+                data.append('servicioNombre', this.form.servicioNombre);
 
                 axios.post(`/peluqueria/actualizar_peluquero/${id}`, data)
                 .then(response => {
@@ -191,13 +192,13 @@
             editarPeluqueroSetUP(index){
                 this.isEditting = true;
                 this.edittingIndex = index
-                this.form.peluqueroNombre = this.peluquerosList[index].nombre;
+                this.form.servicioNombre = this.peluquerosList[index].nombre;
             },
 
             editarPeluqueroReset(){
                 this.isEditting = false;
                 this.edittingIndex = null;
-                this.form.peluqueroNombre = '';
+                this.form.servicioNombre = '';
                 this.form.imagen = null;
             },
 

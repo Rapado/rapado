@@ -105,13 +105,12 @@ class Peluqueria extends Model
 
     public function primerosPasos()
     {
-        return $this->tienePeluqueros() || $this->tieneServicios() || $this->tieneHorario();
+        return !$this->tienePeluqueros() || !$this->tieneServicios() || !$this->tieneHorario();
     }
 
     public function tienePeluqueros()
     {
-        return false;
-     //   return count($this->peluqueros);
+        return count($this->peluqueros);
     }
     public function tieneServicios()
     {

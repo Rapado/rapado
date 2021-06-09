@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PeluqueriaController;
 use App\Http\Controllers\PeluqueroController;
+use App\Http\Controllers\ServicioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,6 +37,9 @@ Route::get('/peluqueria/primeros_pasos', [PeluqueriaController::class, 'primeros
 Route::post('/peluqueria/nuevo_peluquero/', [PeluqueroController::class, 'store'])->middleware(['auth:peluqueria'])->name('peluquero.store');
 Route::post('/peluqueria/actualizar_peluquero/{peluquero}', [PeluqueroController::class, 'update'])->middleware(['auth:peluqueria'])->name('peluquero.actualizar');
 Route::delete('/peluqueria/eliminar_peluquero/{peluquero}', [PeluqueroController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('peluquero.delete');
+Route::post('/peluqueria/nuevo_servicio/', [ServicioController::class, 'store'])->middleware(['auth:peluqueria'])->name('servicio.store');
+Route::post('/peluqueria/actualizar_servicio/{servicio}', [ServicioController::class, 'update'])->middleware(['auth:peluqueria'])->name('servicio.actualizar');
+Route::delete('/peluqueria/eliminar_servicio/{servicio}', [ServicioController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('servicio.delete');
 
 
 require __DIR__.'/auth.php';

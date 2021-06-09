@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peluqueria;
+use App\Models\Servicio;
 use App\Models\PeluqueriaEstado;
 use App\Http\Resources\PeluqueriaEstadoResource;
+use App\Http\Resources\ServicioCollection;
 use App\Models\Peluquero;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -102,7 +104,7 @@ class PeluqueriaController extends Controller
             'ciudad' => 'required|min:4|max:255',
             'logo' => 'required|mimes:jpg,png,jpge',
             'documento' => 'required|mimes:pdf,jpg,png,jpge'
-            
+
         ], $this->messages());
 
         $peluqueria =  Auth::user()->peluqueria;
@@ -128,7 +130,7 @@ class PeluqueriaController extends Controller
         $request ->validate([
             'documento' => 'required|mimes:pdf,jpg,png,jpge'
         ], $this->messages());
-        
+
         $peluqueria =  Auth::user()->peluqueria;
         $documentoPath = $request['documento']->store('documentos', 'public');
         $oldDocPath = "/public/{$peluqueria->documento}";
@@ -148,7 +150,7 @@ class PeluqueriaController extends Controller
     {
         //validar
         $request ->validate([
-            'message' => 'max:255',       
+            'message' => 'max:255',
         ], $this->messages());
 
         if($peluqueria->id == $peluqueriaEstado->peluqueria_id){
@@ -178,14 +180,13 @@ class PeluqueriaController extends Controller
     public function primerosPasos()
     {
         $peluqueria = Auth::user()->peluqueria;
-        if(!$peluqueria->tienePeluqueros()){
-            $peluqeros = Peluquero::all();
-
-            return Inertia::render('Peluqueria/AgregarPeluquero', ['firstTime' => true, 'peluqueros' => $peluqeros]);
+        if(!$peluqueria->tienePeluqueros())
+            return Inertia::render('Peluqueria/AgregarPeluquero', ['firstTime' => true]);
+        elseif(!$peluqueria->tieneServicios()){
+            $peluqueros = Peluquero::all();
+            return Inertia::render('Peluqueria/AgregarServicio', ['firstTime' => true, 'peluqueros' => $peluqueros]);
         }
-        elseif(!$peluqueria->tieneServicios())
-            return Inertia::render('Peluqueria/AgregarServicio', ['firstTime' => true]);
-        elseif($peluqueria->tieneHorario())
+        elseif(!$peluqueria->tieneHorario())
             return Inertia::render('Peluqueria/AgregarHorario', ['firstTime' => true]);
         else
             return redirect('/peluqueria/dashboard');
@@ -205,7 +206,7 @@ class PeluqueriaController extends Controller
             'documento.mimes'=>'El documento debe ser formato pdf, jpg, jpge o png',
             'documento.required'=> 'Por favor suba un documento o cédula que pruebe que el negocio se encuetra registrado',
             'message.max'=>'El mensaje no debe exceder los 255 caracteres'
-            
+
         ];//aaa
     }
 
