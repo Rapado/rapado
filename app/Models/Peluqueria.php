@@ -110,8 +110,7 @@ class Peluqueria extends Model
 
     public function tienePeluqueros()
     {
-        return false;
-        // return count($this->peluqueros);
+        return count($this->peluqueros);
     }
     public function tieneServicios()
     {
