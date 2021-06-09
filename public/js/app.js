@@ -19172,7 +19172,9 @@ __webpack_require__.r(__webpack_exports__);
       "default": []
     },
     servicios: {
-      "default": []
+      "default": {
+        data: []
+      }
     },
     peluquero: {
       "default": {}
@@ -24656,7 +24658,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\r\n    .list-leave-active {\r\n         transition: all 1s ease;\n}\n.list-enter-from,\r\n    .list-leave-to {\r\n        opacity: 0;\r\n        transform: translateY(30px);\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\n    .list-leave-active {\n         transition: all 1s ease;\n}\n.list-enter-from,\n    .list-leave-to {\n        opacity: 0;\n        transform: translateY(30px);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
