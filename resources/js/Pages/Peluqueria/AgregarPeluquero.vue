@@ -21,6 +21,9 @@
 
 
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
+
+                <breeze-validation-errors />
+
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-2 text-white bg-secondary-light border-b border-gray-200">
                         <div class="ml-3">
@@ -91,6 +94,7 @@
     import MyInput from '@/Components/Input'
     import InputFile from '@/Components/FileInput'
     import GrayButton from '@/Components/GreyButton'
+    import BreezeValidationErrors from '@/Components/ValidationErrorsSecondary'
 
     export default {
         props:{
@@ -108,7 +112,7 @@
         },
 
         components: {
-            BreezeAuthenticatedPeluqueriaLayout, MyInput, GrayButton, InputFile
+            BreezeAuthenticatedPeluqueriaLayout, MyInput, GrayButton, InputFile, BreezeValidationErrors
         },
 
         data() {
@@ -135,6 +139,8 @@
             },
 
             agregarPeluquero(){
+                this.$page.props.errors = []; //su hubo errores antees, se borran
+
                 const data = new FormData();
                 data.append('imagen', this.form.imagen);
                 data.append('peluqueroNombre', this.form.peluqueroNombre);
@@ -144,7 +150,7 @@
                     this.form.reset();
                     this.peluquerosList.push(response.data.peluquero);
                 }).catch(err =>{
-                    console.log(err);
+                    this.$page.props.errors = err.response.data.errors
                 })
 
             },
