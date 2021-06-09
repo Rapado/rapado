@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Resources\PeluqueroResource;
 
 class Peluquero extends Model
 {
@@ -33,5 +34,10 @@ class Peluquero extends Model
     {
         // return "/storage/".$this->imagen;
         return $this->imagen;
+    }
+
+    public function toResource()
+    {
+        return new PeluqueroResource($this);
     }
 }
