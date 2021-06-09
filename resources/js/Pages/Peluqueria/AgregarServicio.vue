@@ -121,7 +121,7 @@
             },
 
             servicios:{
-                default: []
+                default: {data:[]}
             },
 
             peluquero:{
