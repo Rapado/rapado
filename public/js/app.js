@@ -19157,6 +19157,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/GreyButton */ "./resources/js/Components/GreyButton.vue");
 /* harmony import */ var _Components_Selector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Selector */ "./resources/js/Components/Selector.vue");
 /* harmony import */ var _Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Checkbox */ "./resources/js/Components/Checkbox.vue");
+/* harmony import */ var _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/ValidationErrorsSecondary */ "./resources/js/Components/ValidationErrorsSecondary.vue");
+
 
 
 
@@ -19186,7 +19188,8 @@ __webpack_require__.r(__webpack_exports__);
     GrayButton: _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__.default,
     InputFile: _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__.default,
     Selector: _Components_Selector__WEBPACK_IMPORTED_MODULE_4__.default,
-    Checkbox: _Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__.default
+    Checkbox: _Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__.default,
+    BreezeValidationErrors: _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_6__.default
   },
   data: function data() {
     return {
@@ -19215,6 +19218,7 @@ __webpack_require__.r(__webpack_exports__);
     agregarServicio: function agregarServicio() {
       var _this = this;
 
+      this.$page.props.errors = [];
       axios.post(this.route("servicio.store"), this.appendForm()).then(function (response) {
         _this.form.reset();
 
@@ -19222,18 +19226,21 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.serviciosList.data.push(response.data.servicio);
       })["catch"](function (err) {
+        _this.$page.props.errors = err.response.data.errors;
         console.log(err);
       });
     },
     editarServicio: function editarServicio() {
       var _this2 = this;
 
+      this.$page.props.errors = [];
       var id = this.serviciosList.data[this.edittingIndex].id;
       axios.post("/peluqueria/actualizar_servicio/".concat(id), this.appendForm()).then(function (response) {
         _this2.serviciosList.data.splice(_this2.edittingIndex, 1, response.data.servicio);
 
         _this2.editarServicioReset();
       })["catch"](function (error) {
+        _this2.$page.props.errors = err.response.data.errors;
         console.log(error);
       });
     },
@@ -23382,6 +23389,8 @@ var _hoisted_38 = {
 var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Siguiente ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_breeze_validation_errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-validation-errors");
+
   var _component_my_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("my-input");
 
   var _component_input_file = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("input-file");
@@ -23396,7 +23405,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_authenticated_peluqueria_layout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_validation_errors), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
         onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.submit && $options.submit.apply($options, arguments);
         }, ["prevent"]))
@@ -24658,7 +24667,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\n    .list-leave-active {\n         transition: all 1s ease;\n}\n.list-enter-from,\n    .list-leave-to {\n        opacity: 0;\n        transform: translateY(30px);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\r\n    .list-leave-active {\r\n         transition: all 1s ease;\n}\n.list-enter-from,\r\n    .list-leave-to {\r\n        opacity: 0;\r\n        transform: translateY(30px);\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

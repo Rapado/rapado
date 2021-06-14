@@ -183,7 +183,7 @@ class PeluqueriaController extends Controller
         if(!$peluqueria->tienePeluqueros())
             return Inertia::render('Peluqueria/AgregarPeluquero', ['firstTime' => true]);
         elseif(!$peluqueria->tieneServicios()){
-            $peluqueros = Peluquero::all();
+            $peluqueros = $peluqueria->peluqueros;
             return Inertia::render('Peluqueria/AgregarServicio', ['firstTime' => true, 'peluqueros' => $peluqueros]);
         }
         elseif(!$peluqueria->tieneHorario())
