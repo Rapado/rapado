@@ -103,6 +103,21 @@ class Peluqueria extends Model
         $this->peluqueriaEstados[0]->save();
     }
 
+    public function horario(){
+        $horario = [];
+        for ($i=0; $i < 7; $i++) {
+            array_push($horario, $this->obtenerDia($i + 1));
+        }
+
+        return $horario;
+    }
+
+    public function obtenerDia($numeroDia)
+    {
+        $diaDeTrabajo = $this->diasDeTrabajo()->where('dia', $numeroDia)->first();
+        return isset($diaDeTrabajo) ? $diaDeTrabajo->toResource() : null;
+    }
+
     public function primerosPasos()
     {
         return !$this->tienePeluqueros() || !$this->tieneServicios() || !$this->tieneHorario();

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiaDeTrabajoController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PeluqueriaController;
 use App\Http\Controllers\PeluqueroController;
@@ -40,6 +41,9 @@ Route::delete('/peluqueria/eliminar_peluquero/{peluquero}', [PeluqueroController
 Route::post('/peluqueria/nuevo_servicio/', [ServicioController::class, 'store'])->middleware(['auth:peluqueria'])->name('servicio.store');
 Route::post('/peluqueria/actualizar_servicio/{servicio}', [ServicioController::class, 'update'])->middleware(['auth:peluqueria'])->name('servicio.actualizar');
 Route::delete('/peluqueria/eliminar_servicio/{servicio}', [ServicioController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('servicio.delete');
+Route::post('/peluqueria/agregar_dia', [DiaDeTrabajoController::class, 'store'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.store');
+Route::post('/peluqueria/actualizar_dia/{diaDeTrabajo}', [DiaDeTrabajoController::class, 'update'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.update');
+Route::delete('/peluqueria/eliminar_dia/{diaDeTrabajo}', [DiaDeTrabajoController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.delete');
 
 
 require __DIR__.'/auth.php';
