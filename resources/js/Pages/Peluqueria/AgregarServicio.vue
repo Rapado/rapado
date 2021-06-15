@@ -165,28 +165,28 @@
             },
 
             agregarServicio(){
-                this.$page.props.errors = [];
+                this.$page.props.errors = []; //su hubo errores antees, se borran
                 axios.post(this.route("servicio.store"), this.appendForm())
                 .then(response =>{
                     this.form.reset();
                     this.todosLosPeluqueros = false; // resetea los peluqueros seleccionados
                     this.serviciosList.data.push(response.data.servicio);
                 }).catch(err =>{
-                    this.$page.props.errors = err.response.data.errors
+                    this.$page.props.errors = err.response.data.errors;
                     console.log(err);
                 })
 
             },
 
             editarServicio(){
-                this.$page.props.errors = [];
+                this.$page.props.errors = []; //su hubo errores antees, se borran
                 const id = this.serviciosList.data[this.edittingIndex].id;
                 axios.post(`/peluqueria/actualizar_servicio/${id}`, this.appendForm())
                 .then(response => {
                     this.serviciosList.data.splice(this.edittingIndex, 1, response.data.servicio);
                     this.editarServicioReset();
                 }).catch(error => {
-                    this.$page.props.errors = err.response.data.errors
+                    this.$page.props.errors = err.response.data.errors;
                     console.log(error);
                 });
 
@@ -197,12 +197,14 @@
             },
 
             eliminarPeluquero(index){
+                this.$page.props.errors = []; //su hubo errores antees, se borran
                 const id = this.serviciosList.data[index].id;
 
                 axios.delete(`/peluqueria/eliminar_servicio/${id}`)
                 .then(response => {
                     this.serviciosList.data.splice(index, 1);
                 }).catch(error => {
+                    this.$page.props.errors = err.response.data.errors;
                     console.log(error);
                 });
 

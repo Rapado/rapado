@@ -37,6 +37,10 @@ class DiaDeTrabajoController extends Controller
     public function store(Request $request)
     {
         //validar campos y que cierre sea mayor a apertura
+        $request ->validate([
+            'apertura' => 'required_unless:cierre,null, lt:cierre',
+            'cierre' => 'required_unless:cierre,null'
+        ], $this->messages());
 
         $peluqueriaId = Auth::user()->peluqueria->id;
         $diaDeTrabajo = new DiaDeTrabajo();
@@ -102,5 +106,10 @@ class DiaDeTrabajoController extends Controller
         $diaDeTrabajo->delete();
 
         return response(['data' => 'deleted']);
+    }
+    public function messages()
+    {
+        return [
+        ];
     }
 }

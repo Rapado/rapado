@@ -18982,6 +18982,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/FileInput */ "./resources/js/Components/FileInput.vue");
 /* harmony import */ var _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/GreyButton */ "./resources/js/Components/GreyButton.vue");
 /* harmony import */ var _Components_WorkDay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/WorkDay */ "./resources/js/Components/WorkDay.vue");
+/* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.vue");
+
 
 
 
@@ -19001,7 +19003,8 @@ __webpack_require__.r(__webpack_exports__);
     MyInput: _Components_Input__WEBPACK_IMPORTED_MODULE_1__.default,
     GrayButton: _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__.default,
     InputFile: _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__.default,
-    WorkDay: _Components_WorkDay__WEBPACK_IMPORTED_MODULE_4__.default
+    WorkDay: _Components_WorkDay__WEBPACK_IMPORTED_MODULE_4__.default,
+    BreezeValidationErrors: _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__.default
   },
   data: function data() {
     return {
@@ -19098,6 +19101,8 @@ __webpack_require__.r(__webpack_exports__);
     editarPeluquero: function editarPeluquero() {
       var _this2 = this;
 
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
       var id = this.peluquerosList[this.edittingIndex].id;
       var data = new FormData();
       data.append('imagen', this.form.imagen);
@@ -19107,6 +19112,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.editarPeluqueroReset();
       })["catch"](function (error) {
+        _this2.$page.props.errors = err.response.data.errors;
         console.log(error);
       });
     },
@@ -19233,7 +19239,8 @@ __webpack_require__.r(__webpack_exports__);
     agregarServicio: function agregarServicio() {
       var _this = this;
 
-      this.$page.props.errors = [];
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
       axios.post(this.route("servicio.store"), this.appendForm()).then(function (response) {
         _this.form.reset();
 
@@ -19248,7 +19255,8 @@ __webpack_require__.r(__webpack_exports__);
     editarServicio: function editarServicio() {
       var _this2 = this;
 
-      this.$page.props.errors = [];
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
       var id = this.serviciosList.data[this.edittingIndex].id;
       axios.post("/peluqueria/actualizar_servicio/".concat(id), this.appendForm()).then(function (response) {
         _this2.serviciosList.data.splice(_this2.edittingIndex, 1, response.data.servicio);
@@ -19265,10 +19273,13 @@ __webpack_require__.r(__webpack_exports__);
     eliminarPeluquero: function eliminarPeluquero(index) {
       var _this3 = this;
 
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
       var id = this.serviciosList.data[index].id;
       axios["delete"]("/peluqueria/eliminar_servicio/".concat(id)).then(function (response) {
         _this3.serviciosList.data.splice(index, 1);
       })["catch"](function (error) {
+        _this3.$page.props.errors = err.response.data.errors;
         console.log(error);
       });
       this.isEditting ? this.editarServicioReset() : null; //si dieron click en editar y no guardaron, podria haber errores
@@ -22686,6 +22697,8 @@ var _hoisted_9 = {
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Terminar ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_breeze_validation_errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-validation-errors");
+
   var _component_work_day = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("work-day");
 
   var _component_gray_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("gray-button");
@@ -22694,7 +22707,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_authenticated_peluqueria_layout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dias, function (dia, index) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_validation_errors), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dias, function (dia, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
           key: index
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_work_day, {
