@@ -40,4 +40,14 @@ class Peluquero extends Model
     {
         return new PeluqueroResource($this);
     }
+
+    public function estrellas()
+    {
+        return 3;
+    }
+
+    public function agenda()
+    {
+        return 3;
+    }
 }

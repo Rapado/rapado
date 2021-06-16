@@ -6,6 +6,7 @@ use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PeluqueriaController;
 use App\Http\Controllers\PeluqueroController;
 use App\Http\Controllers\ServicioController;
+use App\Models\Peluquero;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,12 +39,17 @@ Route::get('/peluqueria/primeros_pasos', [PeluqueriaController::class, 'primeros
 Route::post('/peluqueria/nuevo_peluquero/', [PeluqueroController::class, 'store'])->middleware(['auth:peluqueria'])->name('peluquero.store');
 Route::post('/peluqueria/actualizar_peluquero/{peluquero}', [PeluqueroController::class, 'update'])->middleware(['auth:peluqueria'])->name('peluquero.actualizar');
 Route::delete('/peluqueria/eliminar_peluquero/{peluquero}', [PeluqueroController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('peluquero.delete');
+Route::get('/peluqueria/peluqueros', [PeluqueroController::class, 'index'])->middleware(['auth:peluqueria'])->name('peluquero.index');
+Route::put('/peluqueria/cambiar_peluquero_estado/{peluquero}', [PeluqueroController::class, 'cambiarPeluqueroEstado'])->middleware(['auth:peluqueria'])->name('peluquero.cambiarEstado');
 Route::post('/peluqueria/nuevo_servicio/', [ServicioController::class, 'store'])->middleware(['auth:peluqueria'])->name('servicio.store');
+Route::get('/peluqueria/servicios', [ServicioController::class, 'index'])->middleware(['auth:peluqueria'])->name('servicio.index');
 Route::post('/peluqueria/actualizar_servicio/{servicio}', [ServicioController::class, 'update'])->middleware(['auth:peluqueria'])->name('servicio.actualizar');
 Route::delete('/peluqueria/eliminar_servicio/{servicio}', [ServicioController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('servicio.delete');
 Route::post('/peluqueria/agregar_dia', [DiaDeTrabajoController::class, 'store'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.store');
 Route::post('/peluqueria/actualizar_dia/{diaDeTrabajo}', [DiaDeTrabajoController::class, 'update'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.update');
 Route::delete('/peluqueria/eliminar_dia/{diaDeTrabajo}', [DiaDeTrabajoController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.delete');
+Route::get('/peluqueria/horario', [DiaDeTrabajoController::class, 'index'])->middleware(['auth:peluqueria'])->name('horario.index');
+
 
 
 require __DIR__.'/auth.php';

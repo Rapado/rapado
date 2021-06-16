@@ -32,6 +32,19 @@ class PeluqueroController extends Controller
         //
     }
 
+    public function cambiarPeluqueroEstado(Request $request, Peluquero $peluquero)
+    {
+        $peluqueriaId = Auth::user()->peluqueria->id;
+
+        if($peluquero->peluqueria_id == $peluqueriaId){ // verifica que el peluquero pertenezca a la peluqueria autenticada
+            $peluquero->disponible = !$peluquero->disponible;
+            $peluquero->save();
+
+            return response('updated');
+        }
+        return response('error', 404);
+    }
+
     /**
      * Store a newly created resource in storage.
      *

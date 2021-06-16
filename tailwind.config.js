@@ -42,7 +42,13 @@ module.exports = {
                 },
 
                 error: {
-                    DEFAULT: '#d50000'
+                    DEFAULT: '#d50000',
+                    light: '#D65252'
+                },
+
+                info: {
+                    DEFAULT: '#37D955',
+                    light: '#6AD955'
                 }
 
                 // primary: '#106BA0',

@@ -1,5 +1,5 @@
 <template>
-    <breeze-authenticated-peluqueria-layout>
+    <breeze-authenticated-peluqueria-layout :hide-nav="firstTime">
         <div class="md:py-10">
             <div v-if="firstTime" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-secondary overflow-hidden shadow-md sm:rounded-lg">
@@ -22,7 +22,7 @@
 
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
 
-                <breeze-validation-errors />
+                <breeze-validation-errors class = "mb-2 ml-2"/>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-2 text-white bg-secondary-light border-b border-gray-200">
@@ -80,7 +80,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex max-w-7xl mx-auto my-4 sm:px-6 lg:px-8 justify-end">
+            <div v-if= "firstTime" class="flex max-w-7xl mx-auto my-4 sm:px-6 lg:px-8 justify-end">
                 <gray-button @click="nextStep" class="mt-3 mx-4 md:mx-0 md:mt-0 md:ml-4 w-full md:w-auto py-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Siguiente
                 </gray-button>
@@ -103,7 +103,7 @@
             },
 
             peluqueros:{
-                default: []
+                default: {data:[]}
             },
 
             peluquero:{
@@ -130,7 +130,7 @@
         },
 
         mounted() {
-            this.peluquerosList = this.peluqueros;
+            this.peluquerosList = this.peluqueros.data;
         },
 
         methods: {
@@ -150,12 +150,14 @@
                     this.form.reset();
                     this.peluquerosList.push(response.data.peluquero);
                 }).catch(err =>{
-                    this.$page.props.errors = err.response.data.errors
+                    this.$page.props.errors = err.response.data.errors;
                 })
 
             },
 
             editarPeluquero(){
+                this.$page.props.errors = []; //su hubo errores antees, se borran
+
                 const id = this.peluquerosList[this.edittingIndex].id;
                 const data = new FormData();
                 data.append('imagen', this.form.imagen);
@@ -166,7 +168,7 @@
                     this.peluquerosList.splice(this.edittingIndex, 1, response.data.peluquero);
                     this.editarPeluqueroReset();
                 }).catch(error => {
-                    console.log(error);
+                    this.$page.props.errors = error.response.data.errors;
                 });
 
             },
@@ -209,15 +211,6 @@
         },
 
         computed: {
-            estado: function () {
-                return this.peluqueriaEstado.data.estadoInfo.estado;
-            },
-
-            estadoRazon: function () {
-                //return 'El documento que enviaste no pudo ayudarnos a validar la existencia de tu peluqueria, además fue buscada en maps y no nos dio un resultado.';
-                return this.peluqueriaEstado.data.mensaje;
-            },
-
             btnText: function(){
                 return !this.isEditting ? 'Registrar' : 'Actualizar';
             }

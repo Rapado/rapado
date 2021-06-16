@@ -18,6 +18,8 @@ class PeluqueroResource extends JsonResource
             'id' => $this->id,
             'nombre' => $this->nombre,
             'imagen' => $this->imagenPath(),
+            'disponible' => $this->disponible,
+            'estrellas' => $this->estrellas()
         ];
     }
 }
