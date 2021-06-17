@@ -7,10 +7,12 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 class PeluqueroCollection extends ResourceCollection
 {
     protected $retornarAgenda;
+    protected $retornarCitas;
 
-    public function conAgenda($agenda = false)
+    public function opciones($agenda = false, $citas = false)
     {
         $this->retornarAgenda = $agenda;
+        $this->retornarCitas = $citas;
         return $this;
     }
 
@@ -26,11 +28,7 @@ class PeluqueroCollection extends ResourceCollection
     // }
 
     public function toArray($request){
-        // or use HigherOrderCollectionProxy
-        // return $this->collection->each->foo($this->foo)->map->toArray($request)->all()
-
-        // or simple
-        $this->collection->each->conAgenda($this->retornarAgenda);
+        $this->collection->each->opciones($this->retornarAgenda, $this->retornarCitas);
         return $this->collection;
     }
 }

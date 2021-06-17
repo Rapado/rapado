@@ -22,7 +22,7 @@ class DashboardController extends Controller
 
         if($peluqueria->estaVerificada()){
             if(!$peluqueria->primerosPasos()){ //significa que no tiene un horario, peluqueros o servicios guardados
-                return Inertia::render('Peluqueria/Dashboard', ['peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->conAgenda(true)]);
+                return Inertia::render('Peluqueria/Dashboard', ['peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(false, true)]);
             }else{
                 return redirect('/peluqueria/primeros_pasos');
             }

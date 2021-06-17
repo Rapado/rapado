@@ -3,14 +3,17 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CitaCollection;
 
 class PeluqueroResource extends JsonResource
 {
     protected $retornarAgenda = false;
+    protected $retornarCitas = false;
 
-    public function conAgenda($agenda = false)
+    public function opciones($agenda = false, $citas = false)
     {
         $this->retornarAgenda = $agenda;
+        $this->retornarCitas = $citas;
         return $this;
     }
     /**
@@ -27,7 +30,8 @@ class PeluqueroResource extends JsonResource
             'imagen' => $this->imagenPath(),
             'disponible' => $this->disponible,
             'estrellas' => $this->estrellas(),
-            'agenda' => $this->retornarAgenda ? $this->agenda() : null,
+            'agenda' => $this->when($this->retornarAgenda, $this->agenda()),
+            'citas' => $this->when($this->retornarCitas, new CitaCollection($this->citas)),
         ];
     }
 }

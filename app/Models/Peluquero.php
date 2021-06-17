@@ -34,10 +34,17 @@ class Peluquero extends Model
 
     public function citaA($hora)
     {
-        $cita = $this->citas()->where('hora_inicio', $hora)->first();
+        $cita = $this->citas()->where('hora_inicio','<=', $hora)->Where('horaTermina', '>=', $hora)->first();
 
         if(isset($cita)){
-            return ['ocupado' => true, 'duracion' => $cita->duracion(), 'citaId' => $cita->id, 'minutosDisponibles' => 0];
+            $duracionCita = 0;
+
+            if($cita->hora_inicio == $hora)
+                $duracionCita -= $cita->duracion();
+            else
+                $duracionCita -= $this->minutosEntreHoras($cita->hora_inicio, $hora);
+
+            return ['ocupado' => true, 'duracion' => $duracionCita, 'citaId' => $cita->id, 'minutosDisponibles' => 0];
         }else{
             return ['duracion' => 0, 'ocupado' => false, 'citaId' => null, 'minutosDisponibles' => 0];
         }

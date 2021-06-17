@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Traits\TimeHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cita extends Model
 {
     use HasFactory;
+    use TimeHelper;
 
     public function cliente()
     {
@@ -26,12 +28,6 @@ class Cita extends Model
 
     public function duracion()
     {
-        $servicios = $this->servicios;
-        $duracion = 0;
-        foreach($servicios as $servicio){
-            $duracion += $servicio->duracion;
-        }
-
-        return $duracion;
+        return $this->minutosEntreHoras($this->hora_inicio, $this->horaTermina);
     }
 }
