@@ -51,6 +51,11 @@ Route::delete('/peluqueria/eliminar_dia/{diaDeTrabajo}', [DiaDeTrabajoController
 Route::get('/peluqueria/horario', [DiaDeTrabajoController::class, 'index'])->middleware(['auth:peluqueria'])->name('horario.index');
 
 
+route::get('/peluquero/agenda', function(){
+    $peluquero = Peluquero::find(7);
+    dd($peluquero->agenda());
+
+});
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';

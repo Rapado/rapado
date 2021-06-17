@@ -6,6 +6,13 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class PeluqueroResource extends JsonResource
 {
+    protected $retornarAgenda = false;
+
+    public function conAgenda($agenda = false)
+    {
+        $this->retornarAgenda = $agenda;
+        return $this;
+    }
     /**
      * Transform the resource into an array.
      *
@@ -19,7 +26,8 @@ class PeluqueroResource extends JsonResource
             'nombre' => $this->nombre,
             'imagen' => $this->imagenPath(),
             'disponible' => $this->disponible,
-            'estrellas' => $this->estrellas()
+            'estrellas' => $this->estrellas(),
+            'agenda' => $this->retornarAgenda ? $this->agenda() : null,
         ];
     }
 }

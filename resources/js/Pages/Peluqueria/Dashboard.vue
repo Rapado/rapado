@@ -7,7 +7,10 @@
                         Citas para hoy
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-2 md:mx-0 justify-items-center">
-
+                        <div class="mt-4 w-full md:w-9/12"  v-for="(peluquero, index) in peluqueros.data" :key="index">
+                            <peluquero-card :peluquero="peluquero" :show-stars="false" :cambiar-peluquero-estado="true" v-on:cambioEstado = "cambiarEstado">
+                            </peluquero-card>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -23,4 +23,15 @@ class Cita extends Model
     {
         return $this->belongsToMany(Servicio::class);
     }
+
+    public function duracion()
+    {
+        $servicios = $this->servicios;
+        $duracion = 0;
+        foreach($servicios as $servicio){
+            $duracion += $servicio->duracion;
+        }
+
+        return $duracion;
+    }
 }
