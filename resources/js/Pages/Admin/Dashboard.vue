@@ -8,6 +8,7 @@
                     </div>
                 </div>
             </div>
+            <breeze-validation-errors/>
             <div id="table-view" class="overflow-x-auto sm:-mx-6 lg:-mx-8  w-screen max-w-7xl">
                 <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                     <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
@@ -112,10 +113,11 @@
     import BreezeAuthenticatedAdminLayout from '@/Layouts/AuthenticatedAdmin'
     import BreezeButton from '@/Components/Button'
     import StateBarberModal from '@/Components/StateBarberModal'
+    import BreezeValidationErrors from '@/Components/ValidationErrors'
 
     export default {
         components: {
-            BreezeAuthenticatedAdminLayout, BreezeButton, StateBarberModal
+            BreezeAuthenticatedAdminLayout, BreezeButton, StateBarberModal, BreezeValidationErrors
         },
 
         props: {
