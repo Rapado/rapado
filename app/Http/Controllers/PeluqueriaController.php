@@ -20,7 +20,8 @@ class PeluqueriaController extends Controller
      */
     public function index()
     {
-        //
+        $peluquerias = Peluqueria::where('activa',1)->get();
+        return Inertia::render('Cliente/Peluquerias', ['peluquerias' => $peluquerias]);
     }
 
     /**

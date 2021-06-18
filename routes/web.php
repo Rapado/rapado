@@ -4,6 +4,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PeluqueriaController;
 use App\Http\Controllers\PeluqueroController;
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,10 @@ Route::post('/peluqueria/nuevo_peluquero/', [PeluqueroController::class, 'store'
 Route::post('/peluqueria/actualizar_peluquero/{peluquero}', [PeluqueroController::class, 'update'])->middleware(['auth:peluqueria'])->name('peluquero.actualizar');
 Route::delete('/peluqueria/eliminar_peluquero/{peluquero}', [PeluqueroController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('peluquero.delete');
 
+
+Route::get('/explorador',[PeluqueriaController::class, 'index'])->middleware(['auth:cliente'])->name('peluqueria.index');
+Route::post('/peluqueria/agregar_favoritos/{peluqueria}',[ClienteController::class, 'favoritos'])->middleware(['auth:cliente'])->name('cliente.favoritos');
+Route::get('/informacionpeluqueria/{peluqueria}',[ClienteController::class, 'peluqueria'])->middleware(['auth:cliente'])->name('cliente.peluqueria');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';

@@ -3,7 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Peluqueria;
+use App\Models\Peluquero;
+use APP\Models\Servicio;
+use App\Models\PeluqueriaFavorita;
+use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class ClienteController extends Controller
 {
@@ -12,6 +20,21 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function favoritos(Peluqueria $peluqueria)
+    {
+        $peluqueria_favorita = new PeluqueriaFavorita();
+        $peluqueria_favorita->cliente_id = Auth::user()->cliente->id;
+        $peluqueria_favorita->peluqueria_id = $peluqueria->id;
+        $peluqueria_favorita->save();
+        return response(['data'=>'recibi peluqueria'.$peluqueria->nombre]);
+    }
+    public function peluqueria(Peluqueria $peluqueria)
+    {
+        //$peluquerias = Peluqueria::find($peluqueria->id);
+        $peluqueros = $peluqueria->peluqueros;
+        $servicios = $peluqueria->servicios;
+        return Inertia::render('Cliente/Peluqueria', ['peluquerias' => $peluqueria,'peluqueros' => $peluqueros,'servicios' => $servicios]);  
+    }
     public function index()
     {
         //
