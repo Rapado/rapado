@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\DiaDeTrabajo;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 class DiaDeTrabajoController extends Controller
 {
     /**
@@ -14,7 +15,7 @@ class DiaDeTrabajoController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Peluqueria/AgregarHorario', ['horario' => Auth::user()->peluqueria->horario()]);
     }
 
     /**
@@ -35,7 +36,19 @@ class DiaDeTrabajoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validar campos y que cierre sea mayor a apertura
+
+        $peluqueriaId = Auth::user()->peluqueria->id;
+        $diaDeTrabajo = new DiaDeTrabajo();
+
+        $diaDeTrabajo->peluqueria_id = $peluqueriaId;
+        $diaDeTrabajo->dia = $request['numeroDia'];
+        $diaDeTrabajo->apertura = $request['apertura'];
+        $diaDeTrabajo->cierre = $request['cierre'];
+        $diaDeTrabajo->save();
+
+        return response(['diaDeTrabajo' => $diaDeTrabajo->toResource()]);
+
     }
 
     /**
@@ -69,7 +82,13 @@ class DiaDeTrabajoController extends Controller
      */
     public function update(Request $request, DiaDeTrabajo $diaDeTrabajo)
     {
-        //
+        //validar la informacion
+
+        $diaDeTrabajo->apertura = $request['apertura'];
+        $diaDeTrabajo->cierre = $request['cierre'];
+        $diaDeTrabajo->save();
+
+        return response(['diaDeTrabajo' => $diaDeTrabajo->toResource()]);
     }
 
     /**
@@ -80,6 +99,8 @@ class DiaDeTrabajoController extends Controller
      */
     public function destroy(DiaDeTrabajo $diaDeTrabajo)
     {
-        //
+        $diaDeTrabajo->delete();
+
+        return response(['data' => 'deleted']);
     }
 }
