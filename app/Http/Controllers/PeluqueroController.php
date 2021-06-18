@@ -66,7 +66,7 @@ class PeluqueroController extends Controller
         $peluquero->imagen = $imagenPath;
         $peluquero->save();
 
-        return response(['peluquero' => ['id' => $peluquero->id, 'nombre' => $peluquero->nombre, 'imagen' => $peluquero->imagenPath()]]);
+        return response(['peluquero' => $peluquero->toResource()]);
     }
 
     /**
@@ -116,7 +116,7 @@ class PeluqueroController extends Controller
             }
 
 
-            return response(['peluquero' => ['id' => $peluquero->id, 'nombre' => $peluquero->nombre, 'imagen' => $peluquero->imagenPath()]]);
+            return response(['peluquero' => $peluquero->toResource()]);
         }
 
        return back(404);

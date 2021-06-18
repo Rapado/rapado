@@ -21,6 +21,7 @@
 
 
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
+
                 <breeze-validation-errors class = "mb-2 ml-2"/>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
@@ -29,44 +30,52 @@
                            Agregar Peluqero
                         </div>
                     </div>
-                    <div class="py-1 mx-4 md:ml bg-white border-b border-gray-200  pb-7">
-                        <div class="mt-4 ml-0 md:ml-12 lg:ml-8">
-                            <form @submit.prevent = "submit" >
-                                <div class = "md:flex gap-1 items-end">
-                                    <my-input type = "text" class="w-full md:w-auto mb-2 md:mb-0" v-model="form.peluqueroNombre" placeholder="Nombre del peluquero" />
-                                    <input-file class="w-full md:w-auto" v-model="form.imagen" file-label = "Cargar imagen" />
-                                    <gray-button class="w-full md:w-auto mt-1 md:mt-0 py-3" v-text="btnText" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                                    </gray-button>
+                    <div class="py-1 mx-4 md:ml bg-white border-b border-gray-200">
+                        <div class="grid grid-rows-1">
+                            <div class="grid grid-cols-1 md:grid-cols-2">
+                                <div class="mt-6">
+                                    <form @submit.prevent = "submit" >
+                                        <div class = "md:flex gap-1 items-end">
+                                            <div class="grid grid-rows-1">
+                                                <my-input type = "text" class="my-1 w-full" v-model="form.peluqueroNombre" placeholder="Nombre del peluquero" />
+                                                <input-file class="w-auto" v-model="form.imagen" file-label = "Cargar imagen" />
+                                            </div>
+                                            <div class="grid grid-rows-1">
+                                                <gray-button class="mt-4 md:mt-0 md:ml-4 w-full md:w-auto py-3" v-text="btnText" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                                            </gray-button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
-                            </form>
-                        </div>
-                        <div class="mt-6">
-                            <ul>
-                                <transition-group name="list" tag="p" >
-                                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-2 md:mx-0 justify-items-center">
-                                    <span class="list-item mt-4 w-full md:w-9/12" v-for="(peluquero, index) in peluquerosList" :key="index">
-                                        <peluquero-card :peluquero="peluquero" :cambiar-peluquero-estado="true" v-on:cambioEstado = "cambiarEstado">
-                                            <template v-slot:actions>
-                                                <div class="flex justify-center mt-1 md:mt-2">
-                                                <div id = "ver" v-if="!firstTime" class="ml-3" >
-                                                    <svg @click="verPeluquero(index)" class = "fill-current text-primary-dark hover:text-primary-darkest cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                                                </div>
-                                                <div id = "editar" class="ml-3">
-                                                    <div class="cursor-pointer hover:text-secondary">
-                                                        <svg v-if="isEditting && index == edittingIndex"  @click="editarPeluqueroReset()" class = "fill-current text-secondary-light hover:text-secondary"  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-                                                        <svg  v-else @click="editarPeluqueroSetUP(index)" class = "fill-current text-secondary-light hover:text-secondary" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                <div class="mt-6">
+                                    <ul>
+                                        <transition-group name="list" tag="p" >
+                                            <span class="list-item" v-for="(peluquero, index) in peluquerosList" :key="index">
+                                                <div class="flex items-center mt-2">
+                                                    <div class="flex-shrink-0 h-10 w-10 mr-2">
+                                                        <img class="h-10 w-10 rounded-full" :src="'/storage/'+ peluquero.imagen" alt="" />
+                                                    </div>
+                                                    <div class="w-5/12">
+                                                        {{peluquero.nombre}}
+                                                    </div>
+                                                    <div id = "editar" class="ml-3">
+                                                        <div class="flex cursor-pointer hover:text-secondary">
+                                                            <svg v-if="isEditting && index == edittingIndex"  @click="editarPeluqueroReset()" class = "fill-current text-secondary-light hover:text-secondary"  xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                                                            <svg  v-else @click="editarPeluqueroSetUP(index)" class = "fill-current text-secondary-light hover:text-secondary" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+                                                        </div>
+                                                    </div>
+                                                    <div id = "ver" v-if="!firstTime" class="ml-3" >
+                                                        <svg @click="verPeluquero(index)" class = "fill-current text-primary hover:text-primary-dark" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                                                    </div>
+                                                    <div id = "eliminar" v-if="firstTime" class="ml-3" >
+                                                        <svg @click="eliminarPeluquero(index)" class = "fill-current text-error hover:text-accent-dark cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                                                     </div>
                                                 </div>
-                                                <div id = "eliminar" class="ml-3" >
-                                                    <svg @click="eliminarPeluquero(index)" class = "fill-current text-error hover:text-accent-dark cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
-                                                </div>
-                                                </div>
-                                            </template>
-                                        </peluquero-card>
-                                    </span>
-                                    </div>
-                                </transition-group>
-                            </ul>
+                                            </span>
+                                        </transition-group>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +94,6 @@
     import MyInput from '@/Components/Input'
     import InputFile from '@/Components/FileInput'
     import GrayButton from '@/Components/GreyButton'
-    import PeluqueroCard from '@/Components/PeluqueroCard'
     import BreezeValidationErrors from '@/Components/ValidationErrorsSecondary'
 
     export default {
@@ -104,7 +112,7 @@
         },
 
         components: {
-            BreezeAuthenticatedPeluqueriaLayout, MyInput, GrayButton, InputFile, BreezeValidationErrors, PeluqueroCard
+            BreezeAuthenticatedPeluqueriaLayout, MyInput, GrayButton, InputFile, BreezeValidationErrors
         },
 
         data() {
@@ -197,11 +205,9 @@
 
             nextStep(){
                 location.reload();
-            },
-
-            cambiarEstado(peluquero){
-                peluquero.disponible = !peluquero.disponible
             }
+
+
         },
 
         computed: {

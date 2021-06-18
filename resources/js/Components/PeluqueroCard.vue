@@ -9,10 +9,12 @@
         <div v-if="showStars">
             <rate :rate="peluquero.estrellas" max-rate=5 />
         </div>
-        <div>
-            <grey-button class="w-full mt-2 rounded-xl">
-                Ver
-            </grey-button>
+        <div class="modal-actions">
+            <slot name="actions">
+              <grey-button class="w-full mt-2 rounded-xl" @click="$emit('close')">
+                Cerrar
+              </grey-button>
+            </slot>
         </div>
     </div>
 </template>

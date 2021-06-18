@@ -18112,6 +18112,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     maxRate: {
       "default": null
+    },
+    noPersonas: {
+      "default": 10
     }
   }
 });
@@ -19273,10 +19276,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=script&lang=js":
-/*!****************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=script&lang=js ***!
-  \****************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=script&lang=js":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=script&lang=js ***!
+  \*********************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -19393,6 +19396,143 @@ __webpack_require__.r(__webpack_exports__);
     },
     nextStep: function nextStep() {
       location.reload();
+    }
+  },
+  computed: {
+    btnText: function btnText() {
+      return !this.isEditting ? 'Registrar' : 'Actualizar';
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=script&lang=js":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=script&lang=js ***!
+  \****************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Layouts_AuthenticatedPeluqueria__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Layouts/AuthenticatedPeluqueria */ "./resources/js/Layouts/AuthenticatedPeluqueria.vue");
+/* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.vue");
+/* harmony import */ var _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/FileInput */ "./resources/js/Components/FileInput.vue");
+/* harmony import */ var _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/GreyButton */ "./resources/js/Components/GreyButton.vue");
+/* harmony import */ var _Components_PeluqueroCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/PeluqueroCard */ "./resources/js/Components/PeluqueroCard.vue");
+/* harmony import */ var _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrorsSecondary */ "./resources/js/Components/ValidationErrorsSecondary.vue");
+
+
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    firstTime: {
+      "default": false
+    },
+    peluqueros: {
+      "default": {
+        data: []
+      }
+    },
+    peluquero: {
+      "default": {}
+    }
+  },
+  components: {
+    BreezeAuthenticatedPeluqueriaLayout: _Layouts_AuthenticatedPeluqueria__WEBPACK_IMPORTED_MODULE_0__.default,
+    MyInput: _Components_Input__WEBPACK_IMPORTED_MODULE_1__.default,
+    GrayButton: _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__.default,
+    InputFile: _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__.default,
+    BreezeValidationErrors: _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_5__.default,
+    PeluqueroCard: _Components_PeluqueroCard__WEBPACK_IMPORTED_MODULE_4__.default
+  },
+  data: function data() {
+    return {
+      form: this.$inertia.form({
+        peluqueroNombre: null,
+        imagen: null
+      }),
+      isEditting: false,
+      edittingIndex: null,
+      peluquerosList: []
+    };
+  },
+  mounted: function mounted() {
+    this.peluquerosList = this.peluqueros.data;
+  },
+  methods: {
+    submit: function submit() {
+      !this.isEditting ? this.agregarPeluquero() : this.editarPeluquero();
+    },
+    agregarPeluquero: function agregarPeluquero() {
+      var _this = this;
+
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
+      var data = new FormData();
+      data.append('imagen', this.form.imagen);
+      data.append('peluqueroNombre', this.form.peluqueroNombre);
+      axios.post(this.route("peluquero.store"), data).then(function (response) {
+        _this.form.reset();
+
+        _this.peluquerosList.push(response.data.peluquero);
+      })["catch"](function (err) {
+        _this.$page.props.errors = err.response.data.errors;
+      });
+    },
+    editarPeluquero: function editarPeluquero() {
+      var _this2 = this;
+
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
+      var id = this.peluquerosList[this.edittingIndex].id;
+      var data = new FormData();
+      data.append('imagen', this.form.imagen);
+      data.append('peluqueroNombre', this.form.peluqueroNombre);
+      axios.post("/peluqueria/actualizar_peluquero/".concat(id), data).then(function (response) {
+        _this2.peluquerosList.splice(_this2.edittingIndex, 1, response.data.peluquero);
+
+        _this2.editarPeluqueroReset();
+      })["catch"](function (error) {
+        _this2.$page.props.errors = error.response.data.errors;
+      });
+    },
+    verPeluquero: function verPeluquero(peluquero) {
+      console.log(peluquero);
+    },
+    eliminarPeluquero: function eliminarPeluquero(index) {
+      var _this3 = this;
+
+      var id = this.peluquerosList[index].id;
+      axios["delete"]("/peluqueria/eliminar_peluquero/".concat(id)).then(function (response) {
+        _this3.peluquerosList.splice(index, 1);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+      this.isEditting ? this.editarPeluqueroReset() : null; //si dieron click en editar y no guardaron, podria haber errores
+    },
+    editarPeluqueroSetUP: function editarPeluqueroSetUP(index) {
+      this.isEditting = true;
+      this.edittingIndex = index;
+      this.form.peluqueroNombre = this.peluquerosList[index].nombre;
+    },
+    editarPeluqueroReset: function editarPeluqueroReset() {
+      this.isEditting = false;
+      this.edittingIndex = null;
+      this.form.peluqueroNombre = '';
+      this.form.imagen = null;
+    },
+    nextStep: function nextStep() {
+      location.reload();
+    },
+    cambiarEstado: function cambiarEstado(peluquero) {
+      peluquero.disponible = !peluquero.disponible;
     }
   },
   computed: {
@@ -20768,8 +20908,11 @@ var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 var _hoisted_6 = {
   key: 0
 };
+var _hoisted_7 = {
+  "class": "modal-actions"
+};
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Ver ");
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Cerrar ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_avatar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("avatar");
@@ -20804,15 +20947,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "max-rate": "5"
   }, null, 8
   /* PROPS */
-  , ["rate"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_grey_button, {
-    "class": "w-full mt-2 rounded-xl"
-  }, {
-    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_7];
-    }),
-    _: 1
-    /* STABLE */
+  , ["rate"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "actions", {}, function () {
+    return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_grey_button, {
+      "class": "w-full mt-2 rounded-xl",
+      onClick: _cache[2] || (_cache[2] = function ($event) {
+        return _ctx.$emit('close');
+      })
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [_hoisted_8];
+      }),
+      _: 1
+      /* STABLE */
 
+    })];
   })])]);
 }
 
@@ -20832,10 +20980,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "flex"
+  "class": "flex items-center"
+};
+var _hoisted_2 = {
+  "class": "flex my-1",
+  id: "noPersonas"
 };
 
-var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
+  "class": " fill-current text-secondary",
+  xmlns: "http://www.w3.org/2000/svg",
+  height: "20px",
+  viewBox: "0 0 24 24",
+  width: "20px",
+  fill: "#000000"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M0 0h24v24H0z",
+  fill: "none"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
   "class": "fill-current text-warning",
   xmlns: "http://www.w3.org/2000/svg",
   "enable-background": "new 0 0 24 24",
@@ -20854,35 +21022,43 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
   "class": "fill-current text-secondary-light",
   xmlns: "http://www.w3.org/2000/svg",
+  "enable-background": "new 0 0 24 24",
   height: "24px",
   viewBox: "0 0 24 24",
   width: "24px",
   fill: "#000000"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  d: "M0 0h24v24H0z",
-  fill: "none"
-}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  d: "M22 9.24l-7.19-.62L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27 18.18 21l-1.63-7.03L22 9.24zM12 15.4l-3.76 2.27 1-4.28-3.32-2.88 4.38-.38L12 6.1l1.71 4.04 4.38.38-3.32 2.88 1 4.28L12 15.4z"
-})], -1
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("rect", {
+  fill: "none",
+  height: "24",
+  width: "24",
+  x: "0"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("polygon", {
+  points: "14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10"
+})])], -1
 /* HOISTED */
 );
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.rate, function (noEstrella, index) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+    "class": "mx-1 text-sm",
+    textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.noPersonas)
+  }, null, 8
+  /* PROPS */
+  , ["textContent"]), _hoisted_3]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.rate, function (noEstrella, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       key: index,
       "class": "m-1"
-    }, [_hoisted_2]);
+    }, [_hoisted_4]);
   }), 128
   /* KEYED_FRAGMENT */
   )), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.maxRate - $props.rate, function (noEstrella, index) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       key: index,
       "class": "m-1"
-    }, [_hoisted_3]);
+    }, [_hoisted_5]);
   }), 128
   /* KEYED_FRAGMENT */
   ))]);
@@ -23460,10 +23636,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=template&id=f1ce7c60":
-/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=template&id=f1ce7c60 ***!
-  \********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=template&id=26599916":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=template&id=26599916 ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -23773,6 +23949,328 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       }, {
         "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
           return [_hoisted_31];
+        }),
+        _: 1
+        /* STABLE */
+
+      }, 8
+      /* PROPS */
+      , ["onClick", "class", "disabled"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["hide-nav"]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=template&id=f1ce7c60":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=template&id=f1ce7c60 ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "md:py-10"
+};
+var _hoisted_2 = {
+  key: 0,
+  "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
+};
+
+var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "bg-secondary overflow-hidden shadow-md sm:rounded-lg"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "py-2 border-b border-gray-200 text-center"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "flex gap-1 justify-center items-center "
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
+  "class": "fill-current text-accent",
+  xmlns: "http://www.w3.org/2000/svg",
+  "enable-background": "new 0 0 24 24",
+  height: "35px",
+  viewBox: "0 0 24 24",
+  width: "35px",
+  fill: "#000000"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M0,0h24v24H0V0z",
+  fill: "none"
+})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("circle", {
+  cx: "10",
+  cy: "8",
+  r: "4"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M10.67,13.02C10.45,13.01,10.23,13,10,13c-2.42,0-4.68,0.67-6.61,1.82C2.51,15.34,2,16.32,2,17.35V20h9.26 C10.47,18.87,10,17.49,10,16C10,14.93,10.25,13.93,10.67,13.02z"
+}), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M20.75,16c0-0.22-0.03-0.42-0.06-0.63l1.14-1.01l-1-1.73l-1.45,0.49c-0.32-0.27-0.68-0.48-1.08-0.63L18,11h-2l-0.3,1.49 c-0.4,0.15-0.76,0.36-1.08,0.63l-1.45-0.49l-1,1.73l1.14,1.01c-0.03,0.21-0.06,0.41-0.06,0.63s0.03,0.42,0.06,0.63l-1.14,1.01 l1,1.73l1.45-0.49c0.32,0.27,0.68,0.48,1.08,0.63L16,21h2l0.3-1.49c0.4-0.15,0.76-0.36,1.08-0.63l1.45,0.49l1-1.73l-1.14-1.01 C20.72,16.42,20.75,16.22,20.75,16z M17,18c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S18.1,18,17,18z"
+})])])])]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "text-xl text-white"
+}, " Bienvenido ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "text-secondary-light md:text-center mt-2"
+}, " Tú peluquería esta lista para ser configurada. Comenzaremos por agregar a tus peluqueros. ")])], -1
+/* HOISTED */
+);
+
+var _hoisted_4 = {
+  "class": "max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4"
+};
+var _hoisted_5 = {
+  "class": "bg-white overflow-hidden shadow-sm sm:rounded-lg"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "p-2 text-white bg-secondary-light border-b border-gray-200"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "ml-3"
+}, " Agregar Peluqero ")], -1
+/* HOISTED */
+);
+
+var _hoisted_7 = {
+  "class": "py-1 mx-4 md:ml bg-white border-b border-gray-200  pb-7"
+};
+var _hoisted_8 = {
+  "class": "mt-4 ml-0 md:ml-12 lg:ml-8"
+};
+var _hoisted_9 = {
+  "class": "md:flex gap-1 items-end"
+};
+var _hoisted_10 = {
+  "class": "mt-6"
+};
+var _hoisted_11 = {
+  "class": "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-2 md:mx-0 justify-items-center"
+};
+var _hoisted_12 = {
+  "class": "flex justify-center mt-1 md:mt-2"
+};
+var _hoisted_13 = {
+  key: 0,
+  id: "ver",
+  "class": "ml-3"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M0 0h24v24H0z",
+  fill: "none"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_16 = {
+  id: "editar",
+  "class": "ml-3"
+};
+var _hoisted_17 = {
+  "class": "cursor-pointer hover:text-secondary"
+};
+
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M0 0h24v24H0z",
+  fill: "none"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M0 0h24v24H0z",
+  fill: "none"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_22 = {
+  id: "eliminar",
+  "class": "ml-3"
+};
+
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M0 0h24v24H0z",
+  fill: "none"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_25 = {
+  key: 1,
+  "class": "flex max-w-7xl mx-auto my-4 sm:px-6 lg:px-8 justify-end"
+};
+
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Siguiente ");
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_breeze_validation_errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-validation-errors");
+
+  var _component_my_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("my-input");
+
+  var _component_input_file = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("input-file");
+
+  var _component_gray_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("gray-button");
+
+  var _component_peluquero_card = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("peluquero-card");
+
+  var _component_breeze_authenticated_peluqueria_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-authenticated-peluqueria-layout");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_authenticated_peluqueria_layout, {
+    "hide-nav": $props.firstTime
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_validation_errors, {
+        "class": "mb-2 ml-2"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+        onSubmit: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
+          return $options.submit && $options.submit.apply($options, arguments);
+        }, ["prevent"]))
+      }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_my_input, {
+        type: "text",
+        "class": "w-full md:w-auto mb-2 md:mb-0",
+        modelValue: $data.form.peluqueroNombre,
+        "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+          return $data.form.peluqueroNombre = $event;
+        }),
+        placeholder: "Nombre del peluquero"
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_input_file, {
+        "class": "w-full md:w-auto",
+        modelValue: $data.form.imagen,
+        "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+          return $data.form.imagen = $event;
+        }),
+        "file-label": "Cargar imagen"
+      }, null, 8
+      /* PROPS */
+      , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_gray_button, {
+        "class": ["w-full md:w-auto mt-1 md:mt-0 py-3", {
+          'opacity-25': $data.form.processing
+        }],
+        textContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.btnText),
+        disabled: $data.form.processing
+      }, null, 8
+      /* PROPS */
+      , ["textContent", "class", "disabled"])])], 32
+      /* HYDRATE_EVENTS */
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
+        name: "list",
+        tag: "p"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.peluquerosList, function (peluquero, index) {
+            return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", {
+              "class": "list-item mt-4 w-full md:w-9/12",
+              key: index
+            }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_peluquero_card, {
+              peluquero: peluquero,
+              "cambiar-peluquero-estado": true,
+              onCambioEstado: $options.cambiarEstado
+            }, {
+              actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [!$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+                  onClick: function onClick($event) {
+                    return $options.verPeluquero(index);
+                  },
+                  "class": "fill-current text-primary-dark hover:text-primary-darkest cursor-pointer",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  height: "24px",
+                  viewBox: "0 0 24 24",
+                  width: "24px",
+                  fill: "#000000"
+                }, [_hoisted_14, _hoisted_15], 8
+                /* PROPS */
+                , ["onClick"]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [$data.isEditting && index == $data.edittingIndex ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+                  key: 0,
+                  onClick: _cache[4] || (_cache[4] = function ($event) {
+                    return $options.editarPeluqueroReset();
+                  }),
+                  "class": "fill-current text-secondary-light hover:text-secondary",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  height: "24px",
+                  viewBox: "0 0 24 24",
+                  width: "24px",
+                  fill: "#000000"
+                }, [_hoisted_18, _hoisted_19])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+                  key: 1,
+                  onClick: function onClick($event) {
+                    return $options.editarPeluqueroSetUP(index);
+                  },
+                  "class": "fill-current text-secondary-light hover:text-secondary",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  height: "24px",
+                  viewBox: "0 0 24 24",
+                  width: "24px",
+                  fill: "#000000"
+                }, [_hoisted_20, _hoisted_21], 8
+                /* PROPS */
+                , ["onClick"]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+                  onClick: function onClick($event) {
+                    return $options.eliminarPeluquero(index);
+                  },
+                  "class": "fill-current text-error hover:text-accent-dark cursor-pointer",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  height: "24px",
+                  viewBox: "0 0 24 24",
+                  width: "24px",
+                  fill: "#000000"
+                }, [_hoisted_23, _hoisted_24], 8
+                /* PROPS */
+                , ["onClick"]))])])];
+              }),
+              _: 2
+              /* DYNAMIC */
+
+            }, 1032
+            /* PROPS, DYNAMIC_SLOTS */
+            , ["peluquero", "onCambioEstado"])]);
+          }), 128
+          /* KEYED_FRAGMENT */
+          ))])];
+        }),
+        _: 1
+        /* STABLE */
+
+      })])])])])]), $props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_gray_button, {
+        onClick: $options.nextStep,
+        "class": ["mt-3 mx-4 md:mx-0 md:mt-0 md:ml-4 w-full md:w-auto py-3", {
+          'opacity-25': $data.form.processing
+        }],
+        disabled: $data.form.processing
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [_hoisted_26];
         }),
         _: 1
         /* STABLE */
@@ -25313,6 +25811,30 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-active[data-v-dd6cd1d8], .fade-leave-active[data-v-dd6cd1d8] {\r\n        transition: opacity .4s\n}\n.fade-enter[data-v-dd6cd1d8], .fade-leave-to[data-v-dd6cd1d8] /* .fade-leave-active below version 2.1.8 */ {\r\n        opacity: 0\n}\r\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\n    .list-leave-active {\n         transition: all 1s ease;\n}\n.list-enter-from,\n    .list-leave-to {\n        opacity: 0;\n        transform: translateY(30px);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51254,6 +51776,35 @@ _AgregarHorario_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue":
+/*!*****************************************************************!*\
+  !*** ./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _AgregarPeluquero_copy_vue_vue_type_template_id_26599916__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AgregarPeluquero copy.vue?vue&type=template&id=26599916 */ "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=template&id=26599916");
+/* harmony import */ var _AgregarPeluquero_copy_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AgregarPeluquero copy.vue?vue&type=script&lang=js */ "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=script&lang=js");
+/* harmony import */ var _AgregarPeluquero_copy_vue_vue_type_style_index_0_id_26599916_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css */ "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css");
+
+
+
+
+;
+_AgregarPeluquero_copy_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _AgregarPeluquero_copy_vue_vue_type_template_id_26599916__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_AgregarPeluquero_copy_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_AgregarPeluquero_copy_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Peluqueria/AgregarPeluquero.vue":
 /*!************************************************************!*\
   !*** ./resources/js/Pages/Peluqueria/AgregarPeluquero.vue ***!
@@ -52070,6 +52621,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=script&lang=js":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=script&lang=js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AgregarPeluquero copy.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=script&lang=js":
 /*!************************************************************************************!*\
   !*** ./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=script&lang=js ***!
@@ -52838,6 +53405,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=template&id=26599916":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=template&id=26599916 ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_template_id_26599916__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_template_id_26599916__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AgregarPeluquero copy.vue?vue&type=template&id=26599916 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=template&id=26599916");
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=template&id=f1ce7c60":
 /*!******************************************************************************************!*\
   !*** ./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=template&id=f1ce7c60 ***!
@@ -53001,6 +53584,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css ***!
+  \*************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_style_index_0_id_26599916_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-style-loader/index.js!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css */ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_style_index_0_id_26599916_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_style_index_0_id_26599916_lang_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
+/* harmony reexport (unknown) */ for(const __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_style_index_0_id_26599916_lang_css__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = () => _node_modules_vue_style_loader_index_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_AgregarPeluquero_copy_vue_vue_type_style_index_0_id_26599916_lang_css__WEBPACK_IMPORTED_MODULE_0__[__WEBPACK_IMPORT_KEY__]
+/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=style&index=0&id=f1ce7c60&lang=css":
 /*!********************************************************************************************************!*\
   !*** ./resources/js/Pages/Peluqueria/AgregarPeluquero.vue?vue&type=style&index=0&id=f1ce7c60&lang=css ***!
@@ -53110,6 +53710,27 @@ if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(/*! !../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
 var update = add("5fecdf7a", content, false, {});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader/index.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue?vue&type=style&index=0&id=26599916&lang=css");
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.id, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! !../../../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("650eb412", content, false, {});
 // Hot Module Replacement
 if(false) {}
 
@@ -53688,6 +54309,8 @@ var map = {
 	"./Peluqueria/AgregarHorario": "./resources/js/Pages/Peluqueria/AgregarHorario.vue",
 	"./Peluqueria/AgregarHorario.vue": "./resources/js/Pages/Peluqueria/AgregarHorario.vue",
 	"./Peluqueria/AgregarPeluquero": "./resources/js/Pages/Peluqueria/AgregarPeluquero.vue",
+	"./Peluqueria/AgregarPeluquero copy": "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue",
+	"./Peluqueria/AgregarPeluquero copy.vue": "./resources/js/Pages/Peluqueria/AgregarPeluquero copy.vue",
 	"./Peluqueria/AgregarPeluquero.vue": "./resources/js/Pages/Peluqueria/AgregarPeluquero.vue",
 	"./Peluqueria/AgregarServicio": "./resources/js/Pages/Peluqueria/AgregarServicio.vue",
 	"./Peluqueria/AgregarServicio.vue": "./resources/js/Pages/Peluqueria/AgregarServicio.vue",
