@@ -186,8 +186,8 @@
                     this.serviciosList.data.splice(this.edittingIndex, 1, response.data.servicio);
                     this.editarServicioReset();
                 }).catch(error => {
-                    this.$page.props.errors = err.response.data.errors;
                     console.log(error);
+                    this.$page.props.errors = error.response.data.errors;
                 });
 
             },

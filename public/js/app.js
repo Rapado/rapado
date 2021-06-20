@@ -18189,6 +18189,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.vue");
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
 /* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.vue");
+/* harmony import */ var _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/ValidationErrorsSecondary */ "./resources/js/Components/ValidationErrorsSecondary.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -18198,12 +18199,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['modelValue', 'noDia', 'dia', 'workDay'],
   components: {
     MyInput: _Components_Input__WEBPACK_IMPORTED_MODULE_0__.default,
     MyLabel: _Components_Label__WEBPACK_IMPORTED_MODULE_1__.default,
-    MyButton: _Components_Button__WEBPACK_IMPORTED_MODULE_2__.default
+    MyButton: _Components_Button__WEBPACK_IMPORTED_MODULE_2__.default,
+    BreezeValidationErrors: _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_3__.default
   },
   data: function data() {
     return {
@@ -18226,6 +18229,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     diaDeTrabajoRequest: function diaDeTrabajoRequest(url) {
       var _this = this;
 
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
       axios.post(url, _objectSpread(_objectSpread({}, this.form), {}, {
         numeroDia: this.noDia
       })).then(function (response) {
@@ -18233,6 +18238,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.form = response.data.diaDeTrabajo;
         _this.lastDaySaved = Object.assign({}, _this.form);
       })["catch"](function (error) {
+        _this.$page.props.errors = error.response.data.errors;
         console.log(error);
       });
     },
@@ -18982,7 +18988,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/FileInput */ "./resources/js/Components/FileInput.vue");
 /* harmony import */ var _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/GreyButton */ "./resources/js/Components/GreyButton.vue");
 /* harmony import */ var _Components_WorkDay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/WorkDay */ "./resources/js/Components/WorkDay.vue");
-/* harmony import */ var _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrors */ "./resources/js/Components/ValidationErrors.vue");
+/* harmony import */ var _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrorsSecondary */ "./resources/js/Components/ValidationErrorsSecondary.vue");
 
 
 
@@ -19004,7 +19010,7 @@ __webpack_require__.r(__webpack_exports__);
     GrayButton: _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__.default,
     InputFile: _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__.default,
     WorkDay: _Components_WorkDay__WEBPACK_IMPORTED_MODULE_4__.default,
-    BreezeValidationErrors: _Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_5__.default
+    BreezeValidationErrors: _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_5__.default
   },
   data: function data() {
     return {
@@ -19112,7 +19118,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.editarPeluqueroReset();
       })["catch"](function (error) {
-        _this2.$page.props.errors = err.response.data.errors;
+        _this2.$page.props.errors = error.response.data.errors;
         console.log(error);
       });
     },
@@ -19263,8 +19269,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.editarServicioReset();
       })["catch"](function (error) {
-        _this2.$page.props.errors = err.response.data.errors;
         console.log(error);
+        _this2.$page.props.errors = error.response.data.errors;
       });
     },
     verServicio: function verServicio(servicio) {

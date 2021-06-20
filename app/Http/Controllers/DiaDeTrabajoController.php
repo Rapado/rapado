@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DiaDeTrabajo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class DiaDeTrabajoController extends Controller
 {
@@ -38,8 +39,8 @@ class DiaDeTrabajoController extends Controller
     {
         //validar campos y que cierre sea mayor a apertura
         $request ->validate([
-            'apertura' => 'required_unless:cierre,null, lt:cierre',
-            'cierre' => 'required_unless:cierre,null'
+            'apertura' => ['required_unless:cierre,null', 'before:cierre'],
+            'cierre' => ['required_unless:apertura,null' ],
         ], $this->messages());
 
         $peluqueriaId = Auth::user()->peluqueria->id;
@@ -87,6 +88,10 @@ class DiaDeTrabajoController extends Controller
     public function update(Request $request, DiaDeTrabajo $diaDeTrabajo)
     {
         //validar la informacion
+        $request ->validate([
+            'apertura' => ['required_unless:cierre,null', 'before:cierre'],
+            'cierre' => ['required_unless:apertura,null' ],
+        ], $this->messages());
 
         $diaDeTrabajo->apertura = $request['apertura'];
         $diaDeTrabajo->cierre = $request['cierre'];
@@ -110,6 +115,8 @@ class DiaDeTrabajoController extends Controller
     public function messages()
     {
         return [
+            'apertura.before'=>'La apertura debe ser antes que el cierre',
+            'required_unless'=>'Favor de llenar ambos campos o dejar ambos en vacio'
         ];
     }
 }

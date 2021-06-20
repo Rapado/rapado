@@ -167,7 +167,7 @@
                     this.peluquerosList.splice(this.edittingIndex, 1, response.data.peluquero);
                     this.editarPeluqueroReset();
                 }).catch(error => {
-                    this.$page.props.errors = err.response.data.errors;
+                    this.$page.props.errors = error.response.data.errors;
                     console.log(error);
                 });
 

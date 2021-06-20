@@ -49,7 +49,7 @@
     import InputFile from '@/Components/FileInput'
     import GrayButton from '@/Components/GreyButton'
     import WorkDay from '@/Components/WorkDay'
-    import BreezeValidationErrors from '@/Components/ValidationErrors'
+    import BreezeValidationErrors from '@/Components/ValidationErrorsSecondary'
 
     export default {
         props:{
