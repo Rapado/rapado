@@ -4,16 +4,19 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\CitaCollection;
+use App\Http\Resources\ServicioCollection;
 
 class PeluqueroResource extends JsonResource
 {
     protected $retornarAgenda = false;
     protected $retornarCitas = false;
+    protected $retornarServicios = false;
 
-    public function opciones($agenda = false, $citas = false)
+    public function opciones($agenda = false, $citas = false, $servicios = false)
     {
         $this->retornarAgenda = $agenda;
         $this->retornarCitas = $citas;
+        $this->retornarServicios = $servicios;
         return $this;
     }
     /**
@@ -32,6 +35,7 @@ class PeluqueroResource extends JsonResource
             'estrellas' => $this->estrellas(),
             'agenda' => $this->when($this->retornarAgenda, $this->agenda()),
             'citas' => $this->when($this->retornarCitas, new CitaCollection($this->citas)),
+            'servicios' => $this->when($this->retornarServicios, new ServicioCollection($this->servicios)),
         ];
     }
 }

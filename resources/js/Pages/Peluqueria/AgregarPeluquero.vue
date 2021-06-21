@@ -19,12 +19,11 @@
                 </div>
             </div>
 
-
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
                 <breeze-validation-errors class = "mb-2 ml-2"/>
 
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-2 text-white bg-secondary-light border-b border-gray-200">
+                    <div class="p-2 text-white bg-secondary border-b border-gray-200">
                         <div class="ml-3">
                            Agregar Peluqero
                         </div>

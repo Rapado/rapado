@@ -12,7 +12,7 @@
         <div class="modal-actions">
             <slot name="actions">
               <grey-button class="w-full mt-2 rounded-xl" @click="$emit('close')">
-                Cerrar
+                Ver
               </grey-button>
             </slot>
         </div>

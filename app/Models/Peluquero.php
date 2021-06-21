@@ -34,21 +34,27 @@ class Peluquero extends Model
 
     public function citaA($hora)
     {
-        $cita = $this->citas()->where('hora_inicio','<=', $hora)->Where('horaTermina', '>=', $hora)->first();
+        $cita = $this->citas()->where('hora_inicio','<=', $hora)->Where('horaTermina', '>', $hora)->first();
 
         if(isset($cita)){
             $duracionCita = 0;
 
             if($cita->hora_inicio == $hora)
-                $duracionCita -= $cita->duracion();
+                $duracionCita = $cita->duracion();
             else
-                $duracionCita -= $this->minutosEntreHoras($cita->hora_inicio, $hora);
+                $duracionCita = $this->minutosEntreHoras($cita->hora_inicio, $hora);
 
             return ['ocupado' => true, 'duracion' => $duracionCita, 'citaId' => $cita->id, 'minutosDisponibles' => 0];
         }else{
             return ['duracion' => 0, 'ocupado' => false, 'citaId' => null, 'minutosDisponibles' => 0];
         }
 
+    }
+
+    public function ocupadoA($hora)
+    {
+        $cita = $this->citas()->where('hora_inicio','<=', $hora)->Where('horaTermina', '>', $hora)->first();
+        return isset($cita);
     }
 
     public function imagenPath()
@@ -74,17 +80,19 @@ class Peluquero extends Model
         $contadorDeEspacios = 0;
 
         $peluqueriaHorario = $this->peluqueria->horarioDeHoy();
-        if($peluqueriaHorario != null){
+
+        // dd($this->peluqueria->sigueAbierta());
+        if($peluqueriaHorario != null && $this->peluqueria->sigueAbierta()){
 
             $numeroEspacios = $this->espaciosEntreDosHoras($peluqueriaHorario['horaActual'], $peluqueriaHorario['cierre'], 15);
             $horaDeLaJornada = $peluqueriaHorario['horaActual'];
 
             for($i = 0; $i < $numeroEspacios; $i++){
 
-                if($espacioActual['duracion'] <= 0) //no se busca por una cita hasta que se termine el timepo de la que se encontro
-                $espacioActual = $this->citaA($horaDeLaJornada); // si el peluquero tiene una cita a esa hora, retorna array con duracion y otros campos
+                if($espacioActual['duracion'] <= 0) //no se busca por una cita hasta que se termine el timepo de la que se encontro5
+                    $espacioActual = $this->citaA($horaDeLaJornada); // si el peluquero tiene una cita a esa hora, retorna array con duracion y otros campos
 
-                $espacioActual > 0 ? $espacioActual['duracion'] -= 15 : null;
+                $espacioActual['duracion'] > 0 ? $espacioActual['duracion'] -= 15 : null;
 
                 array_push($agenda, ['hora' => $horaDeLaJornada, 'ocupado' => $espacioActual['ocupado'],
                 'citaId' => $espacioActual['citaId'], 'minutosDisponibles' => 0]);

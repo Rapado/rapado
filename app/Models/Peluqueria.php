@@ -148,6 +148,16 @@ class Peluqueria extends Model
         }
     }
 
+    public function sigueAbierta()
+    {
+        $horarioDeHoy = $this->horarioDeHoy();
+
+        if($horarioDeHoy == null)
+            return false;
+
+        return $horarioDeHoy['horaActual'] < $this->actualizarHora($horarioDeHoy['cierre'], 15);
+    }
+
     public function tienePeluqueros()
     {
         return count($this->peluqueros);

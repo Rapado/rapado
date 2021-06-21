@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PeluqueroCollection;
 use App\Models\Cita;
+use App\Models\Peluqueria;
+use App\Models\Peluquero;
+use App\Traits\TimeHelper;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class CitaController extends Controller
 {
+    use TimeHelper;
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +29,16 @@ class CitaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Peluqueria $peluqueria)
     {
-        //
+        //validar si esta abierta la peluqueria
+        return Inertia::render('Cliente/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true)]);
+    }
+
+    public function agendarDesdePeluqueria()
+    {
+        $peluqueria = Auth::user()->peluqueria;
+        return Inertia::render('Peluqueria/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true)]);
     }
 
     /**
@@ -33,9 +47,34 @@ class CitaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Peluqueria $peluqueria)
     {
-        //
+        $user = Auth::user();
+        $peluquero = Peluquero::findOrFail($request['peluqueroId']);
+
+        if(isset($user->cliente)) //un cliente no puede agendar mas de dos citas
+            if(count($user->citas) > 1)
+                return response(['status' => 'noCitasExcedido'], 400);
+
+        if(!$peluquero->disponible)
+            return response(['status' => 'peluqeroNoDisponible'], 400);
+
+        if($request['horaCita'] < $this->horaActual() || $peluquero->ocupadoA($request['horaCita'])){
+            return response(['status' => 'horaNoDisponible', 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, false)], 400);
+        }
+
+        $cita = new Cita();
+        $cita->user_id = $user->id;
+        $cita->peluquero_id = $request['peluqueroId'];
+        $cita->nombre = $request['nombreCliente'];
+        $cita->hora_inicio = $request['horaCita'];
+        $cita->horaTermina = $this->actualizarHora($request['horaCita'], $request['duracionCita']);
+        $cita->save();
+
+        $cita->guardarServicios($request['servicios']);
+
+        return response('todoBien');
+
     }
 
     /**
