@@ -24830,75 +24830,85 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       /* PROPS */
       , ["textContent", "class", "disabled"])])], 32
       /* HYDRATE_EVENTS */
-      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.peluquerosList, function (peluquero, index) {
-        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", {
-          "class": "mt-4 w-full md:w-9/12",
-          key: index
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_peluquero_card, {
-          peluquero: peluquero,
-          "cambiar-peluquero-estado": true,
-          onCambioEstado: $options.cambiarEstado
-        }, {
-          actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [!$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
-              onClick: function onClick($event) {
-                return $options.verPeluquero(index);
-              },
-              "class": "fill-current text-primary-dark hover:text-primary-darkest cursor-pointer",
-              xmlns: "http://www.w3.org/2000/svg",
-              height: "24px",
-              viewBox: "0 0 24 24",
-              width: "24px",
-              fill: "#000000"
-            }, [_hoisted_14, _hoisted_15], 8
-            /* PROPS */
-            , ["onClick"]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [$data.isEditting && index == $data.edittingIndex ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
-              key: 0,
-              onClick: _cache[4] || (_cache[4] = function ($event) {
-                return $options.editarPeluqueroReset();
+      )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("ul", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(vue__WEBPACK_IMPORTED_MODULE_0__.TransitionGroup, {
+        name: "list",
+        tag: "p"
+      }, {
+        "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+          return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.peluquerosList, function (peluquero, index) {
+            return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", {
+              "class": "list-item mt-4 w-full md:w-9/12",
+              key: index
+            }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_peluquero_card, {
+              peluquero: peluquero,
+              "cambiar-peluquero-estado": true,
+              onCambioEstado: $options.cambiarEstado
+            }, {
+              actions: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+                return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [!$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_13, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+                  onClick: function onClick($event) {
+                    return $options.verPeluquero(index);
+                  },
+                  "class": "fill-current text-primary-dark hover:text-primary-darkest cursor-pointer",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  height: "24px",
+                  viewBox: "0 0 24 24",
+                  width: "24px",
+                  fill: "#000000"
+                }, [_hoisted_14, _hoisted_15], 8
+                /* PROPS */
+                , ["onClick"]))])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [$data.isEditting && index == $data.edittingIndex ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+                  key: 0,
+                  onClick: _cache[4] || (_cache[4] = function ($event) {
+                    return $options.editarPeluqueroReset();
+                  }),
+                  "class": "fill-current text-secondary-light hover:text-secondary",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  height: "24px",
+                  viewBox: "0 0 24 24",
+                  width: "24px",
+                  fill: "#000000"
+                }, [_hoisted_18, _hoisted_19])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+                  key: 1,
+                  onClick: function onClick($event) {
+                    return $options.editarPeluqueroSetUP(index);
+                  },
+                  "class": "fill-current text-secondary-light hover:text-secondary",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  height: "24px",
+                  viewBox: "0 0 24 24",
+                  width: "24px",
+                  fill: "#000000"
+                }, [_hoisted_20, _hoisted_21], 8
+                /* PROPS */
+                , ["onClick"]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+                  onClick: function onClick($event) {
+                    return $options.eliminarPeluquero(index);
+                  },
+                  "class": "fill-current text-error hover:text-accent-dark cursor-pointer",
+                  xmlns: "http://www.w3.org/2000/svg",
+                  height: "24px",
+                  viewBox: "0 0 24 24",
+                  width: "24px",
+                  fill: "#000000"
+                }, [_hoisted_23, _hoisted_24], 8
+                /* PROPS */
+                , ["onClick"]))])])];
               }),
-              "class": "fill-current text-secondary-light hover:text-secondary",
-              xmlns: "http://www.w3.org/2000/svg",
-              height: "24px",
-              viewBox: "0 0 24 24",
-              width: "24px",
-              fill: "#000000"
-            }, [_hoisted_18, _hoisted_19])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
-              key: 1,
-              onClick: function onClick($event) {
-                return $options.editarPeluqueroSetUP(index);
-              },
-              "class": "fill-current text-secondary-light hover:text-secondary",
-              xmlns: "http://www.w3.org/2000/svg",
-              height: "24px",
-              viewBox: "0 0 24 24",
-              width: "24px",
-              fill: "#000000"
-            }, [_hoisted_20, _hoisted_21], 8
-            /* PROPS */
-            , ["onClick"]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
-              onClick: function onClick($event) {
-                return $options.eliminarPeluquero(index);
-              },
-              "class": "fill-current text-error hover:text-accent-dark cursor-pointer",
-              xmlns: "http://www.w3.org/2000/svg",
-              height: "24px",
-              viewBox: "0 0 24 24",
-              width: "24px",
-              fill: "#000000"
-            }, [_hoisted_23, _hoisted_24], 8
-            /* PROPS */
-            , ["onClick"]))])])];
-          }),
-          _: 2
-          /* DYNAMIC */
+              _: 2
+              /* DYNAMIC */
 
-        }, 1032
-        /* PROPS, DYNAMIC_SLOTS */
-        , ["peluquero", "onCambioEstado"])]);
-      }), 128
-      /* KEYED_FRAGMENT */
-      ))])])])])]), $props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_gray_button, {
+            }, 1032
+            /* PROPS, DYNAMIC_SLOTS */
+            , ["peluquero", "onCambioEstado"])]);
+          }), 128
+          /* KEYED_FRAGMENT */
+          ))])];
+        }),
+        _: 1
+        /* STABLE */
+
+      })])])])])]), $props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_25, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_gray_button, {
         onClick: $options.nextStep,
         "class": ["mt-3 mx-4 md:mx-0 md:mt-0 md:ml-4 w-full md:w-auto py-3", {
           'opacity-25': $data.form.processing
