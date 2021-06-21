@@ -151,7 +151,6 @@
 
             editarPeluquero(){
                 this.$page.props.errors = []; //su hubo errores antees, se borran
-
                 const id = this.peluquerosList[this.edittingIndex].id;
                 const data = new FormData();
                 data.append('imagen', this.form.imagen);
@@ -163,6 +162,7 @@
                     this.editarPeluqueroReset();
                 }).catch(error => {
                     this.$page.props.errors = error.response.data.errors;
+                    console.log(error);
                 });
 
             },

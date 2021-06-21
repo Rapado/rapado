@@ -18725,6 +18725,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Input__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Input */ "./resources/js/Components/Input.vue");
 /* harmony import */ var _Components_Label__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Label */ "./resources/js/Components/Label.vue");
 /* harmony import */ var _Components_Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Button */ "./resources/js/Components/Button.vue");
+/* harmony import */ var _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/ValidationErrorsSecondary */ "./resources/js/Components/ValidationErrorsSecondary.vue");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -18734,12 +18735,14 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['modelValue', 'noDia', 'dia', 'workDay'],
   components: {
     MyInput: _Components_Input__WEBPACK_IMPORTED_MODULE_0__.default,
     MyLabel: _Components_Label__WEBPACK_IMPORTED_MODULE_1__.default,
-    MyButton: _Components_Button__WEBPACK_IMPORTED_MODULE_2__.default
+    MyButton: _Components_Button__WEBPACK_IMPORTED_MODULE_2__.default,
+    BreezeValidationErrors: _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_3__.default
   },
   data: function data() {
     return {
@@ -18762,6 +18765,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     diaDeTrabajoRequest: function diaDeTrabajoRequest(url) {
       var _this = this;
 
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
       axios.post(url, _objectSpread(_objectSpread({}, this.form), {}, {
         numeroDia: this.noDia
       })).then(function (response) {
@@ -18769,6 +18774,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         _this.form = response.data.diaDeTrabajo;
         _this.lastDaySaved = Object.assign({}, _this.form);
       })["catch"](function (error) {
+        _this.$page.props.errors = error.response.data.errors;
         console.log(error);
       });
     },
@@ -19583,6 +19589,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/FileInput */ "./resources/js/Components/FileInput.vue");
 /* harmony import */ var _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/GreyButton */ "./resources/js/Components/GreyButton.vue");
 /* harmony import */ var _Components_WorkDay__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/WorkDay */ "./resources/js/Components/WorkDay.vue");
+/* harmony import */ var _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrorsSecondary */ "./resources/js/Components/ValidationErrorsSecondary.vue");
+
 
 
 
@@ -19602,7 +19610,8 @@ __webpack_require__.r(__webpack_exports__);
     MyInput: _Components_Input__WEBPACK_IMPORTED_MODULE_1__.default,
     GrayButton: _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__.default,
     InputFile: _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__.default,
-    WorkDay: _Components_WorkDay__WEBPACK_IMPORTED_MODULE_4__.default
+    WorkDay: _Components_WorkDay__WEBPACK_IMPORTED_MODULE_4__.default,
+    BreezeValidationErrors: _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_5__.default
   },
   data: function data() {
     return {
@@ -19719,6 +19728,10 @@ __webpack_require__.r(__webpack_exports__);
         _this2.editarPeluqueroReset();
       })["catch"](function (error) {
         _this2.$page.props.errors = error.response.data.errors;
+<<<<<<< HEAD
+        console.log(error);
+=======
+>>>>>>> testBranch
       });
     },
     verPeluquero: function verPeluquero(peluquero) {
@@ -19779,6 +19792,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/GreyButton */ "./resources/js/Components/GreyButton.vue");
 /* harmony import */ var _Components_Selector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/Selector */ "./resources/js/Components/Selector.vue");
 /* harmony import */ var _Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Checkbox */ "./resources/js/Components/Checkbox.vue");
+/* harmony import */ var _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/ValidationErrorsSecondary */ "./resources/js/Components/ValidationErrorsSecondary.vue");
+
 
 
 
@@ -19810,7 +19825,8 @@ __webpack_require__.r(__webpack_exports__);
     GrayButton: _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__.default,
     InputFile: _Components_FileInput__WEBPACK_IMPORTED_MODULE_2__.default,
     Selector: _Components_Selector__WEBPACK_IMPORTED_MODULE_4__.default,
-    Checkbox: _Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__.default
+    Checkbox: _Components_Checkbox__WEBPACK_IMPORTED_MODULE_5__.default,
+    BreezeValidationErrors: _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_6__.default
   },
   data: function data() {
     return {
@@ -19839,6 +19855,8 @@ __webpack_require__.r(__webpack_exports__);
     agregarServicio: function agregarServicio() {
       var _this = this;
 
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
       axios.post(this.route("servicio.store"), this.appendForm()).then(function (response) {
         _this.form.reset();
 
@@ -19846,11 +19864,14 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.serviciosList.data.push(response.data.servicio);
       })["catch"](function (err) {
+        _this.$page.props.errors = err.response.data.errors;
         console.log(err);
       });
     },
     editarServicio: function editarServicio() {
       var _this2 = this;
+
+      this.$page.props.errors = []; //su hubo errores antees, se borran
 
       var id = this.serviciosList.data[this.edittingIndex].id;
       axios.post("/peluqueria/actualizar_servicio/".concat(id), this.appendForm()).then(function (response) {
@@ -19859,6 +19880,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.editarServicioReset();
       })["catch"](function (error) {
         console.log(error);
+        _this2.$page.props.errors = error.response.data.errors;
       });
     },
     verServicio: function verServicio(servicio) {
@@ -19867,10 +19889,13 @@ __webpack_require__.r(__webpack_exports__);
     eliminarPeluquero: function eliminarPeluquero(index) {
       var _this3 = this;
 
+      this.$page.props.errors = []; //su hubo errores antees, se borran
+
       var id = this.serviciosList.data[index].id;
       axios["delete"]("/peluqueria/eliminar_servicio/".concat(id)).then(function (response) {
         _this3.serviciosList.data.splice(index, 1);
       })["catch"](function (error) {
+        _this3.$page.props.errors = err.response.data.errors;
         console.log(error);
       });
       this.isEditting ? this.editarServicioReset() : null; //si dieron click en editar y no guardaron, podria haber errores
@@ -24568,6 +24593,8 @@ var _hoisted_9 = {
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Terminar ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_breeze_validation_errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-validation-errors");
+
   var _component_work_day = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("work-day");
 
   var _component_gray_button = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("gray-button");
@@ -24578,7 +24605,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "hide-nav": $props.firstTime
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dias, function (dia, index) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_validation_errors), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.dias, function (dia, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
           key: index
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_work_day, {
@@ -25162,6 +25189,8 @@ var _hoisted_38 = {
 var _hoisted_39 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Siguiente ");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_breeze_validation_errors = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-validation-errors");
+
   var _component_my_input = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("my-input");
 
   var _component_input_file = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("input-file");
@@ -25178,7 +25207,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "hide-nav": $props.firstTime
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [$props.firstTime ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_2, [_hoisted_3])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_breeze_validation_errors), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [_hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("form", {
         onSubmit: _cache[6] || (_cache[6] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function () {
           return $options.submit && $options.submit.apply($options, arguments);
         }, ["prevent"]))

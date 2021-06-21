@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Servicio;
 use Illuminate\Support\Facades\Storage;
+use App\Rules\minutes;
 use Inertia\Inertia;
 
 class ServicioController extends Controller
@@ -46,6 +47,14 @@ class ServicioController extends Controller
     public function store(Request $request)
     {
         //validar campos y que la lista peluqueros tenga peluqueros
+        $request ->validate([
+            'servicioNombre' => 'required|min:4|max:90',
+            'duracion'=> ['required','numeric', new minutes],
+            'costo'=> 'required|numeric|min:0',
+            'imagen' => 'mimes:jpg,png,jpge',
+            'listaPeluqueros' => 'string|min:3'//[1]
+        ], $this->messages());
+
         $peluqueriaId = Auth::user()->peluqueria->id;
 
         $imagenPath = $request['imagen']->store('servicios', 'public');
@@ -95,6 +104,13 @@ class ServicioController extends Controller
     public function update(Request $request, Servicio $servicio)
     {
         //validar campos y que la lista tenga peluqueros
+        $request ->validate([
+            'servicioNombre' => 'required|min:4|max:90',
+            'duracion'=> ['required','numeric', new minutes],
+            'costo'=> 'required|numeric|min:0',
+            'imagen' => 'mimes:jpg,png,jpge',
+            'listaPeluqueros' => 'string|min:3'//[1]
+        ], $this->messages());
 
         $peluqueriaId = Auth::user()->peluqueria->id;
 
@@ -142,5 +158,18 @@ class ServicioController extends Controller
         }
 
        return back(404);
+    }
+    public function messages()
+    {
+        return [
+            //'servicioNombre.string'=>'Favor de ingresar un nombre para su servicio',
+            'duracion.numeric'=>'Favor de ingresar la duración de su servicio',
+            'costo.numeric'=>'Favor de ingresar el costo a su servicio',
+            'servicioNombre.max'=>'El nombre debe tener maximo 255 digitos',
+            'servicioNombre.min'=>'El nombre debe tener almenos 4 digitos',
+            'imagen.mimes'=>'La imagen debe ser formato jpg, png o jpge',
+            'costo.min'=>'El costo no puede ser negativo',
+            'listaPeluqueros.min'=>'Seleccione al menos un peluquero'
+        ];
     }
 }
