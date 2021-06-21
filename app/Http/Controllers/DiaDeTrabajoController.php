@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DiaDeTrabajo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Inertia\Inertia;
 class DiaDeTrabajoController extends Controller
 {
     /**
@@ -15,7 +15,7 @@ class DiaDeTrabajoController extends Controller
      */
     public function index()
     {
-        //
+        return Inertia::render('Peluqueria/AgregarHorario', ['horario' => Auth::user()->peluqueria->horario()]);
     }
 
     /**

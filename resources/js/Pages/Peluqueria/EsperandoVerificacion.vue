@@ -1,5 +1,5 @@
 <template>
-    <breeze-authenticated-peluqueria-layout>
+    <breeze-authenticated-peluqueria-layout :hide-nav="true">
         <div class="md:py-10">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <breeze-validation-errors/>

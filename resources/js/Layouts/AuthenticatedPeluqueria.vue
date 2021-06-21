@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="min-h-screen bg-gray-100">
-            <nav class="bg-white border-b border-gray-100">
+            <nav class="bg-white border-b border-gray-100 shadow">
                 <!-- Primary Navigation Menu -->
                 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between h-16">
@@ -14,9 +14,21 @@
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <breeze-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                  Peluqueria Layout
+                            <div v-if="!hideNav" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <breeze-nav-link :href="route('peluqueria.dashboard')" :active="route().current('peluqueria.dashboard')">
+                                Inicio
+                                </breeze-nav-link>
+                                <breeze-nav-link :href="route('peluquero.index')" :active="route().current('peluquero.index')">
+                                Peluqueros
+                                </breeze-nav-link>
+                                <breeze-nav-link :href="route('servicio.index')" :active="route().current('servicio.index')">
+                                Servicios
+                                </breeze-nav-link>
+                                <breeze-nav-link :href="route('horario.index')" :active="route().current('horario.index')">
+                                Horario
+                                </breeze-nav-link>
+                                <breeze-nav-link :href="route('peluqueria.agendar')" :active="route().current('peluqueria.agendar')">
+                                Agendar cita
                                 </breeze-nav-link>
                             </div>
                         </div>
@@ -111,6 +123,12 @@
             BreezeDropdownLink,
             BreezeNavLink,
             BreezeResponsiveNavLink,
+        },
+
+        props:{
+            hideNav:{
+                default: false,
+            },
         },
 
         data() {

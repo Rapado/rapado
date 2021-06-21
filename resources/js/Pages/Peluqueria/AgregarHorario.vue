@@ -1,5 +1,5 @@
 <template>
-    <breeze-authenticated-peluqueria-layout>
+    <breeze-authenticated-peluqueria-layout :hide-nav="firstTime">
         <div class="md:py-10">
             <div v-if="firstTime" class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-secondary overflow-hidden shadow-md sm:rounded-lg">
@@ -18,7 +18,7 @@
 
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mt-4">
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-2 text-white bg-secondary-light border-b border-gray-200">
+                    <div class="p-2 text-white bg-secondary border-b border-gray-200">
                         <div class="ml-3">
                            Horario de atención
                         </div>
@@ -32,7 +32,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex max-w-7xl mx-auto my-4 sm:px-6 lg:px-8 justify-end ">
+            <div v-if="firstTime" class="flex max-w-7xl mx-auto my-4 sm:px-6 lg:px-8 justify-end ">
                 <gray-button @click="nextStep" class="mt-3 mx-4 md:mx-0 md:mt-0 md:ml-4 w-full md:w-auto py-3">
                     Terminar
                 </gray-button>
