@@ -21,6 +21,7 @@ module.exports = {
 
                 primary: {
                     dark: '#0b486b',
+                    darkest: '#07224A',
                     DEFAULT: '#1284c7',
                     light: '#106BA0'
                 },
@@ -42,7 +43,14 @@ module.exports = {
                 },
 
                 error: {
-                    DEFAULT: '#d50000'
+                    DEFAULT: '#d50000',
+                    light: '#D65252'
+                },
+
+                info: {
+                    dark: '#479139',
+                    DEFAULT: '#37D955',
+                    light: '#6AD955'
                 }
 
                 // primary: '#106BA0',

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\PeluqueriaEstado;
 use App\Http\Resources\PeluqueriaEstadoCollection;
+use App\Http\Resources\PeluqueroCollection;
 use Illuminate\Support\Facades\Auth;
 
 use Inertia\Inertia;
@@ -21,7 +22,7 @@ class DashboardController extends Controller
 
         if($peluqueria->estaVerificada()){
             if(!$peluqueria->primerosPasos()){ //significa que no tiene un horario, peluqueros o servicios guardados
-                return Inertia::render('Peluqueria/Dashboard');
+                return Inertia::render('Peluqueria/Dashboard', ['peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(false, true)]);
             }else{
                 return redirect('/peluqueria/primeros_pasos');
             }

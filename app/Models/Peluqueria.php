@@ -5,10 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PeluqueriaEstado;
+use App\Traits\TimeHelper;
 
 class Peluqueria extends Model
 {
     use HasFactory;
+    use TimeHelper;
 
     public function user()
     {
@@ -115,12 +117,45 @@ class Peluqueria extends Model
     public function obtenerDia($numeroDia)
     {
         $diaDeTrabajo = $this->diasDeTrabajo()->where('dia', $numeroDia)->first();
+
         return isset($diaDeTrabajo) ? $diaDeTrabajo->toResource() : null;
+    }
+
+    public function estaAbierta()
+    {
+        $hoy = $this->obtenerDia($this->getNumberDay(date('l')));
+
+        if($hoy != null)
+            return $hoy->apertura < $this->horaActual() && $this->horaActual() < $hoy->cierre;
+
+        return false;
     }
 
     public function primerosPasos()
     {
         return !$this->tienePeluqueros() || !$this->tieneServicios() || !$this->tieneHorario();
+    }
+
+    public function horarioDeHoy()
+    {
+        $jornada = $this->obtenerDia($this->getTodayNumber());
+        $horaActual = $this->obtenerHoraActualRedondeada(); //6:22 => 6:30, 7:48 => 8:00 10:14 => 10:15
+        if($jornada != null){
+            $horaActual > $jornada->apertura ?: $horaActual = $jornada->apertura;
+            return [ 'apertura' => $jornada->apertura, 'cierre' => $jornada->cierre, 'horaActual' => $horaActual];
+        }else{
+            return null;
+        }
+    }
+
+    public function sigueAbierta()
+    {
+        $horarioDeHoy = $this->horarioDeHoy();
+
+        if($horarioDeHoy == null)
+            return false;
+
+        return $horarioDeHoy['horaActual'] < $this->actualizarHora($horarioDeHoy['cierre'], 15);
     }
 
     public function tienePeluqueros()
@@ -135,4 +170,5 @@ class Peluqueria extends Model
     {
         return count($this->diasDeTrabajo);
     }
+
 }
