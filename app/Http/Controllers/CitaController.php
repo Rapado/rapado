@@ -31,8 +31,10 @@ class CitaController extends Controller
      */
     public function create(Peluqueria $peluqueria)
     {
-        //validar si esta abierta la peluqueria
-        return Inertia::render('Cliente/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true)]);
+        if($peluqueria->sigueAbierta())
+            return Inertia::render('Cliente/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true)]);
+        else
+            return back();
     }
 
     public function agendarDesdePeluqueria()

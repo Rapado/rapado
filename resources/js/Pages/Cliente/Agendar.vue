@@ -1,6 +1,6 @@
 <template>
     <breeze-authenticated-layout>
-       <agendador :peluqueros="peluqueros" :peluqueria-id="peluqueriaId">
+       <agendador :peluqueros="peluqueros" :peluqueria-id="peluqueriaId" :showAlert="true">
        </agendador>
     </breeze-authenticated-layout>
 </template>

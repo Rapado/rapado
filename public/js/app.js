@@ -24213,7 +24213,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_agendador, {
         peluqueros: $props.peluqueros,
-        "peluqueria-id": $props.peluqueriaId
+        "peluqueria-id": $props.peluqueriaId,
+        showAlert: true
       }, null, 8
       /* PROPS */
       , ["peluqueros", "peluqueria-id"])];
