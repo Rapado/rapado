@@ -86,6 +86,7 @@
     import GrayButton from '@/Components/GreyButton'
     import PeluqueroCard from '@/Components/PeluqueroCard'
     import BreezeValidationErrors from '@/Components/ValidationErrorsSecondary'
+    import toast from '@/mixins/toast.js'
 
     export default {
         props:{
@@ -105,6 +106,8 @@
         components: {
             BreezeAuthenticatedPeluqueriaLayout, MyInput, GrayButton, InputFile, BreezeValidationErrors, PeluqueroCard
         },
+
+        mixins: [toast],
 
         data() {
             return {
@@ -175,7 +178,8 @@
                 .then(response => {
                     this.peluquerosList.splice(index, 1);
                 }).catch(error => {
-                    console.log(error);
+                    if(error.response.data.status == 'tieneCitas')
+                        this.mostrarAlerta('No puede borrarse, el peluquero tiene citas agendadas', 'error', 5000);
                 });
 
                 this.isEditting ? this.editarPeluqueroReset() : null; //si dieron click en editar y no guardaron, podria haber errores

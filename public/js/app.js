@@ -17529,9 +17529,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_Avatar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/Avatar */ "./resources/js/Components/Avatar.vue");
 /* harmony import */ var _mixins_toast_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/mixins/toast.js */ "./resources/js/mixins/toast.js");
 /* harmony import */ var _Components_Info__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/Components/Info */ "./resources/js/Components/Info.vue");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_8__);
-
 
 
 
@@ -19642,6 +19639,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_GreyButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/GreyButton */ "./resources/js/Components/GreyButton.vue");
 /* harmony import */ var _Components_PeluqueroCard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/Components/PeluqueroCard */ "./resources/js/Components/PeluqueroCard.vue");
 /* harmony import */ var _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/Components/ValidationErrorsSecondary */ "./resources/js/Components/ValidationErrorsSecondary.vue");
+/* harmony import */ var _mixins_toast_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/mixins/toast.js */ "./resources/js/mixins/toast.js");
+
 
 
 
@@ -19670,6 +19669,7 @@ __webpack_require__.r(__webpack_exports__);
     BreezeValidationErrors: _Components_ValidationErrorsSecondary__WEBPACK_IMPORTED_MODULE_5__.default,
     PeluqueroCard: _Components_PeluqueroCard__WEBPACK_IMPORTED_MODULE_4__.default
   },
+  mixins: [_mixins_toast_js__WEBPACK_IMPORTED_MODULE_6__.default],
   data: function data() {
     return {
       form: this.$inertia.form({
@@ -19731,7 +19731,7 @@ __webpack_require__.r(__webpack_exports__);
       axios["delete"]("/peluqueria/eliminar_peluquero/".concat(id)).then(function (response) {
         _this3.peluquerosList.splice(index, 1);
       })["catch"](function (error) {
-        console.log(error);
+        if (error.response.data.status == 'tieneCitas') _this3.mostrarAlerta('No puede borrarse, el peluquero tiene citas agendadas', 'error', 5000);
       });
       this.isEditting ? this.editarPeluqueroReset() : null; //si dieron click en editar y no guardaron, podria haber errores
     },

@@ -136,7 +136,6 @@
     import Avatar from '@/Components/Avatar'
     import toast from '@/mixins/toast.js'
     import Info from '@/Components/Info'
-    import Swal from 'sweetalert2'
 
     export default {
         components: {
