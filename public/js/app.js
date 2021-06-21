@@ -19728,10 +19728,7 @@ __webpack_require__.r(__webpack_exports__);
         _this2.editarPeluqueroReset();
       })["catch"](function (error) {
         _this2.$page.props.errors = error.response.data.errors;
-<<<<<<< HEAD
         console.log(error);
-=======
->>>>>>> testBranch
       });
     },
     verPeluquero: function verPeluquero(peluquero) {
@@ -26481,7 +26478,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.bounce-enter-active {\n        -webkit-animation: bounce-in .5s;\n                animation: bounce-in .5s;\n}\n@-webkit-keyframes bounce-in {\n0% {\n            transform: scale(0);\n}\n50% {\n            transform: scale(1.5);\n}\n100% {\n            transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\n            transform: scale(0);\n}\n50% {\n            transform: scale(1.5);\n}\n100% {\n            transform: scale(1);\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.bounce-enter-active {\r\n        -webkit-animation: bounce-in .5s;\r\n                animation: bounce-in .5s;\n}\n@-webkit-keyframes bounce-in {\n0% {\r\n            transform: scale(0);\n}\n50% {\r\n            transform: scale(1.5);\n}\n100% {\r\n            transform: scale(1);\n}\n}\n@keyframes bounce-in {\n0% {\r\n            transform: scale(0);\n}\n50% {\r\n            transform: scale(1.5);\n}\n100% {\r\n            transform: scale(1);\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26529,7 +26526,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.info:hover {\n        transition: all .2s ease;\n}\n.extra-info {\n        display: none;\n        position: relative;\n        top: 0;\n        left: 50px;\n}\n.info:hover .extra-info {\n        display: block;\n}\n.info {\n        font-size: 20px;\n        padding-left: 5px;\n        width: 20px;\n        border-radius: 5px;\n}\n.info:hover {\n        padding: 0 0 0 5px;\n        width: 250px;\n        text-align: right !important;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.info:hover {\r\n        transition: all .2s ease;\n}\n.extra-info {\r\n        display: none;\r\n        position: relative;\r\n        top: 0;\r\n        left: 50px;\n}\n.info:hover .extra-info {\r\n        display: block;\n}\n.info {\r\n        font-size: 20px;\r\n        padding-left: 5px;\r\n        width: 20px;\r\n        border-radius: 5px;\n}\n.info:hover {\r\n        padding: 0 0 0 5px;\r\n        width: 250px;\r\n        text-align: right !important;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26553,7 +26550,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-mask[data-v-5f7088f2] {\n  position: fixed;\n  z-index: 9998;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: rgba(0, 0, 0, 0.5);\n  display: table;\n  transition: opacity 0.4s ease;\n}\n.modal-wrapper[data-v-5f7088f2] {\n  display: table-cell;\n  vertical-align: middle;\n}\n.modal-container[data-v-5f7088f2] {\n  transition: all 0.3s ease;\n}\n.modal-header h3[data-v-5f7088f2] {\n  margin-top: 0;\n  color: #42b983;\n}\n.modal-body[data-v-5f7088f2] {\n  margin: 20px 0;\n}\n.modal-enter[data-v-5f7088f2] {\n  opacity: 0;\n}\n.modal-leave-active[data-v-5f7088f2] {\n  opacity: 0;\n}\n.modal-enter .modal-container[data-v-5f7088f2],\n.modal-leave-active .modal-container[data-v-5f7088f2] {\n  transform: scale(1.1);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.modal-mask[data-v-5f7088f2] {\r\n  position: fixed;\r\n  z-index: 9998;\r\n  top: 0;\r\n  left: 0;\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: rgba(0, 0, 0, 0.5);\r\n  display: table;\r\n  transition: opacity 0.4s ease;\n}\n.modal-wrapper[data-v-5f7088f2] {\r\n  display: table-cell;\r\n  vertical-align: middle;\n}\n.modal-container[data-v-5f7088f2] {\r\n  transition: all 0.3s ease;\n}\n.modal-header h3[data-v-5f7088f2] {\r\n  margin-top: 0;\r\n  color: #42b983;\n}\n.modal-body[data-v-5f7088f2] {\r\n  margin: 20px 0;\n}\n.modal-enter[data-v-5f7088f2] {\r\n  opacity: 0;\n}\n.modal-leave-active[data-v-5f7088f2] {\r\n  opacity: 0;\n}\n.modal-enter .modal-container[data-v-5f7088f2],\r\n.modal-leave-active .modal-container[data-v-5f7088f2] {\r\n  transform: scale(1.1);\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26601,7 +26598,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\n    .list-leave-active {\n         transition: all 1s ease;\n}\n.list-enter-from,\n    .list-leave-to {\n        opacity: 0;\n        transform: translateY(30px);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\r\n    .list-leave-active {\r\n         transition: all 1s ease;\n}\n.list-enter-from,\r\n    .list-leave-to {\r\n        opacity: 0;\r\n        transform: translateY(30px);\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -26625,7 +26622,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\n    .list-leave-active {\n         transition: all 1s ease;\n}\n.list-enter-from,\n    .list-leave-to {\n        opacity: 0;\n        transform: translateY(30px);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.list-enter-active,\r\n    .list-leave-active {\r\n         transition: all 1s ease;\n}\n.list-enter-from,\r\n    .list-leave-to {\r\n        opacity: 0;\r\n        transform: translateY(30px);\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
