@@ -60,7 +60,7 @@ trait TimeHelper {
             $time += (30 - $minutos) * 60;
         else if($minutos > 30 && $minutos < 45 )
             $time += (45 - $minutos) * 60;
-        else if($minutos > 45 && $minutos < 59 )
+        else if($minutos > 45 && $minutos <= 59 ) //aqui hay un bug
             $time += (60 - $minutos) * 60;
 
         return date("H:i:s", $time);

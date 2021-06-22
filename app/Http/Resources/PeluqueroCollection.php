@@ -8,11 +8,14 @@ class PeluqueroCollection extends ResourceCollection
 {
     protected $retornarAgenda;
     protected $retornarCitas;
+    protected $retornarServicios;
 
-    public function opciones($agenda = false, $citas = false)
+
+    public function opciones($agenda = false, $citas = false, $servicios = false)
     {
         $this->retornarAgenda = $agenda;
         $this->retornarCitas = $citas;
+        $this->retornarServicios = $servicios;
         return $this;
     }
 
@@ -28,7 +31,7 @@ class PeluqueroCollection extends ResourceCollection
     // }
 
     public function toArray($request){
-        $this->collection->each->opciones($this->retornarAgenda, $this->retornarCitas);
+        $this->collection->each->opciones($this->retornarAgenda, $this->retornarCitas, $this->retornarServicios);
         return $this->collection;
     }
 }

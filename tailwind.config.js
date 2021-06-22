@@ -48,6 +48,7 @@ module.exports = {
                 },
 
                 info: {
+                    dark: '#479139',
                     DEFAULT: '#37D955',
                     light: '#6AD955'
                 }

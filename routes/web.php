@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CitaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiaDeTrabajoController;
 use App\Http\Controllers\InicioController;
@@ -49,10 +50,16 @@ Route::post('/peluqueria/agregar_dia', [DiaDeTrabajoController::class, 'store'])
 Route::post('/peluqueria/actualizar_dia/{diaDeTrabajo}', [DiaDeTrabajoController::class, 'update'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.update');
 Route::delete('/peluqueria/eliminar_dia/{diaDeTrabajo}', [DiaDeTrabajoController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.delete');
 Route::get('/peluqueria/horario', [DiaDeTrabajoController::class, 'index'])->middleware(['auth:peluqueria'])->name('horario.index');
+Route::get('/peluqueria/agendar_local', [CitaController::class, 'agendarDesdePeluqueria'])->middleware(['auth:peluqueria'])->name('peluqueria.agendar');
+Route::post('peluqueria/agendar_local/{peluqueria}', [CitaController::class, 'store'])->middleware(['auth:peluqueria'])->name('horario.store');
+
+
+Route::get('/agendar/{peluqueria}', [CitaController::class, 'create'])->middleware(['auth:cliente'])->name('cita.create');
+Route::post('/agendar/{peluqueria}', [CitaController::class, 'store'])->middleware(['auth:cliente'])->name('cita.store');
 
 
 route::get('/peluquero/agenda', function(){
-    $peluquero = Peluquero::find(7);
+$peluquero = Peluquero::find(7);
     dd($peluquero->agenda());
 
 });

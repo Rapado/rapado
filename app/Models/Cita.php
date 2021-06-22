@@ -30,4 +30,14 @@ class Cita extends Model
     {
         return $this->minutosEntreHoras($this->hora_inicio, $this->horaTermina);
     }
+
+    public function guardarServicios($servicios)
+    {
+        foreach($servicios as $idServicio){
+            $citaServicio = new CitaServicio();
+            $citaServicio->cita_id = $this->id;
+            $citaServicio->servicio_id = $idServicio;
+            $citaServicio->save();
+        }
+    }
 }

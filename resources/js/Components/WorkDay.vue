@@ -1,5 +1,6 @@
 <template>
 <div class="mb-10">
+    
     <div class="bg-warning rounded-lg text-center px-2 py-1 text-white">
         {{dia}}
     </div>
@@ -23,11 +24,12 @@
     import MyInput from '@/Components/Input'
     import MyLabel from '@/Components/Label'
     import MyButton from '@/Components/Button'
+    import BreezeValidationErrors from '@/Components/ValidationErrorsSecondary'
 
     export default {
         props: ['modelValue', 'noDia', 'dia', 'workDay'],
 
-        components:  { MyInput, MyLabel, MyButton },
+        components:  { MyInput, MyLabel, MyButton, BreezeValidationErrors },
 
         data() {
             return {
@@ -52,6 +54,7 @@
             },
 
             diaDeTrabajoRequest(url) {
+                this.$page.props.errors = []; //su hubo errores antees, se borran
                 axios.post(url, {...this.form, numeroDia: this.noDia})
                 .then( response => {
                     console.log(response.data);
@@ -59,6 +62,7 @@
                     this.lastDaySaved = Object.assign({}, this.form);
                 })
                 .catch( error => {
+                    this.$page.props.errors = error.response.data.errors
                     console.log(error);
                 });
             },

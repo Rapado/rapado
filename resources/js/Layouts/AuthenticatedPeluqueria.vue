@@ -15,6 +15,9 @@
 
                             <!-- Navigation Links -->
                             <div v-if="!hideNav" class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <breeze-nav-link :href="route('peluqueria.dashboard')" :active="route().current('peluqueria.dashboard')">
+                                Inicio
+                                </breeze-nav-link>
                                 <breeze-nav-link :href="route('peluquero.index')" :active="route().current('peluquero.index')">
                                 Peluqueros
                                 </breeze-nav-link>
@@ -23,6 +26,9 @@
                                 </breeze-nav-link>
                                 <breeze-nav-link :href="route('horario.index')" :active="route().current('horario.index')">
                                 Horario
+                                </breeze-nav-link>
+                                <breeze-nav-link :href="route('peluqueria.agendar')" :active="route().current('peluqueria.agendar')">
+                                Agendar cita
                                 </breeze-nav-link>
                             </div>
                         </div>
