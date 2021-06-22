@@ -35,7 +35,24 @@ class AdministradorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([ 'nombre' => 'required|min:4|max:255'], $this->messages());
+        $administrador = new Administrador();
+
+        $administrador->id = $this->getRandomId();
+        $administrador->nombre = $request['nombre'];
+        $administrador->save();
+
+        return response(['adminId' => $administrador->id]);
+    }
+
+    public function getRandomId()
+    {
+        $id = 0;
+        do{
+            $id = random_int(10500, 90950);
+        }while(Administrador::find($id) !== null);
+
+        return $id;
     }
 
     /**
@@ -81,5 +98,14 @@ class AdministradorController extends Controller
     public function destroy(Administrador $administrador)
     {
         //
+    }
+
+    public function messages()
+    {
+        return [
+            'peluqueroNombre.required'=>'Favor de ingresar el nombre del administrador',
+            'peluqueroNombre.min'=>'El nombre del administrador es muy corto',
+            'peluqueroNombre.max'=>'El nombre del administrador es muy largo',
+        ];
     }
 }

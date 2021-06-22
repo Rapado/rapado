@@ -43,7 +43,7 @@ class RegisteredUserAdminController extends Controller
                                     return $query->where('user_id', null);
                                 }),
                             ],
-        ]);
+        ], $this->messages());
 
 
         Auth::login($user = User::create([
@@ -59,5 +59,16 @@ class RegisteredUserAdminController extends Controller
         event(new Registered($user));
 
         return redirect(RouteServiceProvider::HOMEADMIN);
+    }
+
+    public function messages()
+    {
+        return [
+            'exists' => 'El código de acceso es inválido',
+            'email.required' => 'Ingresa un correo',
+            'email.unique' => 'Ya hay una cuenta usando este correo',
+            'email.email' => 'Ingresa un correo valido',
+            'password.min' => 'La contraseña debe tener al menos 8 letras'
+        ];
     }
 }

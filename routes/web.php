@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiaDeTrabajoController;
@@ -33,6 +34,7 @@ Route::get('/peluqueria/dashboard', [DashboardController::class, 'peluqueriaDash
 
 Route::post('/admin/peluqueria/{peluqueria}/update_state/{peluqueriaEstado}', [PeluqueriaController::class, 'updateState'])->middleware(['auth:admin']);
 Route::get('peluqueria/{peluqueria}/download_file', [PeluqueriaController::class, 'downloadFile'])->middleware(['auth:admin'])->name('peluqueria.file');
+Route::post('/admin/create', [AdministradorController::class, 'store'])->middleware(['auth:admin'])->name('admin.store');
 
 Route::get('/peluqueria/no_verificada', [PeluqueriaController::class, 'verificacionUpdate'])->middleware(['auth:peluqueria'])->name('peluqueria.noVerificada');
 Route::post('/peluqueria/completar_informacion', [PeluqueriaController::class, 'completarInformacion'])->middleware(['auth:peluqueria'])->name('peluqueria.completarInfo');
