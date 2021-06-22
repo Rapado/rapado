@@ -155,7 +155,7 @@ class Peluqueria extends Model
         if($horarioDeHoy == null)
             return false;
 
-        return $horarioDeHoy['horaActual'] < $this->actualizarHora($horarioDeHoy['cierre'], 15);
+        return $this->horaActual() < $this->actualizarHora($horarioDeHoy['cierre'], -15);
     }
 
     public function tienePeluqueros()
