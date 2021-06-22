@@ -78,7 +78,7 @@ class PeluqueroController extends Controller
     public function update(Request $request, Peluquero $peluquero)
     {
         //validar
-        $request ->validate([//-------------------------------Hecho Luis
+        $request ->validate([
             'peluqueroNombre' => 'required|min:4|max:255',
             'imagen' => 'mimes:jpg,png,jpge', 
         ], $this->messages());

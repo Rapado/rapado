@@ -42,7 +42,7 @@ class ServicioController extends Controller
         $request ->validate([
             'servicioNombre' => 'required|min:4|max:90',
             'duracion'=> ['required','numeric', new minutes],
-            'costo'=> 'required|numeric|min:0',
+            'costo'=> 'required|numeric|min:0|max:5000',
             'imagen' => 'mimes:jpg,png,jpge',
             'listaPeluqueros' => 'string|min:3'//[1]
         ], $this->messages());
@@ -99,8 +99,16 @@ class ServicioController extends Controller
         $request ->validate([
             'servicioNombre' => 'required|min:4|max:90',
             'duracion'=> ['required','numeric', new minutes],
-            'costo'=> 'required|numeric|min:0',
-            'imagen' => 'mimes:jpg,png,jpge',
+            'costo'=> 'required|numeric|min:0|max:9999',
+            'imagen' =>[
+            function ($attribute, $value, $fail) {
+                if ($value != 'null') {
+                    //if (mime_content_type($value) != 'png' && mime_content_type($value) != 'jpg'&& mime_content_type($value) != 'jpeg'){
+                      //  $fail('The '.$attribute.' is invalid.'); 
+                    //} 
+                }
+            },
+        ],
             'listaPeluqueros' => 'string|min:3'//[1]
         ], $this->messages());
 
@@ -154,13 +162,14 @@ class ServicioController extends Controller
     public function messages()
     {
         return [
-            //'servicioNombre.string'=>'Favor de ingresar un nombre para su servicio',
+            'servicioNombre.required'=>'Favor de ingresar un nombre para su servicio',
             'duracion.numeric'=>'Favor de ingresar la duración de su servicio',
             'costo.numeric'=>'Favor de ingresar el costo a su servicio',
             'servicioNombre.max'=>'El nombre debe tener maximo 255 digitos',
             'servicioNombre.min'=>'El nombre debe tener almenos 4 digitos',
             'imagen.mimes'=>'La imagen debe ser formato jpg, png o jpge',
             'costo.min'=>'El costo no puede ser negativo',
+            'costo.max'=>'El costo máximo debe ser 5000',
             'listaPeluqueros.min'=>'Seleccione al menos un peluquero'
         ];
     }

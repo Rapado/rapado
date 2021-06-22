@@ -103,6 +103,7 @@ class PeluqueriaController extends Controller
             'encargado' => 'required|min:4|max:255',
             'ciudad' => 'required|min:4|max:255',
             'logo' => 'required|mimes:jpg,png,jpge',
+            'numero' => 'required|numeric|min:0|max:9999',
             'documento' => 'required|mimes:pdf,jpg,png,jpge'
 
         ], $this->messages());
@@ -203,6 +204,8 @@ class PeluqueriaController extends Controller
             'ciudad.max'=>'El nombre de la ciudad es muy largo',
             'logo.required'=>'Por favor suba un logo',
             'logo.mimes'=>'El logo debe ser formato jpg, png o jpge',
+            'numero.min'=>'El número debe ser positivo',
+            'numero.max'=>'El número máximo es 1000',
             'documento.mimes'=>'El documento debe ser formato pdf, jpg, jpge o png',
             'documento.required'=> 'Por favor suba un documento o cédula que pruebe que el negocio se encuetra registrado',
             'message.max'=>'El mensaje no debe exceder los 255 caracteres'
