@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',  [InicioController::class, 'clienteWelcome'])->middleware('guest');
 Route::get('/peluqueria',  [InicioController::class, 'peluqueriaWelcome'])->middleware('guest')->name('peluqueria.welcome');
 Route::get('/admin',  [InicioController::class, 'adminWelcome'])->middleware('guest');
+Route::get('/bienvenido', [InicioController::class, 'primeraVez'])->middleware('guest')->name('cliente.primeraVez');
 
 Route::get('/dashboard', [DashboardController::class, 'clienteDashboard'])->middleware(['auth:cliente', 'verified'])->name('dashboard');
 Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
