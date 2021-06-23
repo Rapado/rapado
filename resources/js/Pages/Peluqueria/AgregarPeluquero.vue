@@ -25,7 +25,7 @@
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-2 text-white bg-secondary border-b border-gray-200">
                         <div class="ml-3">
-                           Agregar Peluqero
+                           Agregar Peluquero
                         </div>
                     </div>
                     <div class="py-1 mx-4 md:ml bg-white border-b border-gray-200  pb-7">

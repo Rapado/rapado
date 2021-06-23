@@ -4,22 +4,10 @@
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-secondary overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 bg-secondary text-white border-b border-gray-200">
-                        Tu Proxima cita
+                        Peluquerias
                     </div>
                     <div class="p-6 bg-white text-secondary-light border-b border-gray-200 text-center">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-secondary overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-secondary text-white border-b border-gray-200">
-                        Peluquerias Favoritas
-                    </div>
-                    <div class="p-6 bg-white text-secondary-light border-b border-gray-200 text-center">
-                        <div class="overflow-hidden shadow-sm" v-for="(peluqueria,index) in peluquerias" :key="index" style="display: inline-block ">
+                        <div class="overflow-hidden shadow-sm" v-for="(peluqueria,index) in peluquerias.data" :key="index" style="display: inline-block ">
                             <div class="grid justify-items-stretch">
                                 <div class="max-w-sm mx-auto sm:px-6 lg:px-8">
                                     <div class="bg-secondary overflow-hidden shadow-sm sm:rounded-lg ">
@@ -45,8 +33,9 @@
                                             </div>     
                                         </div>
                                         <div class="p-6 bg-white text-secondary-light border-b border-gray-200">
+                                            
                                             <div class="h-50% w-50%">
-                                                <img class="h-50% w-50% rounded-md cursor-pointer "  @click="Peluqueria(peluqueria.id)"  :src="'storage/'+peluqueria.logo" alt="" />
+                                                <img class="h-50% w-50% rounded-md cursor-pointer "  @click="Peluqueria(peluqueria.id)" :src="'storage/'+peluqueria.logo" alt="" />
                                             </div>
                                             <div class="text-center">
                                                 Direccion: {{peluqueria.direccion}}

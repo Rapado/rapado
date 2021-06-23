@@ -6,16 +6,17 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class PeluqueroCollection extends ResourceCollection
 {
-    protected $retornarAgenda;
-    protected $retornarCitas;
-    protected $retornarServicios;
+    protected $retornaragenda;
+    protected $retornarcitas;
+    protected $retornarevaluaciones;
+    protected $retornarestrellas;
 
-
-    public function opciones($agenda = false, $citas = false, $servicios = false)
+    public function opciones($agenda = false, $citas = false,  $evaluaciones = false,  $estrellas = false)
     {
-        $this->retornarAgenda = $agenda;
-        $this->retornarCitas = $citas;
-        $this->retornarServicios = $servicios;
+        $this->retornaragenda = $agenda;
+        $this->retornarcitas = $citas;
+        $this->retornarevaluaciones = $evaluaciones;
+        $this->retornarestrellas = $estrellas;
         return $this;
     }
 
@@ -31,7 +32,7 @@ class PeluqueroCollection extends ResourceCollection
     // }
 
     public function toArray($request){
-        $this->collection->each->opciones($this->retornarAgenda, $this->retornarCitas, $this->retornarServicios);
+        $this->collection->each->opciones($this->retornaragenda, $this->retornarcitas, $this->retornarevaluaciones, $this->retornarestrellas);
         return $this->collection;
     }
 }
