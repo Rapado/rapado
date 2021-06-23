@@ -7,12 +7,13 @@
                         Citas para hoy
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mx-2 md:mx-0 justify-items-center">
-                        <div class="mt-4 w-full md:w-9/12 lg:w-11/12"  v-for="(peluquero, index) in peluqueros.data" :key="index">
+                        <div class="mt-4 w-full md:w-9/12 lg:w-11/12"  v-for="(peluquero, indexPel) in peluqueros.data" :key="peluquero.id">
                             <avatar :imagen="'/storage/'+ peluquero.imagen" :label=peluquero.nombre />
                             <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-2">
-                                <div class="mt-4 w-full"  v-for="(cita, indexPel) in peluquero.citas" :key="indexPel">
+                                <div class="mt-4 w-full"  v-for="(cita, indexCita) in peluquero.citas" :key="indexCita.id">
                                     <cita-visualizer :label="cita.horaInicio.substring(0, 5) + ' - ' + cita.horaTermina.substring(0, 5)"
                                         :cita = "cita"
+                                        v-on:eliminar-cita = "quitarCitaDeLista(indexCita, indexPel)"
                                     />
                                 </div>
                             </div>
@@ -60,6 +61,10 @@
         methods: {
             cambiarEstado(peluquero){
                 peluquero.disponible = !peluquero.disponible
+            },
+
+            quitarCitaDeLista(citaIndex, indexPeluquero){
+               this.peluqueros.data[indexPeluquero].citas.splice(citaIndex, 1);
             }
         }
     }

@@ -17941,11 +17941,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_ButtonSecondary__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/ButtonSecondary */ "./resources/js/Components/ButtonSecondary.vue");
 /* harmony import */ var _Components_Modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/Modal */ "./resources/js/Components/Modal.vue");
 /* harmony import */ var _Components_Avatar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Avatar */ "./resources/js/Components/Avatar.vue");
+/* harmony import */ var _mixins_toast_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/mixins/toast.js */ "./resources/js/mixins/toast.js");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 
 
 
@@ -17956,6 +17958,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     Modal: _Components_Modal__WEBPACK_IMPORTED_MODULE_2__.default,
     Avatar: _Components_Avatar__WEBPACK_IMPORTED_MODULE_3__.default
   },
+  mixins: [_mixins_toast_js__WEBPACK_IMPORTED_MODULE_4__.default],
+  emits: ['eliminarCita'],
   props: {
     idCita: {
       "default": null
@@ -17981,17 +17985,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       this.showModal = !this.showModal;
     },
-    consultarCita: function consultarCita() {
+    eliminarCita: function eliminarCita() {
+      var _this = this;
+
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                _context.prev = 0;
+                _context.next = 3;
+                return axios["delete"]('/peluqueria/eliminar_cita/' + _this.cita.id);
+
+              case 3:
+                _this.showModal = false;
+
+                _this.mostrarAlerta('Cita eliminada', 'success', 3000);
+
+                _this.$emit('eliminarCita');
+
+                _context.next = 11;
+                break;
+
+              case 8:
+                _context.prev = 8;
+                _context.t0 = _context["catch"](0);
+                console.log(_context.t0);
+
+              case 11:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee);
+        }, _callee, null, [[0, 8]]);
+      }))();
+    },
+    consultarCita: function consultarCita() {
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   }
@@ -20192,6 +20231,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     cambiarEstado: function cambiarEstado(peluquero) {
       peluquero.disponible = !peluquero.disponible;
+    },
+    quitarCitaDeLista: function quitarCitaDeLista(citaIndex, indexPeluquero) {
+      this.peluqueros.data[indexPeluquero].citas.splice(citaIndex, 1);
     }
   }
 });
@@ -21159,7 +21201,7 @@ var _hoisted_5 = {
 };
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "mr-1"
+  "class": "mr-1 hidden lg:block"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
   "class": "fill-current text-accent",
   "enable-background": "new 0 0 24 24",
@@ -21177,6 +21219,27 @@ var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 /* HOISTED */
 );
 
+var _hoisted_7 = {
+  "class": "hidden lg:block"
+};
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M0 0h24v24H0z",
+  fill: "none"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+  d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, "Eliminar", -1
+/* HOISTED */
+);
+
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_avatar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("avatar");
 
@@ -21191,18 +21254,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   ), $data.showModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_modal, {
     key: 0,
-    onClose: _cache[2] || (_cache[2] = function ($event) {
+    onClose: _cache[3] || (_cache[3] = function ($event) {
       return $data.showModal = false;
     })
   }, {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.peluquero), 1
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.peluquero.substring(0, 8)), 1
       /* TEXT */
-      ), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.nombreCliente), 1
+      ), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.nombreCliente.substring(0, 8)), 1
       /* TEXT */
-      ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.duracion) + " Min", 1
+      ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.duracion) + " Min", 1
       /* TEXT */
-      )])];
+      ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+        onClick: _cache[2] || (_cache[2] = function () {
+          return $options.eliminarCita && $options.eliminarCita.apply($options, arguments);
+        }),
+        "class": "ml-auto fill-current text-error hover:text-accent-dark cursor-pointer",
+        xmlns: "http://www.w3.org/2000/svg",
+        height: "24px",
+        viewBox: "0 0 24 24",
+        width: "24px",
+        fill: "#000000"
+      }, [_hoisted_8, _hoisted_9])), _hoisted_10])];
     }),
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.cita.servicios, function (servicio, index) {
@@ -26139,25 +26212,28 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_authenticated_peluqueria_layout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.peluqueros.data, function (peluquero, index) {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.peluqueros.data, function (peluquero, indexPel) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
           "class": "mt-4 w-full md:w-9/12 lg:w-11/12",
-          key: index
+          key: peluquero.id
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_avatar, {
           imagen: '/storage/' + peluquero.imagen,
           label: peluquero.nombre
         }, null, 8
         /* PROPS */
-        , ["imagen", "label"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(peluquero.citas, function (cita, indexPel) {
+        , ["imagen", "label"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(peluquero.citas, function (cita, indexCita) {
           return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
             "class": "mt-4 w-full",
-            key: indexPel
+            key: indexCita.id
           }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cita_visualizer, {
             label: cita.horaInicio.substring(0, 5) + ' - ' + cita.horaTermina.substring(0, 5),
-            cita: cita
+            cita: cita,
+            onEliminarCita: function onEliminarCita($event) {
+              return $options.quitarCitaDeLista(indexCita, indexPel);
+            }
           }, null, 8
           /* PROPS */
-          , ["label", "cita"])]);
+          , ["label", "cita", "onEliminarCita"])]);
         }), 128
         /* KEYED_FRAGMENT */
         ))])]);
@@ -27049,7 +27125,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-active[data-v-dd6cd1d8], .fade-leave-active[data-v-dd6cd1d8] {\n        transition: opacity .4s\n}\n.fade-enter[data-v-dd6cd1d8], .fade-leave-to[data-v-dd6cd1d8] /* .fade-leave-active below version 2.1.8 */ {\n        opacity: 0\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.fade-enter-active[data-v-dd6cd1d8], .fade-leave-active[data-v-dd6cd1d8] {\r\n        transition: opacity .4s\n}\n.fade-enter[data-v-dd6cd1d8], .fade-leave-to[data-v-dd6cd1d8] /* .fade-leave-active below version 2.1.8 */ {\r\n        opacity: 0\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

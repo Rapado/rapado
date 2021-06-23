@@ -55,6 +55,7 @@ Route::delete('/peluqueria/eliminar_dia/{diaDeTrabajo}', [DiaDeTrabajoController
 Route::get('/peluqueria/horario', [DiaDeTrabajoController::class, 'index'])->middleware(['auth:peluqueria'])->name('horario.index');
 Route::get('/peluqueria/agendar_local', [CitaController::class, 'agendarDesdePeluqueria'])->middleware(['auth:peluqueria'])->name('peluqueria.agendar');
 Route::post('peluqueria/agendar_local/{peluqueria}', [CitaController::class, 'store'])->middleware(['auth:peluqueria'])->name('horario.store');
+Route::delete('peluqueria/eliminar_cita/{cita}', [CitaController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('cita.destroy');
 
 
 Route::get('/agendar/{peluqueria}', [CitaController::class, 'create'])->middleware(['auth:cliente'])->name('cita.create');
