@@ -17,6 +17,7 @@ class CreateCitasTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->time('hora_inicio');
+            $table->time('horaTermina');
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('peluquero_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

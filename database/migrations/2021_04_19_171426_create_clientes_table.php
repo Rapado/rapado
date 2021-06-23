@@ -17,7 +17,7 @@ class CreateClientesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('nombre');
-            $table->integer('telefono');
+            $table->bigInteger('telefono');
             $table->timestamps();
         });
     }

@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\CitaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiaDeTrabajoController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PeluqueriaController;
 use App\Http\Controllers\PeluqueroController;
 use App\Http\Controllers\ServicioController;
+use App\Models\Peluquero;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',  [InicioController::class, 'clienteWelcome'])->middleware('guest');
 Route::get('/peluqueria',  [InicioController::class, 'peluqueriaWelcome'])->middleware('guest')->name('peluqueria.welcome');
 Route::get('/admin',  [InicioController::class, 'adminWelcome'])->middleware('guest');
+Route::get('/bienvenido', [InicioController::class, 'primeraVez'])->middleware('guest')->name('cliente.primeraVez');
 
 Route::get('/dashboard', [DashboardController::class, 'clienteDashboard'])->middleware(['auth:cliente', 'verified'])->name('dashboard');
 Route::get('/admin/dashboard', [DashboardController::class, 'adminDashboard'])->middleware(['auth:admin', 'verified'])->name('admin.dashboard');
@@ -30,6 +34,7 @@ Route::get('/peluqueria/dashboard', [DashboardController::class, 'peluqueriaDash
 
 Route::post('/admin/peluqueria/{peluqueria}/update_state/{peluqueriaEstado}', [PeluqueriaController::class, 'updateState'])->middleware(['auth:admin']);
 Route::get('peluqueria/{peluqueria}/download_file', [PeluqueriaController::class, 'downloadFile'])->middleware(['auth:admin'])->name('peluqueria.file');
+Route::post('/admin/create', [AdministradorController::class, 'store'])->middleware(['auth:admin'])->name('admin.store');
 
 Route::get('/peluqueria/no_verificada', [PeluqueriaController::class, 'verificacionUpdate'])->middleware(['auth:peluqueria'])->name('peluqueria.noVerificada');
 Route::post('/peluqueria/completar_informacion', [PeluqueriaController::class, 'completarInformacion'])->middleware(['auth:peluqueria'])->name('peluqueria.completarInfo');
@@ -38,13 +43,29 @@ Route::get('/peluqueria/primeros_pasos', [PeluqueriaController::class, 'primeros
 Route::post('/peluqueria/nuevo_peluquero/', [PeluqueroController::class, 'store'])->middleware(['auth:peluqueria'])->name('peluquero.store');
 Route::post('/peluqueria/actualizar_peluquero/{peluquero}', [PeluqueroController::class, 'update'])->middleware(['auth:peluqueria'])->name('peluquero.actualizar');
 Route::delete('/peluqueria/eliminar_peluquero/{peluquero}', [PeluqueroController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('peluquero.delete');
+Route::get('/peluqueria/peluqueros', [PeluqueroController::class, 'index'])->middleware(['auth:peluqueria'])->name('peluquero.index');
+Route::put('/peluqueria/cambiar_peluquero_estado/{peluquero}', [PeluqueroController::class, 'cambiarPeluqueroEstado'])->middleware(['auth:peluqueria'])->name('peluquero.cambiarEstado');
 Route::post('/peluqueria/nuevo_servicio/', [ServicioController::class, 'store'])->middleware(['auth:peluqueria'])->name('servicio.store');
+Route::get('/peluqueria/servicios', [ServicioController::class, 'index'])->middleware(['auth:peluqueria'])->name('servicio.index');
 Route::post('/peluqueria/actualizar_servicio/{servicio}', [ServicioController::class, 'update'])->middleware(['auth:peluqueria'])->name('servicio.actualizar');
 Route::delete('/peluqueria/eliminar_servicio/{servicio}', [ServicioController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('servicio.delete');
 Route::post('/peluqueria/agregar_dia', [DiaDeTrabajoController::class, 'store'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.store');
 Route::post('/peluqueria/actualizar_dia/{diaDeTrabajo}', [DiaDeTrabajoController::class, 'update'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.update');
 Route::delete('/peluqueria/eliminar_dia/{diaDeTrabajo}', [DiaDeTrabajoController::class, 'destroy'])->middleware(['auth:peluqueria'])->name('diaDeTrabajo.delete');
+Route::get('/peluqueria/horario', [DiaDeTrabajoController::class, 'index'])->middleware(['auth:peluqueria'])->name('horario.index');
+Route::get('/peluqueria/agendar_local', [CitaController::class, 'agendarDesdePeluqueria'])->middleware(['auth:peluqueria'])->name('peluqueria.agendar');
+Route::post('peluqueria/agendar_local/{peluqueria}', [CitaController::class, 'store'])->middleware(['auth:peluqueria'])->name('horario.store');
 
+
+Route::get('/agendar/{peluqueria}', [CitaController::class, 'create'])->middleware(['auth:cliente'])->name('cita.create');
+Route::post('/agendar/{peluqueria}', [CitaController::class, 'store'])->middleware(['auth:cliente'])->name('cita.store');
+
+
+route::get('/peluquero/agenda', function(){
+$peluquero = Peluquero::find(7);
+    dd($peluquero->agenda());
+
+});
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';

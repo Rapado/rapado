@@ -21,6 +21,7 @@ module.exports = {
 
                 primary: {
                     dark: '#0b486b',
+                    darkest: '#07224A',
                     DEFAULT: '#1284c7',
                     light: '#106BA0'
                 },
@@ -29,6 +30,7 @@ module.exports = {
                     dark: '#111827',
                     DEFAULT: '#1F2937',
                     light: '#6B7280',
+                    accent: '#3f3d56'
                 },
 
                 accent: {
@@ -42,8 +44,23 @@ module.exports = {
                 },
 
                 error: {
-                    DEFAULT: '#d50000'
+                    DEFAULT: '#d50000',
+                    light: '#D65252'
+                },
+
+                info: {
+                    dark: '#479139',
+                    DEFAULT: '#37D955',
+                    light: '#6AD955'
+                },
+
+                mauve: {
+                    dark: '#42275a',
+                    DEFAULT: '#734b6d',
+                    light: '#6AD955'
                 }
+
+
 
                 // primary: '#106BA0',
                 // primaryClr: '#1284c7',

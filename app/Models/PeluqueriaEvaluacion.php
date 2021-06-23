@@ -19,3 +19,4 @@ class PeluqueriaEvaluacion extends Model
         return $this->belongsTo(peluqueria::class);
     }
 }
+

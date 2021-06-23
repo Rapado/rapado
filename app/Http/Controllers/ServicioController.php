@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PeluqueroCollection;
+use App\Http\Resources\ServicioCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Servicio;
 use Illuminate\Support\Facades\Storage;
 use App\Rules\minutes;
+use Inertia\Inertia;
 
 class ServicioController extends Controller
 {
@@ -17,7 +20,12 @@ class ServicioController extends Controller
      */
     public function index()
     {
-        //
+        $peluqueria = Auth::user()->peluqueria;
+
+        return Inertia::render('Peluqueria/AgregarServicio', [
+                                    'peluqueros' => new PeluqueroCollection($peluqueria->peluqueros),
+                                    'servicios' => new ServicioCollection($peluqueria->servicios),
+                                ]);
     }
 
     /**
