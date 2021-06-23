@@ -14,7 +14,7 @@
                                 <svg class = "fill-current text-warning" xmlns="http://www.w3.org/2000/svg" height="37px" viewBox="0 0 24 24" width="37px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
                             </div>
                             <div class="w-full md:w-1/2 text-secondary-light text-justify md:text-center">
-                                Tu solicitud ha sido enviada, se encuentra en estato de PROCESO una vez que sea aceptada prodra visualizarce en la plataforma.
+                                Tu solicitud ha sido enviada, se encuentra en estato de revisión una vez que sea aceptada prodra visualizarse en la plataforma.
                             </div>
                         </div>
 
@@ -42,7 +42,7 @@
                                 <svg class = "fill-current text-error" xmlns="http://www.w3.org/2000/svg" height="37px" viewBox="0 0 24 24" width="37px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg>
                             </div>
                             <div class="w-full md:w-1/2 text-error text-justify md:text-center">
-                                No pudimos verificar la existencia de tu peluqueria. {{this.estadoRazon}}
+                                No pudimos verificar la existencia de tu peluquería. {{this.estadoRazon}}
                                 <span>Si crees que se trata de un error, por favor ponte en contracto con nosotros.</span>
                             </div>
                         </div>

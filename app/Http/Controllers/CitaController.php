@@ -35,7 +35,7 @@ class CitaController extends Controller
         if($peluqueria->sigueAbierta())
             return Inertia::render('Cliente/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true)]);
         else
-            return back();
+            return redirect('/dashboard');
     }
 
     public function agendarDesdePeluqueria()

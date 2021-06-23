@@ -26,4 +26,9 @@ class InicioController extends Controller
             'canResetPassword' => Route::has('password.request'),
         ]);
     }
+
+    public function primeraVez()
+    {
+        return Inertia::render('Cliente/PrimeraVez');
+    }
 }

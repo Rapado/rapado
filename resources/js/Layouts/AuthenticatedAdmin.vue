@@ -15,9 +15,9 @@
 
                             <!-- Navigation Links -->
                             <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                <breeze-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
-                                  Admin Layout
-                                </breeze-nav-link>
+                                <agregar-admin route = 'dashboard'>
+                                  Agregar admin
+                                </agregar-admin>
                             </div>
                         </div>
 
@@ -103,6 +103,7 @@
     import BreezeDropdownLink from '@/Components/DropdownLink'
     import BreezeNavLink from '@/Components/NavLink'
     import BreezeResponsiveNavLink from '@/Components/ResponsiveNavLink'
+    import AgregarAdmin from '@/Components/AgregarAdmin'
 
     export default {
         components: {
@@ -111,6 +112,7 @@
             BreezeDropdownLink,
             BreezeNavLink,
             BreezeResponsiveNavLink,
+            AgregarAdmin
         },
 
         data() {

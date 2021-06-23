@@ -72,6 +72,14 @@
             }
         },
 
+        beforeCreate() {
+
+            if(!localStorage.getItem('firstTime')){
+                localStorage.setItem('firstTime', true);
+                window.location = '/bienvenido';
+            }
+        },
+
         computed: {
             formToShowMessage: function(){
                 return this.showLoginForm ? 'Necesito una cuenta' : 'De echo, ya tengo una cuenta'
