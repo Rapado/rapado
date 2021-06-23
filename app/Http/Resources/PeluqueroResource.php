@@ -39,7 +39,7 @@ class PeluqueroResource extends JsonResource
             'agenda' => $this->when($this->retornaragenda, $this->agenda()),
             'citas' => $this->when($this->retornarcitas, new CitaCollection($this->citas)),
             //'evaluacionesss'=>$this->when($this->retornarevaluacion, new PeluqueriaEvaluacionCollection($this->evaluaciones)),
-             
+
         ];
     }
 }

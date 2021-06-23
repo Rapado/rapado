@@ -93,7 +93,7 @@ class PeluqueroController extends Controller
     {
         //validar
         $request ->validate([ 'peluqueroNombre' => 'required|min:4|max:255'], $this->messages());
-
+      
         $peluqueriaId = Auth::user()->peluqueria->id;
 
         if($peluqueriaId == $peluquero->peluqueria_id){
@@ -130,6 +130,9 @@ class PeluqueroController extends Controller
      */
     public function destroy(Peluquero $peluquero)
     {
+        if(count($peluquero->citas) > 0)
+            return response(['status' => 'tieneCitas'], 400);
+
         $peluqueriaId = Auth::user()->peluqueria->id;
 
         if($peluqueriaId == $peluquero->peluqueria_id){
