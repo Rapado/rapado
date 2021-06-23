@@ -7,6 +7,7 @@ use App\Http\Controllers\DiaDeTrabajoController;
 use App\Http\Controllers\InicioController;
 use App\Http\Controllers\PeluqueriaController;
 use App\Http\Controllers\PeluqueroController;
+use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicioController;
 use App\Models\Peluquero;
 use Illuminate\Support\Facades\Route;
@@ -67,6 +68,16 @@ $peluquero = Peluquero::find(7);
     dd($peluquero->agenda());
 
 });
+
+Route::get('/explorador',[PeluqueriaController::class, 'index'])->middleware(['auth:cliente'])->name('peluqueria.index');
+Route::post('/peluqueria/agregar_favoritos/{peluqueria}',[ClienteController::class, 'favoritos'])->middleware(['auth:cliente'])->name('cliente.favoritos');
+Route::get('/informacionpeluqueria/{peluqueria}',[ClienteController::class, 'peluqueria'])->middleware(['auth:cliente'])->name('cliente.peluqueria');
+Route::get('/busqueda',[PeluqueriaController::class, 'busqueda'])->middleware(['auth:cliente'])->name('peluqueria.busqueda');
+Route::get('/favoritos',[ClienteController::class, 'peluquerias_favoritas'])->middleware(['auth:cliente'])->name('peluqueria.favoritos');
+Route::post('/peluqueria/evaluar/{peluqueria}',[ClienteController::class, 'evaluar'])->middleware(['auth:cliente'])->name('cliente.evaluar');
+Route::post('/peluquero/evaluar/{peluqueria}/{peluquero}',[ClienteController::class, 'evaluarPeluquero'])->middleware(['auth:cliente'])->name('cliente.evaluarPeluquero');
+
+
 
 require __DIR__.'/auth.php';
 require __DIR__.'/authAdmin.php';

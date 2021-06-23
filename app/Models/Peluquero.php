@@ -4,8 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PeluqueroEvaluacion;
 use App\Http\Resources\PeluqueroResource;
 use App\Traits\TimeHelper;
+use DB;
 
 class Peluquero extends Model
 {
@@ -70,9 +72,19 @@ class Peluquero extends Model
 
     public function estrellas()
     {
-        return 3;
-    }
 
+        $evaluaciones = $this->evaluaciones;
+        $estrella = 0;
+        if(count($evaluaciones)>0){
+            foreach($evaluaciones as $evaluacion){ 
+                $estrella += $evaluacion->estrellas;
+            }
+            $promedio = $estrella/count($evaluaciones);
+            $estrella = round( $promedio);
+        }
+        return $estrella;
+    }
+    
     public function agenda()
     {
         $agenda = [];
