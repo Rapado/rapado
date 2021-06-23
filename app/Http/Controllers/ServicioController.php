@@ -107,16 +107,7 @@ class ServicioController extends Controller
         $request ->validate([
             'servicioNombre' => 'required|min:4|max:90',
             'duracion'=> ['required','numeric', new minutes],
-            'costo'=> 'required|numeric|min:0|max:9999',
-            'imagen' =>[
-            function ($attribute, $value, $fail) {
-                if ($value != 'null') {
-                    //if (mime_content_type($value) != 'png' && mime_content_type($value) != 'jpg'&& mime_content_type($value) != 'jpeg'){
-                      //  $fail('The '.$attribute.' is invalid.'); 
-                    //} 
-                }
-            },
-        ],
+            'costo'=> 'required|numeric|min:0|max:5000',
             'listaPeluqueros' => 'string|min:3'//[1]
         ], $this->messages());
 
@@ -128,6 +119,8 @@ class ServicioController extends Controller
             $servicio->costo = $request['costo'];
 
             if(gettype($request['imagen']) != "string"){
+                $request ->validate(['imagen' => 'nullable|mimes:jpg,png,jpge'], $this->messages());
+
                 $oldPath = "/public/{$servicio->imagen}";
                 $newPath = $request['imagen']->store('servicios', 'public');
 
