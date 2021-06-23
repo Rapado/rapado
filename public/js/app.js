@@ -19965,7 +19965,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       form: this.$inertia.form({
-        servicioNombre: null,
+        servicioNombre: '',
         peluqueros: [],
         duracion: null,
         costo: null,

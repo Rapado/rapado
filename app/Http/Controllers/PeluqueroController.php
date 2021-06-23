@@ -93,7 +93,7 @@ class PeluqueroController extends Controller
     {
         //validar
         $request ->validate([ 'peluqueroNombre' => 'required|min:4|max:255'], $this->messages());
-
+      
         $peluqueriaId = Auth::user()->peluqueria->id;
 
         if($peluqueriaId == $peluquero->peluqueria_id){
