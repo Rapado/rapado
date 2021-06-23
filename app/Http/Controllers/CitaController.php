@@ -126,6 +126,7 @@ class CitaController extends Controller
      */
     public function destroy(Cita $cita)
     {
-        //
+        $cita->delete();
+        return response('success');
     }
 }

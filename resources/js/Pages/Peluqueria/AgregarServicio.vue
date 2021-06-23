@@ -138,7 +138,7 @@
         data() {
             return {
                 form: this.$inertia.form({
-                    servicioNombre: null,
+                    servicioNombre: '',
                     peluqueros: [],
                     duracion: null,
                     costo: null,
