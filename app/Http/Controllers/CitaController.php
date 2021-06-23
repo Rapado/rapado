@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\PeluqueroCollection;
+use App\Jobs\EliminarCita;
 use App\Models\Cita;
 use App\Models\Peluqueria;
 use App\Models\Peluquero;
@@ -34,7 +35,7 @@ class CitaController extends Controller
         if($peluqueria->sigueAbierta())
             return Inertia::render('Cliente/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true)]);
         else
-            return back();
+            return redirect('/dashboard');
     }
 
     public function agendarDesdePeluqueria()
@@ -65,15 +66,19 @@ class CitaController extends Controller
             return response(['status' => 'horaNoDisponible', 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, false)], 400);
         }
 
+        $horaTermina = $this->actualizarHora($request['horaCita'], $request['duracionCita']);
+
         $cita = new Cita();
         $cita->user_id = $user->id;
         $cita->peluquero_id = $request['peluqueroId'];
         $cita->nombre = $request['nombreCliente'];
         $cita->hora_inicio = $request['horaCita'];
-        $cita->horaTermina = $this->actualizarHora($request['horaCita'], $request['duracionCita']);
+        $cita->horaTermina = $horaTermina;
         $cita->save();
 
         $cita->guardarServicios($request['servicios']);
+
+        EliminarCita::dispatch($cita)->delay(now()->addMinutes($this->minutosEntreHoras($this->horaActual(), $horaTermina) + 5));
 
         return response('todoBien');
 

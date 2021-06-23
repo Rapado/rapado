@@ -17,7 +17,7 @@ class CreatePeluqueriasTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('nombre');
-            $table->integer('telefono');
+            $table->bigInteger('telefono');
             $table->string('nombreEncargado')->nullable();
             $table->string('documento')->nullable();
             $table->string('logo')->nullable();
