@@ -4,16 +4,21 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\CitaCollection;
+use App\Http\Resources\PeluqueriaEvaluacionCollection;
 
 class PeluqueroResource extends JsonResource
 {
-    protected $retornarAgenda = false;
-    protected $retornarCitas = false;
+    protected $retornaragenda = false;
+    protected $retornarcitas = false;
+    protected $retornarevaluaciones = false;
+    protected $retornarestrellas = false;
 
-    public function opciones($agenda = false, $citas = false)
+    public function opciones($agenda = false, $citas = false,  $evaluaciones = false,  $estrellas = false)
     {
-        $this->retornarAgenda = $agenda;
-        $this->retornarCitas = $citas;
+        $this->retornaragenda = $agenda;
+        $this->retornarcitas = $citas;
+        $this->retornarevaluaciones = $evaluaciones;
+        $this->retornarestrellas = $estrellas;
         return $this;
     }
     /**
@@ -29,9 +34,12 @@ class PeluqueroResource extends JsonResource
             'nombre' => $this->nombre,
             'imagen' => $this->imagenPath(),
             'disponible' => $this->disponible,
-            'estrellas' => $this->estrellas(),
-            'agenda' => $this->when($this->retornarAgenda, $this->agenda()),
-            'citas' => $this->when($this->retornarCitas, new CitaCollection($this->citas)),
+            'estrellas' => $this->when($this->retornarestrellas,$this->estrellas()),
+            'evaluaciones' => $this->when($this->retornarevaluaciones,$this->evaluaciones),
+            'agenda' => $this->when($this->retornaragenda, $this->agenda()),
+            'citas' => $this->when($this->retornarcitas, new CitaCollection($this->citas)),
+            //'evaluacionesss'=>$this->when($this->retornarevaluacion, new PeluqueriaEvaluacionCollection($this->evaluaciones)),
+             
         ];
     }
 }

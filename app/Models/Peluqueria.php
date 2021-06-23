@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PeluqueriaEstado;
+use App\Models\PeluqueriaFavorita;
+use App\Models\PeluqueriaEvaluacion;
 use App\Traits\TimeHelper;
+use App\Http\Resources\PeluqueriaResource;
 
 class Peluqueria extends Model
 {
@@ -30,6 +33,21 @@ class Peluqueria extends Model
     public function evaluaciones()
     {
         return $this->hasMany(PeluqueriaEvaluacion::class);
+    }
+
+    public function estrellas()
+    {
+
+        $evaluaciones = $this->evaluaciones;
+        $estrella = 0;
+        if(count($evaluaciones)>0){
+            foreach($evaluaciones as $evaluacion){ 
+                $estrella += $evaluacion->estrellas;
+            }
+            $promedio = $estrella/count($evaluaciones);
+            $estrella = round( $promedio);
+        }
+        return $estrella;
     }
 
     public function peluqueriaEstados()
@@ -160,5 +178,10 @@ class Peluqueria extends Model
     {
         return count($this->diasDeTrabajo);
     }
+    public function toResource($mostrarservicios=false, $mostrarpeluqueros=false, $mostrarevaluacion=false, $mostrarfavorita=false)
+    {
+        return (new PeluqueriaResource($this))->opciones($mostrarservicios, $mostrarpeluqueros, $mostrarevaluacion, $mostrarfavorita);
+    }
+  
 
 }

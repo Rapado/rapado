@@ -7,12 +7,15 @@ use App\Models\Servicio;
 use App\Models\PeluqueriaEstado;
 use App\Http\Resources\PeluqueriaEstadoResource;
 use App\Http\Resources\PeluqueroCollection;
+use App\Http\Resources\PeluqueriaCollection;
 use App\Http\Resources\ServicioCollection;
 use App\Models\Peluquero;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Routing\Redirector;
+use Carbon\Carbon;
 
 class PeluqueriaController extends Controller
 {
@@ -22,9 +25,24 @@ class PeluqueriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
         $peluquerias = Peluqueria::where('activa',1)->get();
-        return Inertia::render('Cliente/Peluquerias', ['peluquerias' => $peluquerias]);
+        $peluquerias_collection = (new PeluqueriaCollection($peluquerias));
+        return Inertia::render('Cliente/Peluquerias', ['peluquerias' =>$peluquerias_collection]);
+        }
+
+    public function busqueda(Request $request)
+    {
+        $peluqueria = $request->get('search');
+        $buscar     = Peluqueria::where('nombre', 'like',$peluqueria)->first();
+        if($buscar){
+            return \Redirect::route('cliente.peluqueria',['peluqueria' => $buscar->id]);
+        }
+        else{
+            return \Redirect::route('peluqueria.index');
+        }
+
+        
     }
 
     /**
