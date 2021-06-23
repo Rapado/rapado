@@ -33,7 +33,7 @@ class CitaController extends Controller
     public function create(Peluqueria $peluqueria)
     {
         if($peluqueria->sigueAbierta())
-            return Inertia::render('Cliente/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true)]);
+            return Inertia::render('Cliente/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true, false, true)]);
         else
             return redirect('/dashboard');
     }
@@ -41,7 +41,7 @@ class CitaController extends Controller
     public function agendarDesdePeluqueria()
     {
         $peluqueria = Auth::user()->peluqueria;
-        return Inertia::render('Peluqueria/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true)]);
+        return Inertia::render('Peluqueria/Agendar', ['peluqueriaId' => $peluqueria->id, 'peluqueros' => (new PeluqueroCollection($peluqueria->peluqueros))->opciones(true, false, true, false, true)]);
     }
 
     /**

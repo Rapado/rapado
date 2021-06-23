@@ -13,12 +13,13 @@ class PeluqueroResource extends JsonResource
     protected $retornarevaluaciones = false;
     protected $retornarestrellas = false;
 
-    public function opciones($agenda = false, $citas = false,  $evaluaciones = false,  $estrellas = false)
+    public function opciones($agenda = false, $citas = false,  $evaluaciones = false,  $estrellas = false, $servicios = false)
     {
         $this->retornaragenda = $agenda;
         $this->retornarcitas = $citas;
         $this->retornarevaluaciones = $evaluaciones;
         $this->retornarestrellas = $estrellas;
+        $this->retornarServicios = $servicios;
         return $this;
     }
     /**
@@ -38,6 +39,7 @@ class PeluqueroResource extends JsonResource
             'evaluaciones' => $this->when($this->retornarevaluaciones,$this->evaluaciones),
             'agenda' => $this->when($this->retornaragenda, $this->agenda()),
             'citas' => $this->when($this->retornarcitas, new CitaCollection($this->citas)),
+            'servicios' => $this->when($this->retornarServicios, new ServicioCollection($this->servicios)),
             //'evaluacionesss'=>$this->when($this->retornarevaluacion, new PeluqueriaEvaluacionCollection($this->evaluaciones)),
 
         ];
