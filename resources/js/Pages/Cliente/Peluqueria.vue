@@ -8,7 +8,7 @@
                             <div class="w-80 " style="display: inline-block">
                                 <img class="rounded-md"  @click="Peluqueria(peluquerias.data.id) " :src="'/storage/'+peluquerias.data.logo" alt="" />
                             </div>
-                        
+
                             <div class="align-top m-8 text-left" style="display: inline-block">
                                 <div class="justify-items-stretch text-2xl ">
                                     {{peluquerias.data.nombre}}
@@ -29,16 +29,16 @@
                                         <btn-gris @click="Agendar(peluquerias.data.id) ">Agendar</btn-gris>
                                     </div>
                                     <div class="my-8 text-center text-red-600" v-else>
-                                        Peluqueria Cerrada
+                                        Peluquería Cerrada
                                     </div>
                                 </div>
                                 <div class="my-8 text-center text-red-600" v-else>
-                                        Peluqueria Cerrada
+                                        Peluquería Cerrada
                                 </div>
                             </div>
                             <div style="display: inline-block" class = "text-right align-top">
                                 <div class="my-8" v-if="favorito===null" >
-                                    <svg @click="AgregarFavoritos(peluquerias.data.id)" class = " fill-current text-error hover:text-accent-white cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FC0000"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>            
+                                    <svg @click="AgregarFavoritos(peluquerias.data.id)" class = " fill-current text-error hover:text-accent-white cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FC0000"><path d="M0 0h24v24H0z" fill="none"/><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3zm-4.4 15.55l-.1.1-.1-.1C7.14 14.24 4 11.39 4 8.5 4 6.5 5.5 5 7.5 5c1.54 0 3.04.99 3.57 2.36h1.87C13.46 5.99 14.96 5 16.5 5c2 0 3.5 1.5 3.5 3.5 0 2.89-3.14 5.74-7.9 10.05z"/></svg>
                                 </div>
                                 <div class="my-8"  v-else >
                                     <svg class = " fill-current text-error" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
@@ -59,7 +59,7 @@
                                             <div class="justify-items-stretch text-2xl">
                                                 {{peluquero.nombre}}
                                             </div>
-                                            
+
                                         </div>
                                         <div class="align-top ml-8 mt-8" style="display: inline-block">
                                                 <div  style="display: inline-block" v-for="i in peluquero.estrellas" :key="i">
@@ -73,22 +73,22 @@
                                             <div v-else>
                                                 <div class="rounded-full h-2 w-2 bg-red-500"></div>
                                             </div>
-                                        </div>    
+                                        </div>
                                         <div class="  text-center">
                                             <div class="p-6 bg-white text-secondary-light border-b border-gray-200 text-center" >
                                                 <form action class="form" @submit.prevent="EvaluarPeluquero(peluquerias.data.id,peluquero.id)">
                                                     <div class="grid justify-items-stretch text-xs " >
-                                                        Da tu opinion a los demas
+                                                        Da tu opinión a los demás
                                                     </div>
                                                     <div style="display: inline-block">
-                                    
+
                                                     <rater v-model="form.estrellas" > </rater>
                                                     </div>
                                                     <div >
                                                         <breeze-button class=" cursor-pointer" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                                             Evaluar
                                                         </breeze-button>
-                                                    </div>  
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
@@ -118,7 +118,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                       
+
                                 </td>
                             </div>
                         </div>
@@ -136,24 +136,24 @@
                                 <div class="  text-center">
                                     <div class="p-6 bg-white text-secondary-light border-b border-gray-200 text-center" >
                                         <form action class="form" @submit.prevent="Evaluar(peluquerias.data.id)">
-                                        
+
                                             <div style="display: inline-block">
                                                 <rater v-model="form.estrellas" > </rater>
                                             </div>
                                             <div>
-                                            <input 
+                                            <input
                                                 v-model="form.comentario"
                                                 class="border-2 border-gray-300 bg-white h-20 w-1/2 px-5 pr-16 mt-2 rounded-lg text-sm "
-                                                type="text-box" 
+                                                type="text-box"
                                                 id="comentario"
-                                                name="comentario" 
+                                                name="comentario"
                                                 placeholder="Comparte con otros usuarios tu experiencia...">
                                             </div>
                                             <div>
                                                 <breeze-button class="m-4 cursor-pointer" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                                                     Evaluar
                                                 </breeze-button>
-                                            </div> 
+                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -179,7 +179,7 @@
                                                                 s9.75,7.977,9.75,7.977v5.126c0.54,0.488,0.886,1.185,0.886,1.965v3.546c0,1.192-0.8,2.195-1.886,2.53
                                                                 c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233
                                                                 c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"/>
-                                                        </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg> 
+                                                        </g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
                                                 </div>
                                                 <div class="text-2xl ml-4" style="display: inline-block">
                                                         {{comentario.cliente_nombre}}
@@ -192,11 +192,11 @@
                                                         {{comentario.fecha}}
                                                     </div>
                                                 </div>
-                                                
+
                                                 <div class=" text-xl" style="display: inline-block">
                                                         {{comentario.comentario}}
                                                 </div>
-                                                
+
                                             </div>
                                         </div>
                                     </div>
@@ -216,7 +216,7 @@
     import BreezeButton from '@/Components/GreyButton'
     import Rater from '@/Components/Rater'
 
-    
+
 
     export default {
         components: {
@@ -224,7 +224,7 @@
             BtnGris,
             BreezeButton,
             Rater
-            
+
         },
         props:{
             peluquerias:{},
@@ -233,7 +233,7 @@
             favorito:{},
             evaluacion:{},
         },
-        
+
         data() {
             return {
                 form: this.$inertia.form({
@@ -242,15 +242,15 @@
                 })
             }
         },
-        
+
         methods:{
             AgregarFavoritos(id_peluqueria){
-                
+
                 axios.post('/peluqueria/agregar_favoritos/'+id_peluqueria)
                 .then(response => {
-                    
+
                     Swal.fire({
-                        text:'Peluqueria Agragada', 
+                        text:'Peluqueria Agragada',
                         icon:'success',
                     })
                 })
@@ -258,18 +258,18 @@
                     console.log(error)
                 })
             },
-           
+
             Agendar(id_peluqueria){
                   location.href ='/agendar/'+ id_peluqueria
             },
-            
+
             Evaluar(id_peluqueria){
-                
+
                 axios.post('/peluqueria/evaluar/'+id_peluqueria,{...this.form})
                 .then(response => {
                     this.peluquerias.data.evaluaciones=response.data.data
                     Swal.fire({
-                        text:'Gracias poor tu evaluacion', 
+                        text:'Gracias por tu evaluación',
                         icon:'success',
                     })
                 })
@@ -278,12 +278,12 @@
                 })
             },
             EvaluarPeluquero(id_peluqueria,id_peluquero){
-                
+
                 axios.post('/peluquero/evaluar/'+id_peluqueria+'/'+id_peluquero,{...this.form})
                 .then(response => {
                     this.peluquerias.data.peluqueros.evaluaciones=response.data.data
                     Swal.fire({
-                        text:'Gracias poor tu evaluacion', 
+                        text:'Gracias por tu evaluación',
                         icon:'success',
                     })
                 })
