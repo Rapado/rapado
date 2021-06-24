@@ -61,6 +61,7 @@ Route::delete('peluqueria/eliminar_cita/{cita}', [CitaController::class, 'destro
 
 Route::get('/agendar/{peluqueria}', [CitaController::class, 'create'])->middleware(['auth:cliente'])->name('cita.create');
 Route::post('/agendar/{peluqueria}', [CitaController::class, 'store'])->middleware(['auth:cliente'])->name('cita.store');
+Route::delete('/eliminar_cita/{cita}', [CitaController::class, 'destroy'])->middleware(['auth:cliente'])->name('cita.destroy');
 
 
 route::get('/peluquero/agenda', function(){

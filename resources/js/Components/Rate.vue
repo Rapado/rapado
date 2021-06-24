@@ -23,7 +23,7 @@ export default {
             default: null,
         },
         noPersonas:{
-            default: 10,
+            default: 0,
         }
     },
 }

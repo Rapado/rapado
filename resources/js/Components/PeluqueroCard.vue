@@ -7,7 +7,7 @@
             </div>
         </div>
         <div v-if="showStars">
-            <rate :rate="peluquero.estrellas" max-rate=5 />
+            <rate :rate="peluquero.estrellas" :noPersonas="peluquero.noEvaluaciones" max-rate=5 />
         </div>
         <div class="modal-actions">
             <slot name="actions">

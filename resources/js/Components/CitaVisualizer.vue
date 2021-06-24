@@ -54,6 +54,10 @@ export default {
         label: {
             default: '',
         },
+
+        urlEliminar: {
+            default: '/peluqueria/eliminar_cita/'
+        }
     },
 
     data(){
@@ -72,7 +76,7 @@ export default {
 
         async eliminarCita(){
             try {
-                await axios.delete('/peluqueria/eliminar_cita/' + this.cita.id)
+                await axios.delete(this.urlEliminar + this.cita.id)
                 this.showModal = false;
                 this.mostrarAlerta('Cita eliminada', 'success', 3000);
                 this.$emit('eliminarCita');

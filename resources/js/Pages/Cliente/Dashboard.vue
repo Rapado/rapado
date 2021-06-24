@@ -6,7 +6,7 @@
                     {{citasAlert}}
                 </div>
                 <div class="p-6 mx-10 bg-white text-secondary-light border-b border-gray-200 text-center">
-                    <div v-for="(cita, index) in citas.data" :key="index">
+                    <div v-for="(cita, indexCita) in citas.data" :key="indexCita">
                         <div class="my-3 flex items-center">
                             <div class="mr-3">
                                  Tienes una cita a las {{cita.horaInicio}}
@@ -15,7 +15,8 @@
                                 class="w-2/12"
                                 label="Ver detalles"
                                 :cita = "cita"
-                                v-on:eliminar-cita = "quitarCitaDeLista(indexCita, indexPel)"
+                                url-eliminar = '/eliminar_cita/'
+                                v-on:eliminar-cita = "quitarCitaDeLista(indexCita,)"
                             />
                         </div>
                     </div>
@@ -100,9 +101,14 @@
         methods:{
             Peluqueria(id_peluqueria){
                 location.href ='/informacionpeluqueria/'+ id_peluqueria
-                },
+            },
+
             Agendar(id_peluqueria){
                 location.href ='/agendar/'+ id_peluqueria
+            },
+
+            quitarCitaDeLista(citaIndex){
+               this.citas.data.splice(citaIndex, 1);
             }
         },
 

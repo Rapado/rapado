@@ -17969,6 +17969,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     },
     label: {
       "default": ''
+    },
+    urlEliminar: {
+      "default": '/peluqueria/eliminar_cita/'
     }
   },
   data: function data() {
@@ -17995,7 +17998,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               case 0:
                 _context.prev = 0;
                 _context.next = 3;
-                return axios["delete"]('/peluqueria/eliminar_cita/' + _this.cita.id);
+                return axios["delete"](_this.urlEliminar + _this.cita.id);
 
               case 3:
                 _this.showModal = false;
@@ -18500,7 +18503,7 @@ __webpack_require__.r(__webpack_exports__);
       "default": null
     },
     noPersonas: {
-      "default": 10
+      "default": 0
     }
   }
 });
@@ -19652,6 +19655,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     Agendar: function Agendar(id_peluqueria) {
       location.href = '/agendar/' + id_peluqueria;
+    },
+    quitarCitaDeLista: function quitarCitaDeLista(citaIndex) {
+      this.citas.data.splice(citaIndex, 1);
     }
   },
   computed: {
@@ -22263,10 +22269,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* CLASS */
   ))])]), $props.showStars ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_rate, {
     rate: $props.peluquero.estrellas,
+    noPersonas: $props.peluquero.noEvaluaciones,
     "max-rate": "5"
   }, null, 8
   /* PROPS */
-  , ["rate"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "actions", {}, function () {
+  , ["rate", "noPersonas"])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.renderSlot)(_ctx.$slots, "actions", {}, function () {
     return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_grey_button, {
       "class": "w-full mt-2 rounded-xl",
       onClick: _cache[2] || (_cache[2] = function ($event) {
@@ -25168,21 +25175,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [$props.citas.data.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.citasAlert), 1
       /* TEXT */
-      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.citas.data, function (cita, index) {
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.citas.data, function (cita, indexCita) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
-          key: index
+          key: indexCita
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, " Tienes una cita a las " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cita.horaInicio), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cita_visualizer, {
           "class": "w-2/12",
           label: "Ver detalles",
           cita: cita,
-          onEliminarCita: _cache[1] || (_cache[1] = function ($event) {
-            return _ctx.quitarCitaDeLista(_ctx.indexCita, _ctx.indexPel);
-          })
+          "url-eliminar": "/eliminar_cita/",
+          onEliminarCita: function onEliminarCita($event) {
+            return $options.quitarCitaDeLista(indexCita);
+          }
         }, null, 8
         /* PROPS */
-        , ["cita"])])]);
+        , ["cita", "onEliminarCita"])])]);
       }), 128
       /* KEYED_FRAGMENT */
       ))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.peluquerias, function (peluqueria, index) {
