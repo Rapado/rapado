@@ -25,7 +25,7 @@ class PeluqueriaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
         $peluquerias = Peluqueria::where('activa',1)->get();
         $peluquerias_collection = (new PeluqueriaCollection($peluquerias));
         return Inertia::render('Cliente/Peluquerias', ['peluquerias' =>$peluquerias_collection]);
@@ -34,7 +34,7 @@ class PeluqueriaController extends Controller
     public function busqueda(Request $request)
     {
         $peluqueria = $request->get('search');
-        $buscar     = Peluqueria::where('nombre', 'like',$peluqueria)->first();
+        $buscar     = Peluqueria::where('nombre', 'like','%'.$peluqueria.'%')->first();
         if($buscar){
             return \Redirect::route('cliente.peluqueria',['peluqueria' => $buscar->id]);
         }
@@ -42,7 +42,7 @@ class PeluqueriaController extends Controller
             return \Redirect::route('peluqueria.index');
         }
 
-        
+
     }
 
     /**
