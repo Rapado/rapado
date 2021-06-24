@@ -72,6 +72,7 @@ $peluquero = Peluquero::find(7);
 
 Route::get('/explorador',[PeluqueriaController::class, 'index'])->middleware(['auth:cliente'])->name('peluqueria.index');
 Route::post('/peluqueria/agregar_favoritos/{peluqueria}',[ClienteController::class, 'favoritos'])->middleware(['auth:cliente'])->name('cliente.favoritos');
+Route::delete('/peluqueria/eliminar_favorita/{peluqueriaFavorita}',[ClienteController::class, 'quitarDeFavoritos'])->middleware(['auth:cliente'])->name('cliente.quitarPeluqueri');
 Route::get('/informacionpeluqueria/{peluqueria}',[ClienteController::class, 'peluqueria'])->middleware(['auth:cliente'])->name('cliente.peluqueria');
 Route::get('/busqueda',[PeluqueriaController::class, 'busqueda'])->middleware(['auth:cliente'])->name('peluqueria.busqueda');
 Route::get('/favoritos',[ClienteController::class, 'peluquerias_favoritas'])->middleware(['auth:cliente'])->name('peluqueria.favoritos');

@@ -33,7 +33,15 @@ class ClienteController extends Controller
         $peluqueria_favorita->cliente_id = Auth::user()->cliente->id;
         $peluqueria_favorita->peluqueria_id = $peluqueria->id;
         $peluqueria_favorita->save();
-        return response(['data'=>'recibi peluqueria'.$peluqueria->nombre]);
+
+        return response(['data'=>'recibi peluqueria'.$peluqueria->nombre, 'peluqueriaFavorita' => $peluqueria_favorita]);
+    }
+
+    public function quitarDeFavoritos(PeluqueriaFavorita $peluqueriaFavorita)
+    {
+        $peluqueriaFavorita->delete();
+
+        return response('done');
     }
     public function Evaluar(Request $request, Peluqueria $peluqueria)
     {
@@ -79,6 +87,7 @@ class ClienteController extends Controller
 
         $peluquero_evaluacion->estrellas = $request['estrellas'];
         $peluquero_evaluacion->save();
+
         return response(['data'=>new PeluqueriaEvaluacionCollection($peluquero->evaluaciones)]);
     }
 
