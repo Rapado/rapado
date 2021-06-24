@@ -2,17 +2,17 @@
     <breeze-authenticated-layout>
         <div v-if="citas.data.length > 0" class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="p-3 bg-gradient-to-l from-secondary-dark to-mauve text-lg text-white border-b rounded border-gray-200">
+                <div class="p-3 bg-gradient-to-l from-secondary-dark to-mauve text-lg text-white border-b md:rounded border-gray-200">
                     {{citasAlert}}
                 </div>
-                <div class="p-6 mx-10 bg-white text-secondary-light border-b border-gray-200 text-center">
+                <div class="p-6 mx-5 md:mx-10 bg-white text-secondary-light border-b border-gray-200 text-center">
                     <div v-for="(cita, indexCita) in citas.data" :key="indexCita">
                         <div class="my-3 md:flex items-center">
-                            <div class="mr-3">
-                                 Tienes una cita a las {{cita.horaInicio}}
+                            <div class="mr-3 mb-3 md:mb-0">
+                                 Tienes una cita a las {{cita.horaInicio.substring(0,5)}}
                             </div>
                             <cita-visualizer
-                                class="w-2/12"
+                                class="w-full md:w-2/12"
                                 label="Ver detalles"
                                 :cita = "cita"
                                 url-eliminar = '/eliminar_cita/'

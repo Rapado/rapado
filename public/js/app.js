@@ -25045,16 +25045,16 @@ var _hoisted_2 = {
   "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
 };
 var _hoisted_3 = {
-  "class": "p-3 bg-gradient-to-l from-secondary-dark to-mauve text-lg text-white border-b rounded border-gray-200"
+  "class": "p-3 bg-gradient-to-l from-secondary-dark to-mauve text-lg text-white border-b md:rounded border-gray-200"
 };
 var _hoisted_4 = {
-  "class": "p-6 mx-10 bg-white text-secondary-light border-b border-gray-200 text-center"
+  "class": "p-6 mx-5 md:mx-10 bg-white text-secondary-light border-b border-gray-200 text-center"
 };
 var _hoisted_5 = {
   "class": "my-3 md:flex items-center"
 };
 var _hoisted_6 = {
-  "class": "mr-3"
+  "class": "mr-3 mb-3 md:mb-0"
 };
 var _hoisted_7 = {
   "class": "py-6"
@@ -25180,10 +25180,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.citas.data, function (cita, indexCita) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
           key: indexCita
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, " Tienes una cita a las " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cita.horaInicio), 1
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, " Tienes una cita a las " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cita.horaInicio.substring(0, 5)), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cita_visualizer, {
-          "class": "w-2/12",
+          "class": "w-full md:w-2/12",
           label: "Ver detalles",
           cita: cita,
           "url-eliminar": "/eliminar_cita/",
@@ -26015,7 +26015,7 @@ var _hoisted_1 = {
   "class": "bg-gradient-to-r from-mauve-dark to-mauve md:h-screen"
 };
 var _hoisted_2 = {
-  "class": "bg-whiste w-full py-3 px-7 md:px-14 shadow-xl"
+  "class": "w-full py-3 px-7 md:px-14 shadow-xl"
 };
 var _hoisted_3 = {
   "class": "flex justify-between"
@@ -26033,10 +26033,10 @@ var _hoisted_6 = {
 var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": " mt-5 mx-auto w-full md:w-10/12 bg-secondadsry border-gray-200 shadow-2xsl rounded-md"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "px-6 sm:py-3 md:py-7"
+  "class": "px-6 sm:py-3 md:py-4"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "text-2xl text-white text-opacity-90"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, " Descubre las mejores peluquerías a tu al rededor, evitamos que esperes más de una hora por tu corte de cabello. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, " Descubre las mejores peluquerías a tu al rededor, en Guadalajara, evitamos que esperes más de una hora por tu corte de cabello. ")]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "text-gray-300 mt-3"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", null, " Podrás agendar el espacio que más se ajuste a tu tiempo, además de ver las opiones de los clientes cuando quieras probar una nueva peluquería. ")])])], -1
 /* HOISTED */
@@ -26046,7 +26046,7 @@ var _hoisted_8 = {
   "class": "mt-5 mx-auto md:w-10/12 bg-secondadsry border-gray-200 shadow-2xsl rounded-md"
 };
 var _hoisted_9 = {
-  "class": "px-6 py-7"
+  "class": "px-6 py-5"
 };
 
 var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
@@ -26119,7 +26119,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     nombre: "María Pe...",
     opinion: "Mis niños se desesperaban por estar esperando. Ahora los llevo a la hora de su cita."
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_secondary_button, {
-    "class": "mt-7 w-full md:w-2/3"
+    "class": "mt-5 w-full md:w-2/3"
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
