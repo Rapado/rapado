@@ -14,7 +14,7 @@ class AdministradorController extends Controller
      */
     public function index()
     {
-        //
+        return response(['administradores' => Administrador::all()]);
     }
 
     /**
