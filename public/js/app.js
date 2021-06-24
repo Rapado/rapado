@@ -19836,6 +19836,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios.post('/peluqueria/evaluar/' + id_peluqueria, _objectSpread({}, this.form)).then(function (response) {
         _this3.peluquerias.data.evaluaciones = response.data.data;
+
+        _this3.form.reset();
+
         sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
           text: 'Gracias por tu evaluación',
           icon: 'success'
@@ -19846,11 +19849,12 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         console.log(error);
       });
     },
-    EvaluarPeluquero: function EvaluarPeluquero(id_peluqueria, id_peluquero) {
+    EvaluarPeluquero: function EvaluarPeluquero(id_peluqueria, id_peluquero, index) {
       var _this4 = this;
 
       axios.post('/peluquero/evaluar/' + id_peluqueria + '/' + id_peluquero, _objectSpread({}, this.form)).then(function (response) {
-        _this4.peluquerias.data.peluqueros.evaluaciones = response.data.data;
+        console.log(response.data.estrellas);
+        _this4.peluquerias.data.peluqueros[index].estrellas = response.data.estrellas;
         sweetalert2__WEBPACK_IMPORTED_MODULE_2___default().fire({
           text: 'Gracias por tu evaluación',
           icon: 'success'
@@ -22532,7 +22536,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["onClick"]))]);
   }), 128
   /* KEYED_FRAGMENT */
-  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("-<div v-for=\"(noEstrella, index) in maxRate - rate\" :key=\"index\" class=\"m-1\">\r\n            <svg @click=\"estrellas=index-estrellas\" fill-current text-secondary-light\" xmlns=\"http://www.w3.org/2000/svg\" enable-background=\"new 0 0 24 24\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><g><rect fill=\"none\" height=\"24\" width=\"24\" x=\"0\"/><polygon points=\"14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10\"/></g></svg>\r\n\r\n        </div>-")]);
+  )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("-<div v-for=\"(noEstrella, index) in maxRate - rate\" :key=\"index\" class=\"m-1\">\n            <svg @click=\"estrellas=index-estrellas\" fill-current text-secondary-light\" xmlns=\"http://www.w3.org/2000/svg\" enable-background=\"new 0 0 24 24\" height=\"24px\" viewBox=\"0 0 24 24\" width=\"24px\" fill=\"#000000\"><g><rect fill=\"none\" height=\"24\" width=\"24\" x=\"0\"/><polygon points=\"14.43,10 12,2 9.57,10 2,10 8.18,14.41 5.83,22 12,17.31 18.18,22 15.83,14.41 22,10\"/></g></svg>\n\n        </div>-")]);
 }
 
 /***/ }),
@@ -25852,7 +25856,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
           action: "",
           "class": "form",
           onSubmit: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withModifiers)(function ($event) {
-            return $options.EvaluarPeluquero($props.peluquerias.data.id, peluquero.id);
+            return $options.EvaluarPeluquero($props.peluquerias.data.id, peluquero.id, index);
           }, ["prevent"])
         }, [_hoisted_38, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_39, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_rater, {
           modelValue: $data.form.estrellas,

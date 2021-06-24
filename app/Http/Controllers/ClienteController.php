@@ -88,7 +88,7 @@ class ClienteController extends Controller
         $peluquero_evaluacion->estrellas = $request['estrellas'];
         $peluquero_evaluacion->save();
 
-        return response(['data'=>new PeluqueriaEvaluacionCollection($peluquero->evaluaciones)]);
+        return response(['estrellas'=> $peluquero->estrellas()]);
     }
 
     public function peluqueria(Peluqueria $peluqueria)
