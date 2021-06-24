@@ -19630,17 +19630,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Components_GreyButton__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/GreyButton */ "./resources/js/Components/GreyButton.vue");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
 /* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _Components_CitaVisualizer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/CitaVisualizer */ "./resources/js/Components/CitaVisualizer.vue");
+
 
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     BreezeAuthenticatedLayout: _Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_0__.default,
-    BtnGris: _Components_GreyButton__WEBPACK_IMPORTED_MODULE_1__.default
+    BtnGris: _Components_GreyButton__WEBPACK_IMPORTED_MODULE_1__.default,
+    CitaVisualizer: _Components_CitaVisualizer__WEBPACK_IMPORTED_MODULE_3__.default
   },
   props: {
     peluquerias: {},
-    horario: {}
+    horario: {},
+    citas: {}
   },
   methods: {
     Peluqueria: function Peluqueria(id_peluqueria) {
@@ -19648,6 +19652,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     Agendar: function Agendar(id_peluqueria) {
       location.href = '/agendar/' + id_peluqueria;
+    }
+  },
+  computed: {
+    citasAlert: function citasAlert() {
+      return this.citas.data.length > 1 ? 'No olvides atender tus citas' : 'No olvides atender tu cita';
     }
   }
 });
@@ -24042,7 +24051,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "w-full lg:px-8"
 }, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "px-5 py-2 text-xs font-semibold md:rounded-lg bg-gray-800 text-white text-md md:text-lg"
+  "class": "px-5 py-2  font-semibold md:rounded-lg bg-gray-800 text-white text-md md:text-lg"
 }, " Peluquerías esperando para ser aceptadas ")])], -1
 /* HOISTED */
 );
@@ -24119,7 +24128,7 @@ var _hoisted_16 = {
   "class": "text-sm text-gray-900"
 };
 var _hoisted_17 = {
-  "class": "px-6 py-4 whitespace-nowrap"
+  "class": "px-6 py-4 "
 };
 var _hoisted_18 = {
   "class": "text-sm text-gray-900"
@@ -25019,68 +25028,72 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
-
-var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+var _hoisted_1 = {
+  key: 0,
   "class": "py-12"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "bg-secondary overflow-hidden shadow-sm sm:rounded-lg"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "p-6 bg-secondary text-white border-b border-gray-200"
-}, " Tu Proxima cita "), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "p-6 bg-white text-secondary-light border-b border-gray-200 text-center"
-})])])], -1
-/* HOISTED */
-);
-
+};
 var _hoisted_2 = {
-  "class": "py-12"
+  "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
 };
 var _hoisted_3 = {
-  "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
+  "class": "p-3 bg-gradient-to-l from-secondary-dark to-mauve text-lg text-white border-b rounded border-gray-200"
 };
 var _hoisted_4 = {
+  "class": "p-6 mx-10 bg-white text-secondary-light border-b border-gray-200 text-center"
+};
+var _hoisted_5 = {
+  "class": "my-3 flex items-center"
+};
+var _hoisted_6 = {
+  "class": "mr-3"
+};
+var _hoisted_7 = {
+  "class": "py-6"
+};
+var _hoisted_8 = {
+  "class": "max-w-7xl mx-auto sm:px-6 lg:px-8"
+};
+var _hoisted_9 = {
   "class": "bg-secondary overflow-hidden shadow-sm sm:rounded-lg"
 };
 
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "p-6 bg-secondary text-white border-b border-gray-200"
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "p-6 bg-secondary text-white text-lg border-b border-gray-200"
 }, " Peluquerias Favoritas ", -1
 /* HOISTED */
 );
 
-var _hoisted_6 = {
+var _hoisted_11 = {
   "class": "p-6 bg-white text-secondary-light border-b border-gray-200 text-center"
 };
-var _hoisted_7 = {
+var _hoisted_12 = {
   "class": "grid justify-items-stretch"
 };
-var _hoisted_8 = {
+var _hoisted_13 = {
   "class": "max-w-sm mx-auto sm:px-6 lg:px-8"
 };
-var _hoisted_9 = {
-  "class": "bg-secondary overflow-hidden shadow-sm sm:rounded-lg "
+var _hoisted_14 = {
+  "class": "bg-secondary overflow-hidden shadow-2xl rounded-lg "
 };
-var _hoisted_10 = {
+var _hoisted_15 = {
   "class": "p-2 bg-secondary text-white border-b border-gray-200 max-w-sm text-right"
 };
-var _hoisted_11 = {
+var _hoisted_16 = {
   style: {
     "display": "inline-block"
   }
 };
-var _hoisted_12 = {
+var _hoisted_17 = {
   style: {
     "display": "inline-block"
   },
   "class": "align-top text-left ml-8"
 };
-var _hoisted_13 = {
+var _hoisted_18 = {
   key: 0
 };
 
-var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
+var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
   "enable-background": "new 0 0 24 24",
   height: "15",
   viewBox: "0 0 24 24",
@@ -25090,29 +25103,6 @@ var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
   d: "m23.363 8.584-7.378-1.127-3.307-7.044c-.247-.526-1.11-.526-1.357 0l-3.306 7.044-7.378 1.127c-.606.093-.848.83-.423 1.265l5.36 5.494-1.267 7.767c-.101.617.558 1.08 1.103.777l6.59-3.642 6.59 3.643c.54.3 1.205-.154 1.103-.777l-1.267-7.767 5.36-5.494c.425-.436.182-1.173-.423-1.266z",
   fill: "#ffc107"
 })], -1
-/* HOISTED */
-);
-
-var _hoisted_15 = {
-  key: 1
-};
-
-var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "rounded-full h-3 w-3 bg-red-500"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_17 = {
-  key: 2
-};
-var _hoisted_18 = {
-  key: 0
-};
-
-var _hoisted_19 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "rounded-full h-3 w-3 bg-green-500"
-}, null, -1
 /* HOISTED */
 );
 
@@ -25127,40 +25117,84 @@ var _hoisted_21 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
 );
 
 var _hoisted_22 = {
-  "class": "p-6 bg-white text-secondary-light border-b border-gray-200"
+  key: 2
 };
 var _hoisted_23 = {
+  key: 0
+};
+
+var _hoisted_24 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "rounded-full h-3 w-3 bg-green-500"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_25 = {
+  key: 1
+};
+
+var _hoisted_26 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
+  "class": "rounded-full h-3 w-3 bg-red-500"
+}, null, -1
+/* HOISTED */
+);
+
+var _hoisted_27 = {
+  "class": "p-6 bg-white text-secondary-light border-b border-gray-200"
+};
+var _hoisted_28 = {
   "class": "h-50% w-50%"
 };
-var _hoisted_24 = {
+var _hoisted_29 = {
   "class": "text-center"
 };
-var _hoisted_25 = {
+var _hoisted_30 = {
   "class": "text-center"
 };
-var _hoisted_26 = {
+var _hoisted_31 = {
   "class": "my-8 text-center"
 };
 
-var _hoisted_27 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Agendar");
+var _hoisted_32 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)("Agendar");
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_cita_visualizer = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("cita-visualizer");
+
   var _component_btn_gris = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("btn-gris");
 
   var _component_breeze_authenticated_layout = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("breeze-authenticated-layout");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_breeze_authenticated_layout, null, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-      return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.peluquerias, function (peluqueria, index) {
+      return [$props.citas.data.length > 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($options.citasAlert), 1
+      /* TEXT */
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.citas.data, function (cita, index) {
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
+          key: index
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, " Tienes una cita a las " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(cita.horaInicio), 1
+        /* TEXT */
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_cita_visualizer, {
+          "class": "w-2/12",
+          label: "Ver detalles",
+          cita: cita,
+          onEliminarCita: _cache[1] || (_cache[1] = function ($event) {
+            return _ctx.quitarCitaDeLista(_ctx.indexCita, _ctx.indexPel);
+          })
+        }, null, 8
+        /* PROPS */
+        , ["cita"])])]);
+      }), 128
+      /* KEYED_FRAGMENT */
+      ))])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.peluquerias, function (peluqueria, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
           "class": "overflow-hidden shadow-sm",
           key: index,
           style: {
             "display": "inline-block"
           }
-        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(peluqueria.nombre), 1
+        }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(peluqueria.nombre), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [$props.horario === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_13, [_hoisted_14])) : peluqueria.horario === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_15, [_hoisted_16])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_17, [peluqueria.horario.horaActual > peluqueria.horario.apertura && peluqueria.horario.horaActual < peluqueria.horario.cierre ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_18, [_hoisted_19])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_20, [_hoisted_21]))]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_23, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [$props.horario === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_18, [_hoisted_19])) : peluqueria.horario === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_20, [_hoisted_21])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_22, [peluqueria.horario.horaActual > peluqueria.horario.apertura && peluqueria.horario.horaActual < peluqueria.horario.cierre ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_23, [_hoisted_24])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_25, [_hoisted_26]))]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
           "class": "h-50% w-50% rounded-md cursor-pointer ",
           onClick: function onClick($event) {
             return $options.Peluqueria(peluqueria.id);
@@ -25169,17 +25203,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           alt: ""
         }, null, 8
         /* PROPS */
-        , ["onClick", "src"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_24, " Direccion: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(peluqueria.direccion), 1
+        , ["onClick", "src"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_29, " Direccion: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(peluqueria.direccion), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_25, " Telefono: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(peluqueria.telefono), 1
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_30, " Telefono: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(peluqueria.telefono), 1
         /* TEXT */
-        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_26, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_btn_gris, {
+        ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_31, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_btn_gris, {
           onClick: function onClick($event) {
             return $options.Agendar(peluqueria.id);
           }
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [_hoisted_27];
+            return [_hoisted_32];
           }),
           _: 2
           /* DYNAMIC */
@@ -27566,7 +27600,7 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 
 var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
   "class": "w-full md:w-1/2 text-secondary-light text-justify md:text-center"
-}, " Tu solicitud ha sido enviada, se encuentra en estato de revisión una vez que sea aceptada prodra visualizarse en la plataforma. ", -1
+}, " Tu solicitud ha sido enviada, se encuentra en estato de revisión una vez que sea aceptada prodrá visualizarce en la plataforma. ", -1
 /* HOISTED */
 );
 

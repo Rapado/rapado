@@ -1,28 +1,38 @@
 <template>
     <breeze-authenticated-layout>
-        <div class="py-12">
+        <div v-if="citas.data.length > 0" class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-secondary overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-secondary text-white border-b border-gray-200">
-                        Tu Proxima cita
-                    </div>
-                    <div class="p-6 bg-white text-secondary-light border-b border-gray-200 text-center">
-                        
+                <div class="p-3 bg-gradient-to-l from-secondary-dark to-mauve text-lg text-white border-b rounded border-gray-200">
+                    {{citasAlert}}
+                </div>
+                <div class="p-6 mx-10 bg-white text-secondary-light border-b border-gray-200 text-center">
+                    <div v-for="(cita, index) in citas.data" :key="index">
+                        <div class="my-3 flex items-center">
+                            <div class="mr-3">
+                                 Tienes una cita a las {{cita.horaInicio}}
+                            </div>
+                            <cita-visualizer
+                                class="w-2/12"
+                                label="Ver detalles"
+                                :cita = "cita"
+                                v-on:eliminar-cita = "quitarCitaDeLista(indexCita, indexPel)"
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="py-12">
+        <div class="py-6">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-secondary overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-secondary text-white border-b border-gray-200">
+                    <div class="p-6 bg-secondary text-white text-lg border-b border-gray-200">
                         Peluquerias Favoritas
                     </div>
                     <div class="p-6 bg-white text-secondary-light border-b border-gray-200 text-center">
                         <div class="overflow-hidden shadow-sm" v-for="(peluqueria,index) in peluquerias" :key="index" style="display: inline-block ">
                             <div class="grid justify-items-stretch">
                                 <div class="max-w-sm mx-auto sm:px-6 lg:px-8">
-                                    <div class="bg-secondary overflow-hidden shadow-sm sm:rounded-lg ">
+                                    <div class="bg-secondary overflow-hidden shadow-2xl rounded-lg ">
                                         <div class="p-2 bg-secondary text-white border-b border-gray-200 max-w-sm text-right">
                                             <div style="display: inline-block">
                                             {{peluqueria.nombre}}
@@ -42,7 +52,7 @@
                                                         <div class="rounded-full h-3 w-3 bg-red-500"></div>
                                                     </div>
                                                 </div>
-                                            </div>     
+                                            </div>
                                         </div>
                                         <div class="p-6 bg-white text-secondary-light border-b border-gray-200">
                                             <div class="h-50% w-50%">
@@ -73,23 +83,32 @@
     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated'
     import BtnGris from '@/Components/GreyButton'
     import Swal from 'sweetalert2'
-    
+    import CitaVisualizer from '@/Components/CitaVisualizer'
 
     export default {
         components: {
             BreezeAuthenticatedLayout,
-            BtnGris
+            BtnGris,
+            CitaVisualizer
         },
         props:{
             peluquerias:{},
             horario:{},
+            citas:{},
         },
+
         methods:{
             Peluqueria(id_peluqueria){
                 location.href ='/informacionpeluqueria/'+ id_peluqueria
                 },
             Agendar(id_peluqueria){
                 location.href ='/agendar/'+ id_peluqueria
+            }
+        },
+
+        computed:{
+            citasAlert: function(){
+                return this.citas.data.length > 1 ? 'No olvides atender tus citas' : 'No olvides atender tu cita'
             }
         }
 
