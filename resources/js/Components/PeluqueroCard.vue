@@ -11,7 +11,7 @@
         </div>
         <div class="modal-actions">
             <slot name="actions">
-              <grey-button class="w-full mt-2 rounded-xl" @click="$emit('close')">
+              <grey-button class="w-full mt-2 rounded-xl" @click="irAPeluqueros">
                 Ver
               </grey-button>
             </slot>
@@ -55,6 +55,10 @@ export default {
                     console.log(error);
                 }
             }
+        },
+
+        irAPeluqueros(){
+            window.location = '/peluqueria/peluqueros'
         }
     },
 
