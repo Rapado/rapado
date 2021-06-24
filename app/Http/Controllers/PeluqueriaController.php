@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Routing\Redirector;
 use Carbon\Carbon;
+use Illuminate\Validation\Rule;
+
 
 class PeluqueriaController extends Controller
 {
@@ -121,7 +123,7 @@ class PeluqueriaController extends Controller
         //validar informacion
         $request ->validate([
             'encargado' => 'required|min:4|max:255',
-            'ciudad' => 'required|min:4|max:255',
+            'ciudad' => ['required','min:4', 'max:255',Rule::in(['Guadalajara', 'guadalajara'])],
             'logo' => 'required|mimes:jpg,png,jpge',
             'numero' => 'required|numeric|min:0|max:9999',
             'documento' => 'required|mimes:pdf,jpg,png,jpge'
@@ -228,8 +230,8 @@ class PeluqueriaController extends Controller
             'numero.max'=>'El número máximo es 1000',
             'documento.mimes'=>'El documento debe ser formato pdf, jpg, jpge o png',
             'documento.required'=> 'Por favor suba un documento o cédula que pruebe que el negocio se encuetra registrado',
-            'message.max'=>'El mensaje no debe exceder los 255 caracteres'
-
+            'message.max'=>'El mensaje no debe exceder los 255 caracteres',
+            'in' => 'Solo estamos disponibles en Guadalajara, nos expandimeros pronto.'
         ];//aaa
     }
 

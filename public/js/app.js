@@ -25051,7 +25051,7 @@ var _hoisted_4 = {
   "class": "p-6 mx-10 bg-white text-secondary-light border-b border-gray-200 text-center"
 };
 var _hoisted_5 = {
-  "class": "my-3 flex items-center"
+  "class": "my-3 md:flex items-center"
 };
 var _hoisted_6 = {
   "class": "mr-3"
