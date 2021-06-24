@@ -21,7 +21,7 @@
                 </div>
             </template>
             <template v-slot:body>
-                <span class="list-item" v-for="(servicio, index) in cita.servicios" :key="index">
+                <span v-for="(servicio, index) in cita.servicios" :key="index">
                     <avatar :imagen = "'/storage/'+ servicio.imagen" :label = "servicio.nombre + ' $' + servicio.costo" rounded = "rounded-sm"/>
                 </span>
             </template>
