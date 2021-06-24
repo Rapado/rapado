@@ -21740,10 +21740,13 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("
 (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)();
 
 var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("form", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("span", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("input", {
     "class": "input-file",
     type: "file",
     name: "mi-archivo",
+    style: {
+      "cursor": "pointer"
+    },
     "v-model": $props.modelValue,
     onInput: _cache[1] || (_cache[1] = function ($event) {
       return _ctx.$emit('update:modelValue', $event.target.files[0]);
@@ -21760,9 +21763,7 @@ var render = /*#__PURE__*/_withId(function (_ctx, _cache, $props, $setup, $data,
     }
   }, null, 8
   /* PROPS */
-  , ["textContent"])])], 64
-  /* STABLE_FRAGMENT */
-  );
+  , ["textContent"])])]);
 });
 
 /***/ }),
@@ -28444,7 +28445,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.input-file[data-v-2780721a] {\r\n    width: auto;\r\n    height: auto;\r\n    /* height: 0.1px; */\r\n    opacity: 0;\r\n    overflow: hidden;\r\n    position: fixed;\r\n    cursor: pointer;\r\n    /* z-index: -1; */\n}\n.label-file[data-v-2780721a] {\r\n    font-size: 14px;\r\n    font-weight: 600;\r\n    color: #fff;\r\n    /* background-color: #106BA0; */\r\n    transition: all .5s;\r\n    cursor: pointer;\r\n    padding: 9px 20px !important;\r\n    text-transform: uppercase;\r\n    width: auto;\r\n    text-align: center;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.input-file[data-v-2780721a] {\n\n    height: 45px;\n    opacity: 0;\n    overflow: hidden;\n    position: fixed;\n    cursor: pointer;\n    width:300px;\n}\ninput[type=file][data-v-2780721a]::-webkit-file-upload-button {\n    cursor: pointer;\n}\n.label-file[data-v-2780721a] {\n\n    font-size: 14px;\n    font-weight: 600;\n    color: #fff;\n    transition: all .5s;\n    cursor: pointer;\n    padding: 9px 20px !important;\n    text-transform: uppercase;\n    width: auto;\n    text-align: center;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
