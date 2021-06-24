@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CitaCollection;
 use App\Models\PeluqueriaEstado;
 use App\Models\Cliente;
 use App\Http\Resources\PeluqueriaEstadoCollection;
@@ -13,15 +14,18 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-    public function clienteDashboard()
-    {   $cliente = Cliente::where('user_id', '=' ,Auth::user()->id)->first();
-        $favoritos=DB::table('peluqueria_favoritas')
-        ->join('peluquerias','peluquerias.id','=','peluqueria_favoritas.peluqueria_id')
-        ->select('peluquerias.nombre','peluquerias.activa','peluquerias.direccion',
-                'peluquerias.id','peluquerias.logo','peluquerias.telefono',)
-        ->where('peluqueria_favoritas.cliente_id','=',$cliente->id)
-        ->get();
-        return Inertia::render('Cliente/Dashboard',['peluquerias' =>$favoritos,'horario' =>null]);
+    public function clienteDashboard(){
+    // {   $cliente = Cliente::where('user_id', '=' ,Auth::user()->id)->first();
+    //     $favoritos=DB::table('peluqueria_favoritas')
+    //     ->join('peluquerias','peluquerias.id','=','peluqueria_favoritas.peluqueria_id')
+    //     ->select('peluquerias.nombre','peluquerias.activa','peluquerias.direccion',
+    //             'peluquerias.id','peluquerias.logo','peluquerias.telefono',)
+    //     ->where('peluqueria_favoritas.cliente_id','=',$cliente->id)
+    //     ->get();
+
+        $cliente = Auth::user()->cliente;
+
+        return Inertia::render('Cliente/Dashboard',['peluquerias' =>$cliente->peluqueriasFavoritas,'horario' =>null, 'citas' => new CitaCollection(Auth::user()->citas)]);
     }
 
     public function peluqueriaDashboard()

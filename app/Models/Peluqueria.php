@@ -41,7 +41,7 @@ class Peluqueria extends Model
         $evaluaciones = $this->evaluaciones;
         $estrella = 0;
         if(count($evaluaciones)>0){
-            foreach($evaluaciones as $evaluacion){ 
+            foreach($evaluaciones as $evaluacion){
                 $estrella += $evaluacion->estrellas;
             }
             $promedio = $estrella/count($evaluaciones);
@@ -94,7 +94,7 @@ class Peluqueria extends Model
             'imagen' => $this->logoPath(),
             'documento' => $this->documentoPath(),
             'telefono' => $this->telefono,
-            'direccion' => $this->telefono,
+            'direccion' => $this->direccion,
             'dadaDeAlta' => $this->created_at->format('d-m-Y'),
             'actualizado' => $this->updated_at->format('d-m-Y'),
         ];
@@ -192,6 +192,6 @@ class Peluqueria extends Model
     {
         return (new PeluqueriaResource($this))->opciones($mostrarservicios, $mostrarpeluqueros, $mostrarevaluacion, $mostrarfavorita);
     }
-  
+
 
 }

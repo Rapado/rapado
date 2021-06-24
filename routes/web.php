@@ -61,6 +61,7 @@ Route::delete('peluqueria/eliminar_cita/{cita}', [CitaController::class, 'destro
 
 Route::get('/agendar/{peluqueria}', [CitaController::class, 'create'])->middleware(['auth:cliente'])->name('cita.create');
 Route::post('/agendar/{peluqueria}', [CitaController::class, 'store'])->middleware(['auth:cliente'])->name('cita.store');
+Route::delete('/eliminar_cita/{cita}', [CitaController::class, 'destroy'])->middleware(['auth:cliente'])->name('cita.destroy');
 
 
 route::get('/peluquero/agenda', function(){
@@ -71,6 +72,7 @@ $peluquero = Peluquero::find(7);
 
 Route::get('/explorador',[PeluqueriaController::class, 'index'])->middleware(['auth:cliente'])->name('peluqueria.index');
 Route::post('/peluqueria/agregar_favoritos/{peluqueria}',[ClienteController::class, 'favoritos'])->middleware(['auth:cliente'])->name('cliente.favoritos');
+Route::delete('/peluqueria/eliminar_favorita/{peluqueriaFavorita}',[ClienteController::class, 'quitarDeFavoritos'])->middleware(['auth:cliente'])->name('cliente.quitarPeluqueri');
 Route::get('/informacionpeluqueria/{peluqueria}',[ClienteController::class, 'peluqueria'])->middleware(['auth:cliente'])->name('cliente.peluqueria');
 Route::get('/busqueda',[PeluqueriaController::class, 'busqueda'])->middleware(['auth:cliente'])->name('peluqueria.busqueda');
 Route::get('/favoritos',[ClienteController::class, 'peluquerias_favoritas'])->middleware(['auth:cliente'])->name('peluqueria.favoritos');

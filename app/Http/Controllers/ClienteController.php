@@ -33,13 +33,26 @@ class ClienteController extends Controller
         $peluqueria_favorita->cliente_id = Auth::user()->cliente->id;
         $peluqueria_favorita->peluqueria_id = $peluqueria->id;
         $peluqueria_favorita->save();
-        return response(['data'=>'recibi peluqueria'.$peluqueria->nombre]);
+
+        return response(['data'=>'recibi peluqueria'.$peluqueria->nombre, 'peluqueriaFavorita' => $peluqueria_favorita]);
+    }
+
+    public function quitarDeFavoritos(PeluqueriaFavorita $peluqueriaFavorita)
+    {
+        $peluqueriaFavorita->delete();
+
+        return response('done');
     }
     public function Evaluar(Request $request, Peluqueria $peluqueria)
     {
+        $request->validate([
+            'estrellas' => 'min:1|max:5'
+        ]);
+
         $cliente =  Auth::user()->cliente;
         $evaluaciones = $cliente->evaluacionesDePeluquerias()->where('peluqueria_id',$peluqueria->id)->first();
         $peluqueria_evaluacion = null;
+
         if(isset($evaluaciones)){
             $peluqueria_evaluacion = $evaluaciones;
         }
@@ -48,7 +61,7 @@ class ClienteController extends Controller
             $peluqueria_evaluacion->cliente_id = $cliente->id;
             $peluqueria_evaluacion->peluqueria_id = $peluqueria->id;
         }
-        
+
         $peluqueria_evaluacion->estrellas = $request['estrellas'];
         $peluqueria_evaluacion->comentario = $request['comentario'];
         $peluqueria_evaluacion->save();
@@ -56,6 +69,10 @@ class ClienteController extends Controller
     }
     public function EvaluarPeluquero(Request $request, Peluqueria $peluqueria, Peluquero $peluquero)
     {
+        $request->validate([
+            'estrellas' => 'min:1|max:5'
+        ]);
+
         $cliente =  Auth::user()->cliente;
         $evaluaciones = $cliente->evaluacionesAPeluqueros()->where('peluquero_id',$peluquero->id)->first();
         $peluquero_evaluacion = null;
@@ -67,20 +84,21 @@ class ClienteController extends Controller
             $peluquero_evaluacion->cliente_id = $cliente->id;
             $peluquero_evaluacion->peluquero_id = $peluquero->id;
         }
-        
+
         $peluquero_evaluacion->estrellas = $request['estrellas'];
         $peluquero_evaluacion->save();
+
         return response(['data'=>new PeluqueriaEvaluacionCollection($peluquero->evaluaciones)]);
     }
 
     public function peluqueria(Peluqueria $peluqueria)
     {
-        
+
         $cliente = Cliente::where('user_id', '=' ,Auth::user()->id)->first();
         $favoritos = PeluqueriaFavorita::where([['cliente_id' ,'=', $cliente->id],['peluqueria_id' ,'=',$peluqueria->id ]])->first();
-        
-        return Inertia::render('Cliente/Peluqueria', ['peluquerias' => $peluqueria->toResource(true,true,true,true), 'favorito' => $favoritos]);  
-        
+
+        return Inertia::render('Cliente/Peluqueria', ['peluquerias' => $peluqueria->toResource(true,true,true,true), 'favorito' => $favoritos]);
+
     }
     public function peluquerias_favoritas()
     {   $cliente = Cliente::where('user_id', '=' ,Auth::user()->id)->first();

@@ -76,7 +76,7 @@ class Peluquero extends Model
         $evaluaciones = $this->evaluaciones;
         $estrella = 0;
         if(count($evaluaciones)>0){
-            foreach($evaluaciones as $evaluacion){ 
+            foreach($evaluaciones as $evaluacion){
                 $estrella += $evaluacion->estrellas;
             }
             $promedio = $estrella/count($evaluaciones);
@@ -84,7 +84,12 @@ class Peluquero extends Model
         }
         return $estrella;
     }
-    
+
+    public function numeroEvaluaciones()
+    {
+        return count($this->evaluaciones);
+    }
+
     public function agenda()
     {
         $agenda = [];

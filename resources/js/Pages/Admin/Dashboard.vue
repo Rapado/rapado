@@ -3,7 +3,7 @@
         <div class="flex flex-col md:items-center">
             <div class="pt-6 mb-2 w-screen max-w-7xl">
                 <div class="w-full lg:px-8">
-                    <div class="px-5 py-2 text-xs font-semibold md:rounded-lg bg-gray-800 text-white text-md md:text-lg">
+                    <div class="px-5 py-2  font-semibold md:rounded-lg bg-gray-800 text-white text-md md:text-lg">
                         Peluquerías esperando para ser aceptadas
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                             <div class="text-sm text-gray-900">{{ peluqueriaPendiente.peluqueria.telefono }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-6 py-4 ">
                             <div class="text-sm text-gray-900">{{ peluqueriaPendiente.peluqueria.direccion }}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">

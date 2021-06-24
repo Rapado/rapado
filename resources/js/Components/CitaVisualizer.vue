@@ -21,7 +21,7 @@
                 </div>
             </template>
             <template v-slot:body>
-                <span class="list-item" v-for="(servicio, index) in cita.servicios" :key="index">
+                <span v-for="(servicio, index) in cita.servicios" :key="index">
                     <avatar :imagen = "'/storage/'+ servicio.imagen" :label = "servicio.nombre + ' $' + servicio.costo" rounded = "rounded-sm"/>
                 </span>
             </template>
@@ -54,6 +54,10 @@ export default {
         label: {
             default: '',
         },
+
+        urlEliminar: {
+            default: '/peluqueria/eliminar_cita/'
+        }
     },
 
     data(){
@@ -72,7 +76,7 @@ export default {
 
         async eliminarCita(){
             try {
-                await axios.delete('/peluqueria/eliminar_cita/' + this.cita.id)
+                await axios.delete(this.urlEliminar + this.cita.id)
                 this.showModal = false;
                 this.mostrarAlerta('Cita eliminada', 'success', 3000);
                 this.$emit('eliminarCita');
