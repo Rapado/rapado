@@ -76,7 +76,7 @@
                                         </div>
                                         <div class="  text-center">
                                             <div class="p-6 bg-white text-secondary-light border-b border-gray-200 text-center" >
-                                                <form action class="form" @submit.prevent="EvaluarPeluquero(peluquerias.data.id,peluquero.id)">
+                                                <form action class="form" @submit.prevent="EvaluarPeluquero(peluquerias.data.id,peluquero.id, index)">
                                                     <div class="grid justify-items-stretch text-xs " >
                                                         Da tu opinión a los demás
                                                     </div>
@@ -283,6 +283,7 @@
                 axios.post('/peluqueria/evaluar/'+id_peluqueria,{...this.form})
                 .then(response => {
                     this.peluquerias.data.evaluaciones=response.data.data
+                    this.form.reset();
                     Swal.fire({
                         text:'Gracias por tu evaluación',
                         icon:'success',
@@ -293,11 +294,12 @@
                     console.log(error)
                 })
             },
-            EvaluarPeluquero(id_peluqueria,id_peluquero){
+            EvaluarPeluquero(id_peluqueria,id_peluquero, index){
 
                 axios.post('/peluquero/evaluar/'+id_peluqueria+'/'+id_peluquero,{...this.form})
                 .then(response => {
-                    this.peluquerias.data.peluqueros.evaluaciones=response.data.data
+                    console.log(response.data.estrellas);
+                    this.peluquerias.data.peluqueros[index].estrellas=response.data.estrellas
                     Swal.fire({
                         text:'Gracias por tu evaluación',
                         icon:'success',

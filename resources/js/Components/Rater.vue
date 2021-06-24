@@ -34,13 +34,12 @@ export default {
         return {
             estrellas: 0,
         }
-        
+
     },
     methods:{
         actualizarEstrellas(noEstrellas){
             this.estrellas = noEstrellas;
             this.$emit('update:modelValue', noEstrellas);
-
         }
 
     }

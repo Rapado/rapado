@@ -101,11 +101,11 @@
                                 </div>
                             </div>
 
-                            <div v-if="!hayPeluqueroSeleccionado" class="mx-4">
+                            <!-- <div v-if="!hayPeluqueroSeleccionado" class="mx-4">
                                 <secondary-button class="w-full ">
                                     Buscame un lugar
                                 </secondary-button>
-                            </div>
+                            </div> -->
                             <div v-if="hayCitaSeleccionada && !citaAgendada" class="mx-4">
                                 <secondary-button @click="submit" class="w-full ">
                                     Confirmar
