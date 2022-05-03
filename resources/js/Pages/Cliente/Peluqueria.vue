@@ -106,7 +106,7 @@
                                                 <div class="text-center text-2xl">
                                                         {{servicio.nombre}}
                                                 </div>
-                                                <div class="">
+                                                <div class="ml-2">
                                                     <div>
                                                         <img class="h-44 w-52 rounded-md" :src="'/storage/'+servicio.imagen" alt="" />
                                                     </div>

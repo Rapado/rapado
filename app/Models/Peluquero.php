@@ -31,7 +31,7 @@ class Peluquero extends Model
 
     public function citas()
     {
-        return $this->hasMany(Cita::class);
+        return $this->hasMany(Cita::class)->orderBy('hora_inicio', 'asc');
     }
 
     public function citaA($hora)

@@ -21508,43 +21508,20 @@ var _hoisted_5 = {
   "class": "mr-2"
 };
 
-var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", {
-  "class": "mr-1 hidden lg:block"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("svg", {
-  "class": "fill-current text-accent",
-  "enable-background": "new 0 0 24 24",
-  height: "20px",
-  viewBox: "0 0 24 24",
-  width: "20px",
-  fill: "#000000"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("rect", {
-  fill: "none",
-  height: "24",
-  width: "24"
-})]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
-  d: "M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M16.2,16.2L11,13V7h1.5v5.2l4.5,2.7L16.2,16.2z"
-})])])])])], -1
-/* HOISTED */
-);
-
-var _hoisted_7 = {
-  "class": "hidden lg:block"
-};
-
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   d: "M0 0h24v24H0z",
   fill: "none"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   d: "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"
 }, null, -1
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, "Eliminar", -1
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", null, "Eliminar", -1
 /* HOISTED */
 );
 
@@ -21569,11 +21546,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     header: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.peluquero.substring(0, 8)), 1
       /* TEXT */
-      ), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.nombreCliente.substring(0, 8)), 1
+      ), _hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.nombreCliente.substring(0, 12)), 1
       /* TEXT */
-      ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.cita.duracion) + " Min", 1
-      /* TEXT */
-      ), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
+      ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div class=\"mr-1 hidden lg:block\"><svg class = \"fill-current text-accent\" enable-background=\"new 0 0 24 24\" height=\"20px\" viewBox=\"0 0 24 24\" width=\"20px\" fill=\"#000000\"><g><rect fill=\"none\" height=\"24\" width=\"24\"/></g><g><g><g><path d=\"M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M16.2,16.2L11,13V7h1.5v5.2l4.5,2.7L16.2,16.2z\"/></g></g></g></svg></div>\n                    <div class=\"hidden lg:block\">{{cita.duracion}} Min</div> "), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("svg", {
         onClick: _cache[2] || (_cache[2] = function () {
           return $options.eliminarCita && $options.eliminarCita.apply($options, arguments);
         }),
@@ -21583,13 +21558,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         viewBox: "0 0 24 24",
         width: "24px",
         fill: "#000000"
-      }, [_hoisted_8, _hoisted_9])), _hoisted_10])];
+      }, [_hoisted_6, _hoisted_7])), _hoisted_8])];
     }),
     body: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.cita.servicios, function (servicio, index) {
         return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", {
           key: index
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_avatar, {
+          "class": "mb-1",
           imagen: '/storage/' + servicio.imagen,
           label: servicio.nombre + ' $' + servicio.costo,
           rounded: "rounded-sm"
@@ -25307,7 +25283,7 @@ var _hoisted_27 = {
   "class": "p-6 bg-white text-secondary-light border-b border-gray-200"
 };
 var _hoisted_28 = {
-  "class": "h-50% w-50%"
+  "class": "h-48 w-48"
 };
 var _hoisted_29 = {
   "class": "text-center"
@@ -25360,7 +25336,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_14, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(peluqueria.nombre), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_17, [$props.horario === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_18, [_hoisted_19])) : peluqueria.horario === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_20, [_hoisted_21])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_22, [peluqueria.horario.horaActual > peluqueria.horario.apertura && peluqueria.horario.horaActual < peluqueria.horario.cierre ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_23, [_hoisted_24])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_25, [_hoisted_26]))]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_27, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_28, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-          "class": "h-50% w-50% rounded-md cursor-pointer ",
+          "class": "h-48 w-48 rounded-md cursor-pointer ",
           onClick: function onClick($event) {
             return $options.Peluqueria(peluqueria.id);
           },
@@ -25635,7 +25611,7 @@ var _hoisted_44 = {
   "class": "text-center text-2xl"
 };
 var _hoisted_45 = {
-  "class": ""
+  "class": "ml-2"
 };
 var _hoisted_46 = {
   "class": "text-center"
@@ -25714,12 +25690,12 @@ var _hoisted_61 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(
   style: {
     "fill": "#E7ECED"
   },
-  d: "M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53\r\n                                                            c6.454,0,12.367-2.31,16.964-6.144c-0.424-0.358-0.884-0.68-1.394-0.934l-8.467-4.233c-1.094-0.547-1.785-1.665-1.785-2.888v-3.322\r\n                                                            c0.238-0.271,0.51-0.619,0.801-1.03c1.154-1.63,2.027-3.423,2.632-5.304c1.086-0.335,1.886-1.338,1.886-2.53v-3.546\r\n                                                            c0-0.78-0.347-1.477-0.886-1.965v-5.126c0,0,1.053-7.977-9.75-7.977s-9.75,7.977-9.75,7.977v5.126\r\n                                                            c-0.54,0.488-0.886,1.185-0.886,1.965v3.546c0,0.934,0.491,1.756,1.226,2.231c0.886,3.857,3.206,6.633,3.206,6.633v3.24\r\n                                                            C20.296,39.899,19.65,40.986,18.613,41.552z"
+  d: "M18.613,41.552l-7.907,4.313c-0.464,0.253-0.881,0.564-1.269,0.903C14.047,50.655,19.998,53,26.5,53\n                                                            c6.454,0,12.367-2.31,16.964-6.144c-0.424-0.358-0.884-0.68-1.394-0.934l-8.467-4.233c-1.094-0.547-1.785-1.665-1.785-2.888v-3.322\n                                                            c0.238-0.271,0.51-0.619,0.801-1.03c1.154-1.63,2.027-3.423,2.632-5.304c1.086-0.335,1.886-1.338,1.886-2.53v-3.546\n                                                            c0-0.78-0.347-1.477-0.886-1.965v-5.126c0,0,1.053-7.977-9.75-7.977s-9.75,7.977-9.75,7.977v5.126\n                                                            c-0.54,0.488-0.886,1.185-0.886,1.965v3.546c0,0.934,0.491,1.756,1.226,2.231c0.886,3.857,3.206,6.633,3.206,6.633v3.24\n                                                            C20.296,39.899,19.65,40.986,18.613,41.552z"
 }), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("path", {
   style: {
     "fill": "#556080"
   },
-  d: "M26.953,0.004C12.32-0.246,0.254,11.414,0.004,26.047C-0.138,34.344,3.56,41.801,9.448,46.76\r\n                                                                c0.385-0.336,0.798-0.644,1.257-0.894l7.907-4.313c1.037-0.566,1.683-1.653,1.683-2.835v-3.24c0,0-2.321-2.776-3.206-6.633\r\n                                                                c-0.734-0.475-1.226-1.296-1.226-2.231v-3.546c0-0.78,0.347-1.477,0.886-1.965v-5.126c0,0-1.053-7.977,9.75-7.977\r\n                                                                s9.75,7.977,9.75,7.977v5.126c0.54,0.488,0.886,1.185,0.886,1.965v3.546c0,1.192-0.8,2.195-1.886,2.53\r\n                                                                c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233\r\n                                                                c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"
+  d: "M26.953,0.004C12.32-0.246,0.254,11.414,0.004,26.047C-0.138,34.344,3.56,41.801,9.448,46.76\n                                                                c0.385-0.336,0.798-0.644,1.257-0.894l7.907-4.313c1.037-0.566,1.683-1.653,1.683-2.835v-3.24c0,0-2.321-2.776-3.206-6.633\n                                                                c-0.734-0.475-1.226-1.296-1.226-2.231v-3.546c0-0.78,0.347-1.477,0.886-1.965v-5.126c0,0-1.053-7.977,9.75-7.977\n                                                                s9.75,7.977,9.75,7.977v5.126c0.54,0.488,0.886,1.185,0.886,1.965v3.546c0,1.192-0.8,2.195-1.886,2.53\n                                                                c-0.605,1.881-1.478,3.674-2.632,5.304c-0.291,0.411-0.563,0.759-0.801,1.03V38.8c0,1.223,0.691,2.342,1.785,2.888l8.467,4.233\n                                                                c0.508,0.254,0.967,0.575,1.39,0.932c5.71-4.762,9.399-11.882,9.536-19.9C53.246,12.32,41.587,0.254,26.953,0.004z"
 })]), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("g")])], -1
 /* HOISTED */
 );
@@ -26091,7 +26067,7 @@ var _hoisted_21 = {
   "class": "p-6 bg-white text-secondary-light border-b border-gray-200"
 };
 var _hoisted_22 = {
-  "class": "h-50% w-50%"
+  "class": "h-48 w-48"
 };
 var _hoisted_23 = {
   "class": "text-center"
@@ -26122,7 +26098,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(peluqueria.nombre), 1
         /* TEXT */
         ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [$props.horario === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_12, [_hoisted_13])) : peluqueria.horario === null ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_14, [_hoisted_15])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_16, [peluqueria.horario.horaActual > peluqueria.horario.apertura && peluqueria.horario.horaActual < peluqueria.horario.cierre ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_17, [_hoisted_18])) : ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", _hoisted_19, [_hoisted_20]))]))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_22, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("img", {
-          "class": "h-50% w-50% rounded-md cursor-pointer ",
+          "class": "h-48 w-48 rounded-md cursor-pointer ",
           onClick: function onClick($event) {
             return $options.Peluqueria(peluqueria.id);
           },
@@ -28468,7 +28444,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.info:hover {\r\n        transition: all .2s ease;\n}\n.extra-info {\r\n        display: none;\r\n        position: relative;\r\n        top: 0;\r\n        left: 50px;\n}\n.info:hover .extra-info {\r\n        display: block;\n}\n.info {\r\n        font-size: 20px;\r\n        padding-left: 5px;\r\n        width: 20px;\r\n        border-radius: 5px;\n}\n.info:hover {\r\n        padding: 0 0 0 5px;\r\n        width: 250px;\r\n        text-align: right !important;\n}\r\n\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.info:hover {\n        transition: all .2s ease;\n}\n.extra-info {\n        display: none;\n        position: relative;\n        top: 0;\n        left: 50px;\n}\n.info:hover .extra-info {\n        display: block;\n}\n.info {\n        font-size: 20px;\n        padding-left: 5px;\n        width: 20px;\n        border-radius: 5px;\n}\n.info:hover {\n        padding: 0 0 0 5px;\n        width: 350px;\n        text-align: right !important;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -28516,7 +28492,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#form[data-v-0e463925] {\r\n    width: 250px;\r\n    margin: 0 auto;\r\n    height: 100px;\r\n    font-size: 40px;\n}\n#form p[data-v-0e463925] {\r\n    text-align: righ;\n}\nlabel[data-v-0e463925] {\r\n        font-size: 35px;\n}\ninput[type=\"radio\"][data-v-0e463925] {\r\n    display: none;\n}\nlabel[data-v-0e463925] {\r\n    color: grey;\n}\n.clasificacion[data-v-0e463925] {\r\n    direction: rtl;\r\n    unicode-bidi: bidi-override;\n}\nlabel[data-v-0e463925]:hover,\r\n    label:hover ~ label[data-v-0e463925] {\r\n    color: orange;\n}\ninput[type=\"radio\"]:checked ~ label[data-v-0e463925] {\r\n    color: orange;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#form[data-v-0e463925] {\n    width: 250px;\n    margin: 0 auto;\n    height: 100px;\n    font-size: 40px;\n}\n#form p[data-v-0e463925] {\n    text-align: righ;\n}\nlabel[data-v-0e463925] {\n        font-size: 35px;\n}\ninput[type=\"radio\"][data-v-0e463925] {\n    display: none;\n}\nlabel[data-v-0e463925] {\n    color: grey;\n}\n.clasificacion[data-v-0e463925] {\n    direction: rtl;\n    unicode-bidi: bidi-override;\n}\nlabel[data-v-0e463925]:hover,\n    label:hover ~ label[data-v-0e463925] {\n    color: orange;\n}\ninput[type=\"radio\"]:checked ~ label[data-v-0e463925] {\n    color: orange;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

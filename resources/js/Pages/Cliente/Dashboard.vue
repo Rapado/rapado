@@ -56,8 +56,8 @@
                                             </div>
                                         </div>
                                         <div class="p-6 bg-white text-secondary-light border-b border-gray-200">
-                                            <div class="h-50% w-50%">
-                                                <img class="h-50% w-50% rounded-md cursor-pointer "  @click="Peluqueria(peluqueria.id)"  :src="'storage/'+peluqueria.logo" alt="" />
+                                            <div class="h-48 w-48">
+                                                <img class="h-48 w-48 rounded-md cursor-pointer "  @click="Peluqueria(peluqueria.id)"  :src="'storage/'+peluqueria.logo" alt="" />
                                             </div>
                                             <div class="text-center">
                                                 Direccion: {{peluqueria.direccion}}

@@ -39,7 +39,7 @@ export default {
 
     .info:hover {
         padding: 0 0 0 5px;
-        width: 250px;
+        width: 350px;
         text-align: right !important;
     }
 

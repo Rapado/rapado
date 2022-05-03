@@ -11,10 +11,10 @@
                     <div class="mr-2">{{cita.peluquero.substring(0, 8)}}</div>
 
                     <div class="mr-1"><svg class = "fill-current text-accent" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><g/><g><circle cx="12" cy="4" r="2"/><path d="M15.89,8.11C15.5,7.72,14.83,7,13.53,7c-0.21,0-1.42,0-2.54,0C8.24,6.99,6,4.75,6,2H4c0,3.16,2.11,5.84,5,6.71V22h2v-6h2 v6h2V10.05L18.95,14l1.41-1.41L15.89,8.11z"/></g></g></svg></div>
-                    <div class="mr-2">{{cita.nombreCliente.substring(0, 8)}}</div>
+                    <div class="mr-2">{{cita.nombreCliente.substring(0, 12)}}</div>
 
-                    <div class="mr-1 hidden lg:block"><svg class = "fill-current text-accent" enable-background="new 0 0 24 24" height="20px" viewBox="0 0 24 24" width="20px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M16.2,16.2L11,13V7h1.5v5.2l4.5,2.7L16.2,16.2z"/></g></g></g></svg></div>
-                    <div class="hidden lg:block">{{cita.duracion}} Min</div>
+                    <!-- <div class="mr-1 hidden lg:block"><svg class = "fill-current text-accent" enable-background="new 0 0 24 24" height="20px" viewBox="0 0 24 24" width="20px" fill="#000000"><g><rect fill="none" height="24" width="24"/></g><g><g><g><path d="M12,2C6.5,2,2,6.5,2,12s4.5,10,10,10s10-4.5,10-10S17.5,2,12,2z M16.2,16.2L11,13V7h1.5v5.2l4.5,2.7L16.2,16.2z"/></g></g></g></svg></div>
+                    <div class="hidden lg:block">{{cita.duracion}} Min</div> -->
 
                     <svg @click="eliminarCita" class = "ml-auto fill-current text-error hover:text-accent-dark cursor-pointer" xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
                     <div>Eliminar</div>
@@ -22,7 +22,7 @@
             </template>
             <template v-slot:body>
                 <span v-for="(servicio, index) in cita.servicios" :key="index">
-                    <avatar :imagen = "'/storage/'+ servicio.imagen" :label = "servicio.nombre + ' $' + servicio.costo" rounded = "rounded-sm"/>
+                    <avatar class="mb-1" :imagen = "'/storage/'+ servicio.imagen" :label = "servicio.nombre + ' $' + servicio.costo" rounded = "rounded-sm"/>
                 </span>
             </template>
         </modal>
